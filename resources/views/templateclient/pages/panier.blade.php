@@ -1,0 +1,215 @@
+@extends('templateclient.layouts.app')
+
+@section('extra-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@stop
+
+@section('content')
+       @if (Cart::count() > 0 )
+           <section class="section-content padding-y">
+            <div class="container">
+                <div class="row">
+                    <main class="col-md-8">
+                        <div class="card">
+                            <table class="table table-borderless table-shopping-cart">
+                                <thead class="text-muted">
+                                    <tr class="small text-uppercase">
+                                        <th scope="col">Produit</th>
+                                        <th scope="col">Nom</th>
+                                        
+                                        <th scope="col">Prix (GNF)</th>
+
+                                        <th scope="col-fluid">Quantié</th>
+                                         <th scope="col-fluid">Total</th>
+                                        <th scope="col" class="text-right"> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    @foreach (Cart::content() as $produit)
+                                       <tr>
+                                        <td>
+                                            <div>
+                                                <figure class="itemside">
+                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->model->photo) }}"></div>
+                                                </figure>
+                                            </div>
+                                        </td>
+
+                                        <td class="prices">
+                                            <div>
+                                                <div class="price-wrap">
+                                                    <var class="price">{{$produit->model->nom}}</var>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        
+                                        <td class="prices">
+                                            <div>
+                                                <div class="price-wrap">
+                                                    <var class="price">{{$produit->model->getprixminimum()}}</var>
+                                                    <small class="text-muted">148 000 / unité</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+
+                                            <div>
+
+                                                <!-- <input type="number" class="form-control qtte-val" name="qty" id="qty" data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}" value="1" min="1"> -->
+
+
+                                                <select name="qty" id="qty" class="custom-select" data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}">
+                                                    @for ($i = 1; $i <= 50 ; $i++)
+                                                        <option value="{{ $i }}" {{$i == $produit->qty ? 'selected' : ''}}>{{$i}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+
+                                        </td>
+
+                                        <td class="prices">
+                                            <div>
+                                                <div class="price-wrap">
+                                                    <var class="price">{{getprixminimumhelpers($produit->subtotal())}}</var>
+                                                    <small class="text-muted">148 000 / unité</small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="text-right">
+                                            <div>
+                                                <form action="{{ route('cart.destroy', $produit->rowId) }}" method="post"
+                                                onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet produit ?')" 
+                                                    >
+
+                                                    @csrf
+
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-light"> <i class="fa fa-trash"></i></button>
+                                                    
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    
+                                </tbody>
+                            </table>
+
+                            <div class="card-body border-top">
+                                <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                <a href="{{route('acceuil')}}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuer mes achats </a>
+                            </div>
+                        </div>
+                    </main>
+                    <aside class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label>Avez-vous un coupon de réduction?</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="" placeholder="Code de réduction">
+                                            <span class="input-group-append"> 
+                                                <button class="btn btn-primary">Valider</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <dl class="dlist-align">
+                                    <dt>Prix Total:</dt>
+                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::subtotal())}}</strong></dd>
+                                </dl>
+                                <hr>
+                                <dl class="dlist-align">
+                                    <dt>Réduction:</dt>
+                                    <dd class="text-right"></dd>
+                                </dl>
+                                <hr>
+
+                                 <dl class="dlist-align">
+                                    <dt>Taxe:</dt>
+                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::tax())}}</strong></dd>
+                                </dl>
+                                <hr>
+
+                                <dl class="dlist-align">
+                                    <dt>Montan à payer:</dt>
+                                    <dd class="text-right  h5"><strong>{{getprixminimumhelpers(Cart::total())}}</strong></dd>
+                                </dl>
+                                <hr>
+                                <p class="text-center mb-3">
+                                    <img src="{{ asset('assets/templatefront/images/misc/payments.png') }}" height="26" class="no-loader">
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        @else
+        <div class="col-md-12">
+            <h5>Votre panier est vide pour le moment.</h5>
+            <p>Mais vous pouvez visiter la <a href="{{ route('produits') }}" style="color: blue;">boutique</a> pour faire votre shopping.
+            </p> <br><br>
+        </div>
+       @endif
+
+@endsection   
+
+
+
+@section('quantite')
+    <script>
+        //On recupere tout les select avec l'id
+        var selects = document.querySelectorAll('#qty');
+        //On recupere les selects dans un tableau puis on boucle avec element
+        Array.from(selects).forEach((element) => {
+            //on recupere element sur l'evenement change et on lui passe une function
+            element.addEventListener('change', function () {
+                //On recupere rowId. this fais apel a l'elemn qe ns bouclon
+                var rowId  = element.getAttribute('data-id');
+                var quantite = element.getAttribute('data-quantite');
+                var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                fetch(
+
+                     `/panier/${rowId}`,
+                    {
+                        //Evoyer des en têtes pour dire c'est du json et on passe notre token.
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json, text-plain, */*",
+                            "X-Requested-with": "XMLHttpRequest",
+                            "X-CSRF-TOKEN": token
+                        },
+
+                        method: 'put',
+                        body: JSON.stringify({
+                            //sa nous permet d'apeler la valeur choisie
+                            qty: this.value,
+                            //on l'envoie dans notre body
+                            quantite: quantite
+                        })
+                    }
+                ).then((data) => {
+                    //Pour revenir sur la page
+                    location.reload();
+                }).catch((error) => {
+                    console.log(error);
+                })
+            });
+        });
+    </script>
+@stop
+
+   

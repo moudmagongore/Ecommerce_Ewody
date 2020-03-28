@@ -1,0 +1,77 @@
+@extends('templateclient.layouts.app')
+
+@section('content')
+
+    <section class="section-main padding-y">
+            <main class="card">
+                <div class="card-body rounded">
+
+                    <div class="row">
+                        <aside class="col-md-3">
+                            <h6 class="text-uppercase">
+                                <i class="fa fa-list-alt"></i>
+                                Catégories
+                            </h6>
+                            <nav class="nav-home-aside">
+                                <ul class="menu-category">
+                                    @foreach ($categories as $categorie)
+                                <li><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></li>
+                                    @endforeach
+                                    
+                                </ul>
+                            </nav>
+                        </aside>
+
+                        <div class="col-md-9 row">
+                            
+                            @foreach ($produits as $produit)
+                                <div class="col-md-3">
+                                    <figure class="card card-product-grid"  data-aos="zoom-in"  data-aos-duration="700">
+                                        <div class="img-wrap">
+                                            <span class="badge badge-success"> NEW </span>
+                                            
+                                                <img src="{{ asset('storage/' . $produit->photo)}}">
+                                            
+                                           
+                                            <span class="topbar">
+                                                <a href="#" class="float-right">
+                                                    <i class="fa fa-heart"></i>
+                                                </a>
+                                            </span>
+                                            <a class="btn-overlay" href="{{route('details', $produit->id)}}"><i class="fa fa-search-plus"></i>&nbsp;Détails</a>
+                                        </div>
+                                        <figcaption class="info-wrap">
+                                        <a href="{{route('details', $produit->id)}}" class="title mb-2">{{$produit->nom}}</a>
+                                            <div class="price-wrap">
+                                                <span class="price d-block text-right">{{$produit->getprixminimum()}}</span>
+                                            </div>
+                                            <hr>
+                                            
+                                            <form action="{{ route('cart.store') }}" method="post">
+
+                                                @csrf
+
+                                                <input type="hidden" name="produits_id" value="{{$produit->id}}">
+
+                                                <button type="submit" class="btn btn-outline-primary btn-block"> <i class="fa fa-cart-plus"></i> Ajouter au panier </button>
+                                                
+                                            </form>
+
+
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            @endforeach
+
+                            {{$produits->appends(request()->input())->links()}}
+                            
+                        </div>
+                    <!-- row.// -->
+
+                </div>
+                <!-- card-body.// -->
+            </main>
+            <!-- card.// -->
+        </section>
+
+@stop
