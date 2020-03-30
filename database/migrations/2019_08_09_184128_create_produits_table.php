@@ -21,9 +21,9 @@ class CreateProduitsTable extends Migration
             $table->string('marque');
             $table->double('prix_unitaire');
             $table->double('prix_maximum');
-            $table->date('date_dexpiration'); 
+            $table->date('date_dexpiration')->nullable(); 
             $table->integer('quantite');
-            $table->string('chemin');
+            $table->string('chemin')->nullable();
             $table->string('titre_video');
             $table->string('photo');
             $table->timestamps();

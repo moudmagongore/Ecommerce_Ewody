@@ -21,10 +21,10 @@ class CreateCommandesTable extends Migration
             $table->string('prenom');
             $table->string('telephone');
             $table->string('adresse');
-            $table->date('date_commande');
-            $table->double('montant');
-            $table->date('date_echeance');
-            $table->string('statut');
+            $table->date('date_commande')->nullable();
+            $table->double('montant')->nullable();
+            $table->date('date_echeance')->nullable();
+            $table->string('statut')->nullable();
             $table->date('date_livraison');
             
             $table->timestamps();

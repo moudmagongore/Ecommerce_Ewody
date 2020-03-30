@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\models\Produit;
+use App\models\Coupon;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Session;
@@ -63,6 +65,42 @@ class CartController extends Controller
 
         flashy('Le produit à bien été ajouté');
         return redirect()->route('acceuil');
+
+    }
+
+
+
+    public function storeCoupon(Request $request)
+    {
+        //On recupere le code que l'user a saisi
+        $code = request()->get('code');
+
+         //Dans coupon on recupere le code ou le code = au code que l'user a saisi
+        $coupon = Coupon::where('code', $code)->first();
+
+        //Dans le cas on ne trouve pas de coupon
+        if (!$coupon)
+        {
+          flashy()->error('Le coupon est invalide.');
+          return back();
+        }
+
+        //Dans le cas ou le coupon est valide
+        /*On recupere notre request on appel la session 
+        et on crée une nouvell session qui a pour clé 'coupon'
+        et qui aura comm valeur le tableau
+        et le tableau aura le code du coupon et en meme temps la remise
+        */
+        $request->session()->put('coupon', [
+
+            'code' => $coupon->code,
+            'remise_en_pourcentage' => $coupon->discount(Cart::subtotal())
+       ]);
+
+          flashy()->success('Le coupon est appliqué.');
+          return back();
+        
+
 
     }
 
@@ -152,7 +190,16 @@ class CartController extends Controller
     {
         Cart::remove($rowId);
 
-        flashy()->error('Le produit à été supprimé');
+        flashy()->error('Le produit à bien été supprimé');
         return back();
+    }
+
+
+    public function destroyCoupon()
+    {
+        request()->session()->forget('coupon');
+
+        flashy()->error('Le coupon a bien été rétiré.');
+          return back();
     }
 }

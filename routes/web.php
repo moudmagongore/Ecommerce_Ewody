@@ -153,11 +153,13 @@ Route::get('/panier', 'Cart\CartController@index')->name('cart.index');
 
 Route::delete('/panier/{rowId}', 'Cart\CartController@destroy')->name('cart.destroy');
 
+
+Route::post('coupon', 'Cart\CartController@storeCoupon')->name('cart.store.coupon');
+Route::delete('coupon', 'Cart\CartController@destroyCoupon')->name('cart.destroy.coupon');
+
+
+
 Route::get('merci', 'Cart\CheckoutController@merci')->name('checkout.merci');
-
-
-
-
 
 
 Route::get('/videpanier', function(){

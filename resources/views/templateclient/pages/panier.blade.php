@@ -109,43 +109,99 @@
                     <aside class="col-md-4">
                         <div class="card mb-3">
                             <div class="card-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label>Avez-vous un coupon de réduction?</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="" placeholder="Code de réduction">
-                                            <span class="input-group-append"> 
-                                                <button class="btn btn-primary">Valider</button>
-                                            </span>
+
+                                <!-- si dans la requet on as une session qui as coupon on affiche le formulaire  ou bien si on as pas de coupon propose le formulaire-->
+                                @if (!request()->session()->has('coupon'))
+                                    <form action="{{ route('cart.store.coupon') }}" method="POST">
+
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <label>Avez-vous un coupon de réduction? Entrez-le dans le champ ci-dessous</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="code" placeholder="Entrez votre code ici">
+                                                <span class="input-group-append"> 
+                                                    <button type="submit" class="btn btn-primary">Valider</button>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                @else
+                                    <h6>Un coupon est déjà appliqué.</h6>
+                                @endif
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <dl class="dlist-align">
-                                    <dt>Prix Total:</dt>
+                               
+                                    <dl class="dlist-align">
+                                    <dt>Sous-total:</dt>
                                     <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::subtotal())}}</strong></dd>
                                 </dl>
                                 <hr>
+                              
+
+
+                            {{-- On recupere le nom du coupon --}}
+                            @if (request()->session()->has('coupon'))
                                 <dl class="dlist-align">
-                                    <dt>Réduction:</dt>
-                                    <dd class="text-right"></dd>
+                                <dt>Coupon
+                                    <form action="{{ route('cart.destroy.coupon') }}" method="post" class="d-inline-block">
+
+                                    @csrf
+
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-sm btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+                                    
+                                    </form> : 
+                                </dt>
+
+
+                                <dd class="text-right"><strong>{{request()->session()->get('coupon')['code']}}</strong></dd>
+                            </dl>
+                            <hr>
+
+
+                                {{-- On recupere la remise du coupon --}}
+                               <dl class="dlist-align">
+                                <dt>Réduction:</dt>
+                                <dd class="text-right"><strong>{{getprixminimumhelpers(request()->session()->get('coupon')['remise_en_pourcentage'])}}</strong></dd>
+                                </dl>
+                               <hr>
+
+
+                                                            
+                                <!--Pour calculer le nouveau sous totale c'et le subtotal - le coupon -->
+                                <dl class="dlist-align">
+                                    <dt>N-sous-total:</dt>
+                                    <dd class="text-right "><strong>{{getprixminimumhelpers(Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'])}}</strong></dd>
                                 </dl>
                                 <hr>
 
                                  <dl class="dlist-align">
-                                    <dt>Taxe:</dt>
-                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::tax())}}</strong></dd>
+                                    <dt>Montan à payer:</dt>
+                                    <dd class="text-right  h5"><strong>{{getprixminimumhelpers(Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'])}}</strong></dd>
                                 </dl>
                                 <hr>
+                            @endif
+                        
+                           
 
-                                <dl class="dlist-align">
+                                 <!-- <dl class="dlist-align">
+                                    <dt>Taxe:</dt>
+                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::tax())}}</strong></dd>
+                                                                 </dl>
+                                                                 <hr> -->
+
+                                @if(!request()->session()->has('coupon'))
+                                    <dl class="dlist-align">
                                     <dt>Montan à payer:</dt>
                                     <dd class="text-right  h5"><strong>{{getprixminimumhelpers(Cart::total())}}</strong></dd>
                                 </dl>
                                 <hr>
+                                @endif
+                                
                                 <p class="text-center mb-3">
                                     <img src="{{ asset('assets/templatefront/images/misc/payments.png') }}" height="26" class="no-loader">
                                 </p>

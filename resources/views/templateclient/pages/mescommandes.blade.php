@@ -34,15 +34,15 @@
         <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="h6 panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Commande: #3
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+               Commande passé le {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}}
             </a>
         </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
-            <h6 class="h6 mb-0">Produits commandés</h6>
-            <hr class="mt-0">
+            <h6 class="h6 mb-0 ml-4">Produits commandés</h6>
+            
             <table class="table table-borderless table-shopping-cart">
                 <thead class="text-muted">
                     <tr class="small text-uppercase">
