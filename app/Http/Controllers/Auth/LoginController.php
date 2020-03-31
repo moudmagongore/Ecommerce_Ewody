@@ -21,7 +21,7 @@ class LoginController extends Controller
     */
     public function getLogin()
     {
-         return view('templateclient.pages.connexion');
+         return view('templateclient.pages.login');
     }
 
     public function postLogin()
@@ -69,11 +69,20 @@ class LoginController extends Controller
             }
 
             /*withInput renvoie a la page precedente avec les données saisie par le user*/
-            return back()->withInput()->with('danger', 'Vous êtes suspendus.');
+
+
+
+            /*return back()->withInput()->with('danger', 'Vous êtes suspendus.');*/
+
+            flashy()->error('Vous êtes suspendus.');
+            return back();
          }
 
 
-        return back()->withInput()->with('danger', 'Vos identifiants sont incorrects.');
+        /*return back()->withInput()->with('danger', 'Vos identifiants sont incorrects.');*/
+
+         flashy()->error('Vos identifiants sont incorrects.');
+         return back();
         
     }
     

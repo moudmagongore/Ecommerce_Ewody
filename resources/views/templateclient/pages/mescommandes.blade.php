@@ -82,7 +82,7 @@
                             <div>
                                 <div class="price-wrap">
                                     <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                    <small class="text-muted">148 000 / unité</small>
+                                    <small class="text-muted">148 1000 / unité</small>
                                 </div>
                             </div>
                         </td>

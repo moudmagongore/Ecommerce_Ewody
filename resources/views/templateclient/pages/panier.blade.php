@@ -134,9 +134,9 @@
                         <div class="card">
                             <div class="card-body">
                                
-                                    <dl class="dlist-align">
-                                    <dt>Sous-total:</dt>
-                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::subtotal())}}</strong></dd>
+                                <dl class="dlist-align">
+                                <dt>Sous-total:</dt>
+                                <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::subtotal())}}</strong></dd>
                                 </dl>
                                 <hr>
                               
@@ -188,11 +188,7 @@
                         
                            
 
-                                 <!-- <dl class="dlist-align">
-                                    <dt>Taxe:</dt>
-                                    <dd class="text-right"><strong>{{getprixminimumhelpers(Cart::tax())}}</strong></dd>
-                                                                 </dl>
-                                                                 <hr> -->
+                                
 
                                 @if(!request()->session()->has('coupon'))
                                     <dl class="dlist-align">

@@ -13,12 +13,18 @@
                             <tr> 
                                 <th>#</th>
                                 <th>Image</th>
+                                <th>Nom du produit</th>
+                                <th>Quantite</th>
+                                <th>Prix unitaire</th>
                                 <th>Nom</th>
-                                <th>Description</th>
+                                <th>Prenom</th>
+                                <th>adresse</th>
+                                <th>Telephone</th>
                                 <th>Status</th>
+                                <th>Date de livraison</th>
                                 <th>Fabriquant</th>
-                                <th>Stock</th>                                
-                                <th>Prix</th>
+                                                                
+                                
                                 <th>Action</th>
                             </tr>
                             @if (count($commandes)>0)
@@ -26,12 +32,37 @@
                             @foreach ($commandes as $commande)
                                 <tr>
                                     <td>{{$commande->id}}</td>
-                                    <td><img src="img/new-product/5-small.jpg" alt="commande" /></td>
+                                    <td><img src="img/new-product/5-small.jpg"  /></td>
+                                    <td>
+                                        @foreach (unserialize($commande->produits) as $produit)
+                                                
+                                                 {{$produit[0]}} {{$loop->last ? '' : ', '}}
+
+                                         @endforeach
+                                    </td>
+
+                                    <td>
+                                        
+                                         @foreach (unserialize($commande->produits) as $produit)
+                                                
+                                                 {{$produit[2]}} {{$loop->last ? '' : ', '}}
+
+                                         @endforeach
+
+                                    </td>
+                                            <!-- prix -->
+                                    <td>
+                                        {{getprixminimumhelpers($produit[1])}}
+                                    </td>
+
                                     <td>{{$commande->nom}}</td>
-                                    <td>{{$commande->description}}</td>
+                                    <td>{{$commande->prenom}}</td>
+                                    <td>{{$commande->adresse}}</td>
+                                    <td>{{$commande->telephone}}</td>
                                     <td>{{$commande->status}}</td>
+                                    <td>{{$commande->date_livraison}}</td>
                                     <td>{{$commande->fabricant}}</td>
-                                    <td>{{$commande->type_commande_id}}</td>
+                                    
                                     <td>{{$commande->prix_unitaire}}</td>
                                     <td>
                                         <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

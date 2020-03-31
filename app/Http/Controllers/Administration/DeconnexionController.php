@@ -13,7 +13,7 @@ class DeconnexionController extends Controller
 
         flashy('Vous êtes déconnecté.');
 
-    	return redirect()->route('connexion');
+    	return redirect()->route('acceuil');
 
     }
 }

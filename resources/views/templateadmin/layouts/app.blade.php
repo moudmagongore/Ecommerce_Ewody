@@ -114,6 +114,8 @@ margin-top: 10px;
             <li><a title="categorie" href="{{route('addimage')}}"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Configuration produit</span></a></li>
         </ul>
     </li>
+
+       <li><a title="Privillege" href="{{route('list-coupon')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Coupons</span></a></li>
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i> <span class="mini-click-non">Commandes</span></a>
         <ul class="submenu-angle" aria-expanded="false">

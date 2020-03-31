@@ -22,6 +22,7 @@ class CheckoutController extends Controller
 
      public function index()
     {
+        
         return view('templateclient.pages.checkout');
     }
 

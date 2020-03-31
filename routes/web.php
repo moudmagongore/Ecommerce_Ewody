@@ -96,6 +96,20 @@ Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->
 Route::get('/listcommande','commande\CommandeController@index')->name('listcommande');
 
 
+/*Route coupon*/
+Route::get('list-coupon',  'Coupon\CouponsController@index')->name('list-coupon');
+
+Route::post('add-coupon',  'Coupon\CouponsController@postAddCoupon')->name('add-coupon');
+
+Route::post('edit-coupon\{id}','Coupon\CouponsController@postEditCoupon')->name('edit-coupon');
+
+Route::post('destroy-coupon\{id}',  'Coupon\CouponsController@destroyCoupon')->name('destroy-coupon');
+/*End Route coupon*/
+
+
+
+
+
 
 Route::get('checkout', 'Cart\CheckoutController@index')->name('checkout');
 Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store');
