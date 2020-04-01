@@ -61,7 +61,21 @@ class CheckoutController extends Controller
     	]);*/
 
 
+        /*Pour ajouter le montant total des produits dans le panier soit avec remise ou pas */
+        if (request()->session()->has('coupon')) {
+           
+           $total = Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'];
+        }
+        else
+        {
+            $total = Cart::total();
+        }
+
+
     	$commande = new Commande();
+
+        //On insere le montant en bd
+        $commande->montant = $total;
 
          $commande->nom = $request->nom;
          $commande->prenom = $request->prenom;
@@ -72,13 +86,17 @@ class CheckoutController extends Controller
     	//On vas serializer notre panier
        $produits = [];
 
+       /*$montantTotalProduit = Cart::subtotal();*/
+
        $i = 0;
 
        foreach (Cart::content() as $produit) {
             $produits['produit_' . $i][] = $produit->model->nom;
             $produits['produit_' . $i][] = $produit->model->prix_unitaire;
             $produits['produit_' . $i][] = $produit->qty;
-            $produits['produit_' . $i][] = $produit->photo;
+            $produits['produit_' . $i][] = $produit->model->photo;
+
+            /*$produits['produit_' . $i][] = $montantTotalProduit;*/
 
             $i++;
        }

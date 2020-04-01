@@ -103,11 +103,11 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="form-row total">
+                                    <!-- <div class="form-row total">
                                         <div class="form-group col-md">
                                             <h5 class="price total h4 text-right">120 000 </h5>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </article>
                                
                             </main>

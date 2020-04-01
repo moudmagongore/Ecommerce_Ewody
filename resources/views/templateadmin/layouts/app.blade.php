@@ -117,11 +117,23 @@ margin-top: 10px;
 
        <li><a title="Privillege" href="{{route('list-coupon')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Coupons</span></a></li>
     <li>
-        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i> <span class="mini-click-non">Commandes</span></a>
+        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i>
+         <span class="mini-click-non">
+         Commandes
+        </span></a>
+        <span class="notify">{{Cart::count()}}</span>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Commande" href="{{route('listcommande')}}"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des commandes</span></a></li>
         </ul>
     </li>
+
+
+    
+        
+        
+   
+
+
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-check-circle icon-wrap"></i> <span class="mini-click-non">Livraison</span></a>
         <ul class="submenu-angle" aria-expanded="false">

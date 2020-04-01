@@ -34,22 +34,24 @@
         <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="h6 panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-               Commande passé le {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}}
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree{{$commande->id}}" aria-expanded="true" aria-controls="collapseThree">
+               Commande passé le {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}} d'un montant de <strong>{{getprixminimumhelpers($commande->montant)}}
             </a>
         </h4>
     </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+    <div id="collapseThree{{$commande->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
             <h6 class="h6 mb-0 ml-4">Produits commandés</h6>
+            <hr>
             
             <table class="table table-borderless table-shopping-cart">
                 <thead class="text-muted">
                     <tr class="small text-uppercase">
                         <th scope="col">Prduit</th>
                         <th scope="col">Nom</th>
+                        <th scope="col">Prix unitaire</th>
                         <th scope="col-fluid">Quantié</th>
-                        <th scope="col">Prix (GNF)</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +62,7 @@
                         <td>
                             <div>
                                 <figure class="itemside">
-                                    <div class="aside"><img src="{{ asset('storage/' . $produit[0]) }}" class="img-sm"></div>
+                                    <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
                                 </figure>
                             </div>
                         </td>
@@ -73,22 +75,26 @@
                             </div>
                         </td>
 
+                        <td class="prices">
+                            <div>
+                                <div class="price-wrap">
+                                    <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
+                                    <small class="text-muted">148 000 / unité</small>
+                                </div>
+                            </div>
+                        </td>
+
                         <td>
                             <div>
                               {{$produit[2]}}
                             </div>
                         </td>
-                        <td class="prices">
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                    <small class="text-muted">148 1000 / unité</small>
-                                </div>
-                            </div>
-                        </td>
+                        
+
+                        
                     </tr>        
                         
-                        <hr>
+                       
                     @endforeach
                    
                     
@@ -98,102 +104,7 @@
     </div>
 </div>
 
-
-
-<!-- <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-        <h4 class="h6 panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree">
-                Commande: #3
-            </a>
-        </h4>
-    </div>
-    <div id="collapseThree2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
-            <h6 class="h6 mb-0">Produits commandés</h6>
-            <hr class="mt-0">
-            <table class="table table-borderless table-shopping-cart">
-                <thead class="text-muted">
-                    <tr class="small text-uppercase">
-                        <th scope="col">Prduit</th>
-                        <th scope="col-fluid">Quantié</th>
-                        <th scope="col">Prix (GNF)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div>
-                                <figure class="itemside">
-                                    <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
-                                </figure>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                1
-                            </div>
-                        </td>
-                        <td class="prices">
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">1 798 0000</var>
-                                    <small class="text-muted">148 000 / unité</small>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <figure class="itemside">
-                                    <div class="aside"><img src="images/items/2.jpg" class="img-sm"></div>
-                                </figure>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                2
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">1 798 0000</var>
-                                    <small class="text-muted">148 000 / unité</small>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <figure class="itemside">
-                                    <div class="aside"><img src="images/items/3.jpg" class="img-sm"></div>
-                                </figure>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                3
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">1 798 0000</var>
-                                    <small class="text-muted">148 000 / unité</small>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> -->
-
-                                @endforeach
+    @endforeach
 
 
 
