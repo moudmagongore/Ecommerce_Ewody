@@ -77,6 +77,8 @@ class CheckoutController extends Controller
         //On insere le montant en bd
         $commande->montant = $total;
 
+        $commande->statut = 0;
+
          $commande->nom = $request->nom;
          $commande->prenom = $request->prenom;
          $commande->telephone = $request->telephone;

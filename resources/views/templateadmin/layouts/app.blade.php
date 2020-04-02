@@ -121,7 +121,11 @@ margin-top: 10px;
          <span class="mini-click-non">
          Commandes
         </span></a>
-        <span class="notify">{{Cart::count()}}</span>
+        <span class="notify">
+               
+        {{App\models\Commande::where('statut', 0)->get()->count()}}
+   
+        </span>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Commande" href="{{route('listcommande')}}"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des commandes</span></a></li>
         </ul>

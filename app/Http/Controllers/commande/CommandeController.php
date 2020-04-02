@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\models\Commande;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 class CommandeController extends Controller
 {
     /**
@@ -15,7 +18,9 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        $commandes = Commande::all();
+      
+       /*$commandes = Commande::where('statut', 0)->get();*/
+       $commandes = Commande::all()/*->orderBy('created_at', 'DESC')*/;
         return view('templateadmin.commande.list', compact('commandes'));
     }
 
@@ -105,5 +110,40 @@ class CommandeController extends Controller
     public function destroy($id)
     {
         Commande::destroy($id);
+    }
+
+
+
+
+
+
+     public function getStatutCommande($id)
+    {
+        //si sa retourne vrai c a d l'user na pas admin  dans ses roles
+        if (Gate::denies('edit-users')) {
+            
+            return redirect()->route('acceuil');
+        }
+    
+        $commande = Commande::find($id);
+
+        /*
+            0 = Commande En cours
+            1 = Commande Terminée
+            2 = Commande Annulée
+        */
+
+        if($commande->statut == 0)
+        {
+            $commande->statut = 1;
+        }
+        else
+        {
+            /*$commande->statut = 0;*/
+        }
+
+        $commande->save();
+
+        return back();
     }
 }

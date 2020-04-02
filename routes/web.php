@@ -93,7 +93,11 @@ Route::get('/listlivraison', 'Livraison\LivraisonController@index')->name('listl
 Route::post('/updatelivraison/{id}', 'Livraison\LivraisonController@update')->name('updatelivraison');
 Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->name('deletelivraison');
 
+
 Route::get('/listcommande','commande\CommandeController@index')->name('listcommande');
+
+Route::get('statut-commande/{id}', 'commande\CommandeController@getStatutCommande')->name('statut.commande');
+
 
 
 /*Route coupon*/
