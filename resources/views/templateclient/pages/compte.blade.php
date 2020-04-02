@@ -37,24 +37,26 @@
                                 <hr>
                                 <p>
                                     <i class="fa fa-map-marker text-muted"></i> &nbsp;
-                                    Cosa, Camp Carrefour, Conakry
+                                    {{$user->adresse}}, {{$user->telephone}} 
                                 </p>
                                 <article class="card-group">
                                     <figure class="card bg">
                                         <div class="p-3">
-                                            <h5 class="card-title">62</h5>
+                                            <h5 class="card-title">{{Auth()->user()->commandes->count()}}</h5>
                                             <span>Commandes</span>
                                         </div>
                                     </figure>
                                     <figure class="card bg">
                                         <div class="p-3">
-                                            <h5 class="card-title">60</h5>
+                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 1)->count()}}</h5>
+
+
                                             <span>Commandes livrées</span>
                                         </div>
                                     </figure>
                                     <figure class="card bg">
                                         <div class="p-3">
-                                            <h5 class="card-title">02</h5>
+                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 0)->count()}}</h5>
                                             <span>Commandes en cours</span>
                                         </div>
                                     </figure>
