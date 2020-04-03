@@ -15,6 +15,7 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('commande_id');
             $table->unsignedBigInteger('user_id');
             $table->text('produits');
             $table->string('nom');
@@ -24,7 +25,7 @@ class CreateCommandesTable extends Migration
             $table->date('date_commande')->nullable();
             $table->double('montant');
             $table->date('date_echeance')->nullable();
-            $table->string('statut')->nullable();
+            $table->string('statut');
             $table->date('date_livraison');
             
             $table->timestamps();

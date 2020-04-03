@@ -42,6 +42,15 @@
     <div id="collapseThree{{$commande->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
             <h6 class="h6 mb-0 ml-4">Produits commandés</h6>
+
+                <div>
+                 <h6 class="text-center">N° commande: <strong >{{$commande->commande_id}} </strong></h6>
+
+                </div>
+
+                <div>
+                    <a href="" class="btn btn-primary btn-circle btn-sm" >En cours</a>
+                </div>
             <hr>
             
             <table class="table table-borderless table-shopping-cart">
@@ -96,6 +105,8 @@
                         
                        
                     @endforeach
+
+                         
                    
                     
                 </tbody>

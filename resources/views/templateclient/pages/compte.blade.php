@@ -48,7 +48,7 @@
                                     </figure>
                                     <figure class="card bg">
                                         <div class="p-3">
-                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 1)->count()}}</h5>
+                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 'Livré')->count()}}</h5>
 
 
                                             <span>Commandes livrées</span>
@@ -56,7 +56,7 @@
                                     </figure>
                                     <figure class="card bg">
                                         <div class="p-3">
-                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 0)->count()}}</h5>
+                                            <h5 class="card-title">{{Auth()->user()->commandes->where('statut', 'En cours')->count()}}</h5>
                                             <span>Commandes en cours</span>
                                         </div>
                                     </figure>

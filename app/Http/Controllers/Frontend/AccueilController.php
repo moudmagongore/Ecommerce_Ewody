@@ -140,16 +140,9 @@ class AccueilController extends Controller
         return view('templateclient.pages.compte', compact('user'));
     }
 
-    public function get_favori_page(){
-        $user = Auth::user();
-        return view('templateclient.pages.favori', compact('user') );
-    }
+    
 
-   /* public function get_panier_page(){
-        $user = Auth::user();
-        return view('templateclient.pages.panier', compact('user'));
-    }
-*/
+   
     //ajout user client
     public function inscription(){
         return view('templateclient.pages.inscription');

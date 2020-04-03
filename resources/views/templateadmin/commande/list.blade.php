@@ -11,6 +11,7 @@
                         
                         <table>
                             <tr> 
+                                <th>N° COMMANDE</th>
                                 <th>Prenom && Nom</th>
                                 <th>Voir</th>
                                 <th>Date commande</th>
@@ -21,6 +22,12 @@
 
                             @foreach ($commandes as $commande)
                                 <tr>
+                                    <td>
+                                        <strong>
+                                            {{$commande->commande_id}}
+                                        </strong>
+                                    </td>
+
                                     <td>
                                         {{$commande->prenom. ' ' .$commande->nom}}
                                     </td>
@@ -41,12 +48,30 @@
 
 
                                     <td>
-                                        @if($commande->statut == 0)
-                                          <a href=" {{route('statut.commande', $commande->id)}} " class="btn btn-info btn-circle btn-sm" disabled>En cours</a>
+                                        
+                                        @if($commande->statut == 'En cours')
+                                            <a href="" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">En cours</a>
+                                        @elseif($commande->statut == 'Emballé')
+                                            
+                                               <a href="" class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Emballé</a> 
+                                            
+                                        @elseif($commande->statut == 'En route')
+                                            
+                                               <a href="" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}"> En route</a> 
+                                            
+                                        @elseif($commande->statut == 'Livré')
+                                            
+                                               <a href="" class="btn btn-warning btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Livré</a> 
+                                            
+                                        @elseif($commande->statut == 'Annulé')
+                                            
+                                               <a href="" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Annulé</a> 
+                                            
+                                       @endif
+
+
                                           
-                                        @else
-                                          <a href="{{route('statut.commande', $commande->id)}}" class="btn btn-danger btn-circle btn-sm" disabled>Terminée</a>
-                                        @endif
+                                       
                                     </td>
 
 
@@ -56,7 +81,10 @@
                                     </td>
                                 </tr>
                             @endforeach
+
                         </table>
+
+                        {{$commandes->appends(request()->input())->links()}}
                     </div>
                 </div>
             </div>
@@ -72,23 +100,39 @@
 
    
     @foreach ($commandes as $commande)
-           <!-- Modal -->
+           <!-- Modal voir commande-->
     <div class="modal fade" id="addfournisseurmodal{{$commande->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Commande #{{$commande->id}}</h3>
-                    
+                    <h3 class="modal-title">N° {{$commande->commande_id}}</h3>
+
 
                     <div style="margin-left: 32em; margin-top: -2em;">
-                         @if($commande->statut == 0)
-                          <a class="btn btn-info btn-circle btn-sm" disabled>En cours</a>
-                          
-                        @else
-                          <a class="btn btn-danger btn-circle btn-sm" disabled>Terminée</a>
-                        @endif
+                        @if($commande->statut == 'En cours')
+                            <a href="" class="btn btn-info btn-circle btn-sm" disabled>En cours</a>
+                        @elseif($commande->statut == 'Emballé')
+                            
+                               <a href="" class="btn btn-success btn-circle btn-sm" disabled>Emballé</a> 
+                            
+                        @elseif($commande->statut == 'En route')
+                            
+                               <a href="" class="btn btn-primary btn-circle btn-sm" disabled> En route</a> 
+                            
+                        @elseif($commande->statut == 'Livré')
+                            
+                               <a href="" class="btn btn-warning btn-circle btn-sm" disabled>Livré</a> 
+                            
+                        @elseif($commande->statut == 'Annulé')
+                            
+                               <a href="" class="btn btn-danger btn-circle btn-sm" disabled>Annulé</a> 
+                            
+                       @endif
+ 
                     </div>
+                    
 
+                    
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -207,13 +251,10 @@
 
 
                             <div>
-                                  @if($commande->statut == 0)
-                                      <a href=" {{route('statut.commande', $commande->id)}}" class="btn btn-info btn-circle btn-sm" >Terminer la commande</a>
-                                      
-                                    @endif
+                                  
 
                                             
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-left: 24em;">Fermer</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-left: 36em;">Fermer</button>
                             </div>
                 </div>
 
@@ -237,6 +278,83 @@
             </div>
         </div>
     </div>
+    <!-- End Modal voir commande-->
+
+
+
+
+
+
+   <!--  Modal pour modifier statut -->
+   <div class="modal fade" id="addcouponmodal{{$commande->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Détails Commande N°{{$commande->commande_id}}</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form action="{{ route('modifier.statut', $commande->id) }}" method="POST">
+
+                            @csrf
+
+
+
+
+
+                            <div class="row">                                        
+                                <select  type="text" class="form-control" name="statut"  autofocus>
+
+                                        
+                                         <option value="En cours" name="statut">
+                                             En cours
+                                         </option>
+
+                                         <option value=" Emballé" name="statut">
+                                             Emballé
+                                         </option>
+
+                                         <option value="En route" name="statut">
+                                             En route
+                                         </option>
+                                
+                                         <option value="Livré" name="statut">
+                                             Livré
+                                         </option>
+
+                                         <option value="Annulé" name="statut">
+                                             Annulé
+                                         </option>
+                                         
+                                        
+                                </select>
+                                        
+                            </div><br>
+                                 
+                     </div>
+
+                            <div class="container row">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+   <!--  End Modal pour modifier statut -->
+
+
     @endforeach
   
     

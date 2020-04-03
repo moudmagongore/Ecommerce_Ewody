@@ -85,6 +85,7 @@
                             <a href="#" class="widget-header mr-2">
                                 <div class="icon">
                                     <i class="icon-sm rounded-circle border fa fa-heart" title="Liste de souhait" data-toggle="tooltip" data-placement="bottom"></i>
+                                    <span class="notify">0</span>
                                 </div>
                             </a>
                             <div class="widget-header dropdown mt-3 m-sm-0">

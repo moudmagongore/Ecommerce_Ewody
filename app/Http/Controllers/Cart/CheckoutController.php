@@ -71,13 +71,19 @@ class CheckoutController extends Controller
             $total = Cart::total();
         }
 
+        //Pour ajouter une commade_id unique dans commande 
+        $code    = 'ewody#'.rand(1, 1000);
 
     	$commande = new Commande();
 
         //On insere le montant en bd
         $commande->montant = $total;
 
-        $commande->statut = 0;
+        $commande->commande_id = $code;
+
+
+
+        $commande->statut = "En cours";
 
          $commande->nom = $request->nom;
          $commande->prenom = $request->prenom;

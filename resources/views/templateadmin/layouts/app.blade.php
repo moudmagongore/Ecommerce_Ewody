@@ -123,7 +123,7 @@ margin-top: 10px;
         </span></a>
         <span class="notify">
                
-        {{App\models\Commande::where('statut', 0)->get()->count()}}
+        {{App\models\Commande::where('statut', 'En cours')->get()->count()}}
    
         </span>
         <ul class="submenu-angle" aria-expanded="false">

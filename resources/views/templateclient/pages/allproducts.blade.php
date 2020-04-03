@@ -116,12 +116,15 @@
                                             
                                                 <img src="{{ asset('storage/' . $produit->photo) }}">
                                             
-                                           
+                                           <!-- Favoris -->
                                             <span class="topbar">
-                                                <a href="#" class="float-right">
+                                                <a href="{{ route('favoris.store', $produit->id) }}" class="float-right">
                                                     <i class="fa fa-heart"></i>
                                                 </a>
                                             </span>
+                                            <!-- End Favoris -->
+
+
                                             <a class="btn-overlay" href="{{route('details', $produit->id)}}"><i class="fa fa-search-plus"></i>&nbsp;Détails</a>
                                         </div>
                                         <figcaption class="info-wrap">

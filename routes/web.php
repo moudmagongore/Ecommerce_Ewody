@@ -96,7 +96,10 @@ Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->
 
 Route::get('/listcommande','commande\CommandeController@index')->name('listcommande');
 
-Route::get('statut-commande/{id}', 'commande\CommandeController@getStatutCommande')->name('statut.commande');
+Route::post('/modifier-statut/{id}','commande\CommandeController@modifierStatut')->name('modifier.statut');
+
+
+/*Route::get('statut-commande/{id}', 'commande\CommandeController@getStatutCommande')->name('statut.commande');*/
 
 
 
@@ -120,6 +123,8 @@ Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store')
 
 
 
+Route::get('/commandes', 'Frontend\AccueilController@get_mescommandes_page')->name('commandes');
+
 
 
 });
@@ -135,9 +140,13 @@ Route::get('detailcategorie', 'Frontend\AccueilController@get_detail_categorie')
 
 
 
-Route::get('/commandes', 'Frontend\AccueilController@get_mescommandes_page')->name('commandes');
+Route::get('/favoris', 'Favoris\FavorisController@index')->name('favoris');
+Route::get('/favoris/{id}', 'Favoris\FavorisController@store')->name('favoris.store');
 
-Route::get('/favoris', 'Frontend\AccueilController@get_favori_page')->name('favoris');
+
+
+
+
 
 Route::get('/inscrire', 'Frontend\AccueilController@inscription')->name('inscrire');
 Route::post('/storeinscription', 'Frontend\AccueilController@storeInscription')->name('store-inscription');

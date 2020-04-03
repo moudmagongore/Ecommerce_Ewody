@@ -20,9 +20,24 @@ class CommandeController extends Controller
     {
       
        /*$commandes = Commande::where('statut', 0)->get();*/
-       $commandes = Commande::all()/*->orderBy('created_at', 'DESC')*/;
+       $commandes = Commande::orderBy('created_at', 'DESC')->paginate(10);
         return view('templateadmin.commande.list', compact('commandes'));
     }
+
+
+
+    public function modifierStatut(Request $request, $id)
+    {
+
+        Commande::whereId($id)->update([
+           'statut' => $request->statut
+        ]);
+
+        flashy('Le statut est bien modifié !');
+        return back();
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -117,7 +132,7 @@ class CommandeController extends Controller
 
 
 
-     public function getStatutCommande($id)
+    /* public function getStatutCommande($id)
     {
         //si sa retourne vrai c a d l'user na pas admin  dans ses roles
         if (Gate::denies('edit-users')) {
@@ -127,11 +142,7 @@ class CommandeController extends Controller
     
         $commande = Commande::find($id);
 
-        /*
-            0 = Commande En cours
-            1 = Commande Terminée
-            2 = Commande Annulée
-        */
+       
 
         if($commande->statut == 0)
         {
@@ -139,11 +150,11 @@ class CommandeController extends Controller
         }
         else
         {
-            /*$commande->statut = 0;*/
+            $commande->statut = 0;
         }
 
         $commande->save();
 
         return back();
-    }
+    }*/
 }

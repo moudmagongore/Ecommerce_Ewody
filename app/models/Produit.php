@@ -87,5 +87,12 @@ class Produit extends Model
     {
         return $this->belongsToMany(Taille::class);
     }
+
+
+
+    public function favori()
+    {
+        return $this->belongsTo(Favori::class);
+    }
     
 }
