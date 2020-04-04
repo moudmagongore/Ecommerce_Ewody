@@ -48,7 +48,7 @@
                                     </div>
 
                 <div class="form-group container">
-                    <h6>Quand vous le vous la livraisson ?</h6>
+                    <h6>Quand voulez-vous la livraisson ?</h6>
 
                             
                         <input type="radio" name="aujour" value="aujour" class="form-check-input"><label for="aujour">Aujourd'hui</label>

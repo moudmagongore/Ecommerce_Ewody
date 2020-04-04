@@ -96,30 +96,35 @@ Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->
 
 Route::get('/listcommande','commande\CommandeController@index')->name('listcommande');
 
+//modifier statut de la commande par back end
 Route::post('/modifier-statut/{id}','commande\CommandeController@modifierStatut')->name('modifier.statut');
+//End modifier statut de la commande par back end
 
 
-/*Route::get('statut-commande/{id}', 'commande\CommandeController@getStatutCommande')->name('statut.commande');*/
+//modifier statut de la commande Par user
+Route::post('modif-statut-commande-user/{id}', 'commande\CommandeController@modifStatutCommandeUser')->name('modif.statut.commande.user');
+
+Route::get('nom-modif/{id}', 'commande\CommandeController@nonModif')->name('non.modif');
+//End modifier statut de la commande Par user
 
 
 
 /*Route coupon*/
-Route::get('list-coupon',  'Coupon\CouponsController@index')->name('list-coupon');
+Route::get('list-coupon',  'Coupon\CouponsController@index')->name('list-coupon')->middleware('can:voir-page-admin');
 
-Route::post('add-coupon',  'Coupon\CouponsController@postAddCoupon')->name('add-coupon');
+Route::post('add-coupon',  'Coupon\CouponsController@postAddCoupon')->name('add-coupon')->middleware('can:voir-page-admin');
 
-Route::post('edit-coupon\{id}','Coupon\CouponsController@postEditCoupon')->name('edit-coupon');
+Route::post('edit-coupon\{id}','Coupon\CouponsController@postEditCoupon')->name('edit-coupon')->middleware('can:voir-page-admin');
 
-Route::post('destroy-coupon\{id}',  'Coupon\CouponsController@destroyCoupon')->name('destroy-coupon');
+Route::post('destroy-coupon\{id}',  'Coupon\CouponsController@destroyCoupon')->name('destroy-coupon')->middleware('can:voir-page-admin');
 /*End Route coupon*/
 
 
 
-
-
-
+/*Route pour enregistrer les info de livraison*/
 Route::get('checkout', 'Cart\CheckoutController@index')->name('checkout');
 Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store');
+/*End Route pour enregistrer les info de livraison*/
 
 
 

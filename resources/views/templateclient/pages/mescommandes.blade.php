@@ -41,16 +41,40 @@
     </div>
     <div id="collapseThree{{$commande->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
-            <h6 class="h6 mb-0 ml-4">Produits commandés</h6>
+
+
+             <div class="ml-4">
+                    Statut : 
+                    @if($commande->statut == 'En cours')
+                        <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">En cours</a>
+                    @elseif($commande->statut == 'Emballé')
+                        
+                           <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" >Emballé</a> 
+                        
+                    @elseif($commande->statut == 'En route')
+                        
+                           <a href="{{ route('non.modif', $commande->id) }}" class="btn-primary btn-circle btn-sm" > En route</a> 
+                        
+                    @elseif($commande->statut == 'Livré')
+                        
+                           <a href="{{ route('non.modif', $commande->id) }}" class=" btn-warning btn-circle btn-sm">Livré</a> 
+                        
+                    @elseif($commande->statut == 'Annulé')
+                        
+                        <a href="" class=" btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Annulé</a>
+
+                   @endif
+                </div><br>
+
 
                 <div>
-                 <h6 class="text-center">N° commande: <strong >{{$commande->commande_id}} </strong></h6>
+                 <h6 class="ml-4">N° commande: <strong >{{$commande->commande_id}} </strong></h6>
 
                 </div>
 
-                <div>
-                    <a href="" class="btn btn-primary btn-circle btn-sm" >En cours</a>
-                </div>
+
+            <h6 class="text-center h6 mb-0 ml-4 mt-4 mb-4">Produits commandés</h6>
+
             <hr>
             
             <table class="table table-borderless table-shopping-cart">
@@ -130,6 +154,74 @@
     </div>
 </div>
 </section>
+
+
+@foreach (Auth()->user()->commandes as $commande)
+   <!--  Modal pour modifier statut -->
+   <div class="modal fade" id="addcouponmodal{{$commande->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Commande N°{{$commande->commande_id}}</h3>
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                    <div class="text-center mt-4 h6">
+                        <p>Voulez-vous modifiez le statut de la commande ?</p>
+                    </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form action="{{ route('modif.statut.commande.user', $commande->id) }}" method="POST">
+
+                            @csrf
+
+
+
+
+
+                            <div class="row">                                        
+                                <select  type="text" class="form-control" name="statut"  autofocus>
+
+                                        
+                                         <option value="En cours" name="statut">
+                                             En cours
+                                         </option>
+
+                                         
+
+                                         <option value="Annulé" name="statut">
+                                             Annulé
+                                         </option>
+                                         
+                                        
+                                </select>
+                                        
+                            </div><br>
+                                 
+                     </div>
+
+                            <div class="">
+                                    <button type="button" class=" btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class=" btn-primary">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+   <!--  End Modal pour modifier statut -->
+@endforeach
    
     
 @endsection

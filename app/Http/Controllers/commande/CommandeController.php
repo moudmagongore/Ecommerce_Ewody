@@ -33,7 +33,7 @@ class CommandeController extends Controller
            'statut' => $request->statut
         ]);
 
-        flashy('Le statut est bien modifié !');
+        flashy('Le statut de la commande est bien modifié !');
         return back();
     }
 
@@ -132,29 +132,39 @@ class CommandeController extends Controller
 
 
 
-    /* public function getStatutCommande($id)
+    public function modifStatutCommandeUser(Request $request, $id)
     {
-        //si sa retourne vrai c a d l'user na pas admin  dans ses roles
-        if (Gate::denies('edit-users')) {
-            
-            return redirect()->route('acceuil');
-        }
-    
+        
+        Commande::whereId($id)->update([
+           'statut' => $request->statut
+        ]);
+
+        flashy('Le statut de la commande est bien modifié !');
+        return back();
+    }
+
+
+
+
+    public function nonModif($id)
+    {
         $commande = Commande::find($id);
 
-       
-
-        if($commande->statut == 0)
+        if($commande->statut == 'Emballé')
         {
-            $commande->statut = 1;
+            flashy()->error('Désolé mais la commande est déjà emballé !');
+            return back();
         }
-        else
+        elseif($commande->statut == 'Livré')
         {
-            $commande->statut = 0;
+            flashy()->error('Désolé mais la commande est déjà livré !');
+            return back();
         }
-
-        $commande->save();
-
-        return back();
-    }*/
+        elseif($commande->statut == 'En route')
+        {
+            flashy()->error('Désolé mais la commande est déjà en route !');
+            return back();
+        }
+        
+    }
 }

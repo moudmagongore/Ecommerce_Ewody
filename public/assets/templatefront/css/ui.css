@@ -10,6 +10,22 @@ html {
 }
 
 
+.btn-warning{
+    background-color: #ec971f !important;
+    border-color: #ec971f !important;
+}
+
+.btn-primary{
+    background-color: #255a87 !important;
+    border-color: #255a87 !important;
+}
+
+.btn-primary{
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+}
+
+
 /* ========================
 INCLUDE STYLES AND COMPONENTS
 ===================== */

@@ -290,11 +290,16 @@
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Détails Commande N°{{$commande->commande_id}}</h3>
+                    <h3 class="modal-title">Commande N°{{$commande->commande_id}}</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                    <div class="text-center mt-4 h4">
+                        <p>Voulez-vous modifiez le statut de la commande ?</p>
+                    </div>
+
                 <div class="modal-body">
                     <div class="container-fluid">
                         <form action="{{ route('modifier.statut', $commande->id) }}" method="POST">
