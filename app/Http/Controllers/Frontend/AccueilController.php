@@ -210,4 +210,20 @@ class AccueilController extends Controller
     }
 
     
+
+
+    public function contact()
+    {
+        return view('templateclient.pages.contact');
+    }
+
+    public function apropos()
+    {
+        return view('templateclient.pages.apropos');
+    }
+
+    public function faq()
+    {
+        return view('templateclient.pages.faq');
+    }
 }

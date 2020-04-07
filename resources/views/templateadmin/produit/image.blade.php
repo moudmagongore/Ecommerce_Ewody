@@ -30,8 +30,9 @@
                                     @foreach ($images as $image)
                                     <div class="col-lg-4">
                                     <div class="pro-edt-img">
-                                    <img src="{{ URL::to('/') }}/image_produit/{{$image->nom}}" alt="" style="height:100px; width:100px"/>
+                                    <img src="{{ asset('storage/' . $image->images) }}" alt="" style="height:100px; width:100px"/>
                                     </div>
+                                        <p>pour le produit : {{$image->produit_id}}</p>
                                     </div>
                                     @endforeach
 
@@ -124,25 +125,33 @@
                             <form action="{{route('addphoto')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="">Image</label>
-                                        <input type="file" class="form-control-file" name="file" id="file">
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="">Produit</label>
-                                        <input type="text" class="form-control" value="{{$produit->id}}" name="produit" id="">
+                                          <select class="form-control" name="produits" id="">
+                                           @foreach ($produits as $produit)
+                                               <option value="{{$produit->id}}">{{$produit->nom}}</option>
+                                           @endforeach
+                                            
+                                          </select>
                                     </div>
+
                                     <div class="form-group">
+                                        <label for="image">Image</label>
+                                        <input type="file" class="form-control-file" name="image" id="image">
+                                    </div>
+                                    
+                                    <!-- <div class="form-group">
                                         <label for="">Description</label>
                                         <input type="text" class="form-control" name="description" id="">
-                                    </div>
-                                    <div class="form-group">
+                                    </div> -->
+                                    <!-- <div class="form-group">
                                         <label for="">Code photo</label>
                                           <select class="form-control" name="code_photo" id="">
                                             <option>1</option>
                                             <option>0</option>
                                           </select>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>

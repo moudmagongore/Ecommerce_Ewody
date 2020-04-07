@@ -199,3 +199,12 @@ Route::get('/videpanier', function(){
 });
 /*End Shopping Cart*/
 
+
+
+/*Route pour les pages*/
+Route::get('contact', 'Frontend\AccueilController@contact')->name('contact');
+Route::get('apropos', 'Frontend\AccueilController@apropos')->name('apropos');
+Route::get('faq', 'Frontend\AccueilController@faq')->name('faq');
+
+/*End Route pour les pages*/
+

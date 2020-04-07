@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Merci'])
 @section('content')
  <div class="container col-md-8">
         <div class="jumbotron text-center">

@@ -152,17 +152,17 @@ class CommandeController extends Controller
 
         if($commande->statut == 'Emballé')
         {
-            flashy()->error('Désolé mais la commande est déjà emballé !');
+            flashy()->error('Désolé la commande est déjà emballé !');
             return back();
         }
         elseif($commande->statut == 'Livré')
         {
-            flashy()->error('Désolé mais la commande est déjà livré !');
+            flashy()->error('Désolé la commande est déjà livré !');
             return back();
         }
         elseif($commande->statut == 'En route')
         {
-            flashy()->error('Désolé mais la commande est déjà en route !');
+            flashy()->error('Désolé la commande est déjà en route !');
             return back();
         }
         

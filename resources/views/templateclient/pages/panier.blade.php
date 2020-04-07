@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Mon panier'])
 
 @section('extra-meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">

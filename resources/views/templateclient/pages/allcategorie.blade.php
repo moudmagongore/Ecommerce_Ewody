@@ -1,5 +1,5 @@
 
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Toutes les categories'])
 
 @section('content')
 <div class="container">

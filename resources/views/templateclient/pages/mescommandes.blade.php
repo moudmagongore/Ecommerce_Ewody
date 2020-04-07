@@ -1,8 +1,8 @@
-
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Mes commandes'])
 @section('content')
 
-
+<!-- commande original
+ -->
     <section class="section-content padding-y">
         <div class="container">
             <div class="row">
@@ -20,136 +20,130 @@
                         </a>
                     </p>
                 </aside>
-                <main class="col-md-9">
-                    <article class="card  mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">Mes commandes</h4>
-                            <div class="collapse-wrapper center-block">
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    
-                                    
-        
-
-    @foreach (Auth()->user()->commandes as $commande)
-        <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-        <h4 class="h6 panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree{{$commande->id}}" aria-expanded="true" aria-controls="collapseThree">
-               Commande passé le {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}} d'un montant de <strong>{{getprixminimumhelpers($commande->montant)}}
-            </a>
-        </h4>
-    </div>
-    <div id="collapseThree{{$commande->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
-
-
-             <div class="ml-4">
-                    Statut : 
-                    @if($commande->statut == 'En cours')
-                        <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">En cours</a>
-                    @elseif($commande->statut == 'Emballé')
-                        
-                           <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" >Emballé</a> 
-                        
-                    @elseif($commande->statut == 'En route')
-                        
-                           <a href="{{ route('non.modif', $commande->id) }}" class="btn-primary btn-circle btn-sm" > En route</a> 
-                        
-                    @elseif($commande->statut == 'Livré')
-                        
-                           <a href="{{ route('non.modif', $commande->id) }}" class=" btn-warning btn-circle btn-sm">Livré</a> 
-                        
-                    @elseif($commande->statut == 'Annulé')
-                        
-                        <a href="" class=" btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Annulé</a>
-
-                   @endif
-                </div><br>
-
-
-                <div>
-                 <h6 class="ml-4">N° commande: <strong >{{$commande->commande_id}} </strong></h6>
-
-                </div>
-
-
-            <h6 class="text-center h6 mb-0 ml-4 mt-4 mb-4">Produits commandés</h6>
-
-            <hr>
-            
-            <table class="table table-borderless table-shopping-cart">
-                <thead class="text-muted">
-                    <tr class="small text-uppercase">
-                        <th scope="col">Prduit</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prix unitaire</th>
-                        <th scope="col-fluid">Quantié</th>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (unserialize($commande->produits) as $produit)
-                            
-                             <tr>
-                        <td>
-                            <div>
-                                <figure class="itemside">
-                                    <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
-                                </figure>
-                            </div>
-                        </td>
-
-                         <td class="prices">
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">{{$produit[0]}}</var>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td class="prices">
-                            <div>
-                                <div class="price-wrap">
-                                    <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                    <small class="text-muted">148 000 / unité</small>
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div>
-                              {{$produit[2]}}
-                            </div>
-                        </td>
-                        
-
-                        
-                    </tr>        
-                        
-                       
-                    @endforeach
-
-                         
-                   
+                <main class="col-md-9 ">
                     
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                       <article class="card mb-3">
 
-    @endforeach
+                            <div class="card-body">
+                                <h5 class="text-uppercase mt-4" style=" margin-bottom: -26px;">Mes commandes</h5>
+                                @foreach (Auth()->user()->commandes as $commande)
+                               
+                                   
+                                    <div class="mt-5">
+                                        <p class="mb-2">
+                                            <strong>{{-- {{$user->nom}} --}} 
+                                        </p>
+                                    
+                                    </div>
+                               
+                                
+                               
+                                <article class="card-group">
+                                    
+                                    <figure class="card bg">
+                                        <div class="p-3">
+                                            Commandé passé le {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}} d'un montant de <strong>{{getprixminimumhelpers($commande->montant)}}
+                                        </div><br>
+
+                                        <div class="ml-4">
+                                        Statut : 
+                                        @if($commande->statut == 'En cours')
+                                            <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">En cours</a>
+                                        @elseif($commande->statut == 'Emballé')
+                                            
+                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" >Emballé</a> 
+                                            
+                                        @elseif($commande->statut == 'En route')
+                                            
+                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-primary btn-circle btn-sm" > En route</a> 
+                                            
+                                        @elseif($commande->statut == 'Livré')
+                                            
+                                               <a href="{{ route('non.modif', $commande->id) }}" class=" btn-warning btn-circle btn-sm">Livré</a> 
+                                            
+                                            @elseif($commande->statut == 'Annulé')
+                                                
+                                                <a href="" class=" btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Annulé</a>
+
+                                           @endif
+                                        </div><br>
+
+                                        <div>
+                                            <h6 class="ml-4">N° commande: <strong >{{$commande->commande_id}} </strong></h6>
+
+                                        </div>
+
+                                        <h6 class="text-center h6 mb-0 ml-4 mt-4 mb-4">Produits commandés</h6><hr>
 
 
 
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Prduit</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prix unitaire</th>
+                                    <th scope="col-fluid">Quantié</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (unserialize($commande->produits) as $produit)
+                                        
+                                         <tr>
+                                    <td>
+                                        <div>
+                                            <figure class="itemside">
+                                                <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                            </figure>
+                                        </div>
+                                    </td>
+
+                                     <td class="prices">
+                                        <div>
+                                            <div class="price-wrap">
+                                                <var class="price">{{$produit[0]}}</var>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="prices">
+                                        <div>
+                                            <div class="price-wrap">
+                                                <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
+                                                <small class="text-muted">148 000 / unité</small>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                          {{$produit[2]}}
+                                        </div>
+                                    </td>
+                                    
+
+                                    
+                                </tr>        
+                                    
+                                   
+                                @endforeach
+
+                                     
+                               
+                                
+                            </tbody>
+                        </table>
 
 
+                                    </figure>
+                                </article>
+                                @endforeach
+                            </div><br>
+                        </article>             
+                                    
 
-                                </div>
-                            </div>
-                        </div>
-                    </article>
                 </main>
     </div>
 </div>

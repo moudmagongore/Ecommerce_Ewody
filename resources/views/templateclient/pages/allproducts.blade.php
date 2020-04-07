@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Tous les produits'])
     @section('content')
         
 

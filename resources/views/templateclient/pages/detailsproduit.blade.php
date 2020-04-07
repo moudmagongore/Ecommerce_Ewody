@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Détails d\'un produit'])
     @section('content')
 
 
@@ -26,11 +26,17 @@
                                    
                                     <article class="gallery-wrap">
                                         <div class="img-big-wrap">
-                                            <div><a href="#"><img src="{{ asset('storage/' . $produits->photo) }}"></a></div>
+                                            <div><a ><img src="{{ asset('storage/' . $produits->photo) }}" id="imagePricipale"></a></div>
                                         </div>
-                                        <div class="thumbs-wrap">
+
+
+                                        <div class="thumbs-wrap mt-4">
+                                            <!-- pour recuperer l'image principale -->
+                                            <a class="item-thumb"><img src="{{ asset('storage/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
+
+
                                             @foreach ($images as $image)
-                                                <a href="#" class="item-thumb"><img src="{{url('image_produit',$image->nom)}}"></a>
+                                                <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage"></a>
                                             @endforeach
                                         </div>
                                     </article>
@@ -114,289 +120,25 @@
                         </div>
                     </div>
                 </section>
-                {{-- <hr class="mt-4">
-                <header class="section-heading clearfix">
-                    <a href="#" class="btn btn-outline-primary float-right">Voir tous</a>
-                    <h3 class="section-title text-uppercase">Produits Similaires</h3>
-                </header>
-
-
-                <div class="row owl-carousel owl-theme">
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
-                            <div class="img-wrap">
-                                <img src="images/items/1.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="150">
-                            <div class="img-wrap">
-                                <span class="topbar">
-                                    <span class="badge badge-success"> NEW </span>
-                                </span>
-                                <img src="images/items/2.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div> --}}
-
-                {{-- <header class="section-heading clearfix">
-                    <a href="#" class="btn btn-outline-primary float-right">Voir tous</a>
-                    <h3 class="section-title text-uppercase">Recommandés pour vous</h3>
-                </header>
-
-
-                <div class="row owl-carousel owl-theme">
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
-                            <div class="img-wrap">
-                                <img src="images/items/1.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="150">
-                            <div class="img-wrap">
-                                <span class="topbar">
-                                    <span class="badge badge-success"> NEW </span>
-                                </span>
-                                <img src="images/items/2.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="250">
-                            <div class="img-wrap">
-                                <img src="images/items/3.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="350">
-                            <div class="img-wrap">
-                                <img src="images/items/4.jpg">
-                                <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
-                            </div>
-                            <figcaption class="info-wrap border-top">
-                                <a href="#" class="title">Product's title here - Model</a>
-                                <div class="price mt-2">375 000 </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div> --}}
+               
             </div>
         </section>
 
     @endsection
+
+@section('quantite')
+    <script>
+        var imagePrincipale = document.querySelector('#imagePricipale');
+        var sousImage = document.querySelectorAll('.sousImage');
+
+        sousImage.forEach((element) => element.addEventListener('click', changeImage));
+
+        function changeImage(e)
+        {
+            //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué
+            imagePrincipale.src = this.src;
+        }
+    </script>
+@stop
 
 

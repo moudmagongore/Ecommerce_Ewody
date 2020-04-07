@@ -1,5 +1,5 @@
 
-    @extends('templateclient.layouts.app')
+    @extends('templateclient.layouts.app', ['title' => 'Mon profile'])
     @section('content')
     
     <section class="section-content padding-y">

@@ -50,27 +50,20 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
+       
+    
+        $path = request('image')->store('avatars_sousImagesProduit', 'public');
+
+          Image::create([
+            'produit_id' => $request->produits,
+            'images' => $path,
+            
+        ]);
         
-        $inputData=$request->all();
-        if($request->file('image')){
-            $images=$request->file('image');
-            foreach ($images as $image){
-                if($image->isValid()){
-                    $extension=$image->getClientOriginalExtension();
-                    $filename=rand(100,999999).time().'.'.$extension;
-                    $large_image_path=public_path('image_produit/large/'.$filename);
-                    $medium_image_path=public_path('image_produit/medium/'.$filename);
-                    $small_image_path=public_path('image_produit/small/'.$filename);
-                    /* //// Resize Images
-                    Image::make($image)->save($large_image_path);
-                    Image::make($image)->resize(600,600)->save($medium_image_path);
-                    Image::make($image)->resize(300,300)->save($small_image_path); */
-                    $inputData['image']=$filename;
-                    Imagemodel::create($inputData);
-                }
-            }
-        }
-        return back()->with('message','Add Images Successed');
+    
+        
+        flashy('Le produit a bien été ajouté.');
+        return back();
     }
 
     /**

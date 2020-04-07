@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Chekout'])
 @section('content')
 
 	@if (Cart::count() > 0 )

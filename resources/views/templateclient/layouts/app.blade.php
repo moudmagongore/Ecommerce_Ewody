@@ -11,7 +11,7 @@
 
      @yield('extra-meta')
 
-    <title>Accueil | E-wody</title>
+    <title>E-wody | {{ $title or ' '}}</title>
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="{{asset('assets/templatefront/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
@@ -168,28 +168,26 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav5" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="main_nav5">
+                <div class="collapse  navbar-collapse " id="main_nav5">
                    
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav text-uppercase">
                         <li class="nav-item">
                             <a class="nav-link pl-0" href="{{ route('produits') }}"> <strong>Tous nos produits</strong></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Nouveautés</a>
+                            <a class="nav-link" href="{{ route('acceuil') }}">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Populaires</a>
+                            <a class="nav-link" href="{{ route('faq') }}">Faq</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Liquidation</a>
+                            <a class="nav-link" href="{{ route('apropos') }}">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Chemises hommes</a>
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Montres</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                        
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plus</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Bijoux</a>
@@ -203,9 +201,9 @@
                                 <a class="dropdown-item" href="#">Categorie 2</a>
                                 <a class="dropdown-item" href="#">Categorie 3</a>
                             </div>
-
+                        
                             
-                        </li>
+                        </li> -->
                     </ul>
                    
                 </div>
@@ -290,9 +288,9 @@
             <section class="footer-bottom border-top row">
                 <div class="col-md-6">
                     <p class="mb-0">
-                        <a href="">CGU & CGV</a> | 
-                        <a href="">Mentions légales</a> | 
-                        <span class="text-secondary">&copy; EWODY SARL - Tous droits réservés</span>
+                        <a href="" style="color: #fff !important;">CGU & CGV</a> | 
+                        <a href="" style="color: #fff !important;">Mentions légales</a> | 
+                        <span class="text-secondary" style="color: #fff !important;">&copy; EWODY SARL - Tous droits réservés</span>
                     </p>
                 </div>
                 <div class="col-md-6 text-md-right">

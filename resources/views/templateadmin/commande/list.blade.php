@@ -105,27 +105,27 @@
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">N° {{$commande->commande_id}}</h3>
+                    <h3 class="modal-title">commande N°{{$commande->commande_id}}</h3>
 
 
                     <div style="margin-left: 32em; margin-top: -2em;">
                         @if($commande->statut == 'En cours')
-                            <a href="" class="btn btn-info btn-circle btn-sm" disabled>En cours</a>
+                            <a class="btn btn-info btn-circle btn-sm" disabled>En cours</a>
                         @elseif($commande->statut == 'Emballé')
                             
-                               <a href="" class="btn btn-success btn-circle btn-sm" disabled>Emballé</a> 
+                               <a class="btn btn-success btn-circle btn-sm" disabled>Emballé</a> 
                             
                         @elseif($commande->statut == 'En route')
                             
-                               <a href="" class="btn btn-primary btn-circle btn-sm" disabled> En route</a> 
+                               <a class="btn btn-primary btn-circle btn-sm" disabled> En route</a> 
                             
                         @elseif($commande->statut == 'Livré')
                             
-                               <a href="" class="btn btn-warning btn-circle btn-sm" disabled>Livré</a> 
+                               <a class="btn btn-warning btn-circle btn-sm" disabled>Livré</a> 
                             
                         @elseif($commande->statut == 'Annulé')
                             
-                               <a href="" class="btn btn-danger btn-circle btn-sm" disabled>Annulé</a> 
+                               <a class="btn btn-danger btn-circle btn-sm" disabled>Annulé</a> 
                             
                        @endif
  

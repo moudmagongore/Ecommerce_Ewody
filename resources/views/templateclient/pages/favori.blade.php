@@ -1,4 +1,4 @@
-@extends('templateclient.layouts.app')
+@extends('templateclient.layouts.app', ['title' => 'Mes favoris'])
 @section('content')
     <section class="section-content padding-y">
         <div class="container">
