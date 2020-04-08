@@ -36,6 +36,8 @@ class TableForeign extends Migration
 
         Schema::table("avis", function(Blueprint $table){
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->foreign('produi_id')->references('id')->on('produits')->onDelete('cascade');
         });
 
 

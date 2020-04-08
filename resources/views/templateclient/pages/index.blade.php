@@ -128,7 +128,7 @@
                         <div class="img-wrap">
                             <img src="{{ asset('storage/' . $phare->photo) }}">
                             <span class="topbar">
-                                <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+                                <a href="{{ route('favoris.store', $phare->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                             </span>
                             <a class="btn-overlay" href="{{route('details', $phare->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
                         </div>
@@ -219,9 +219,11 @@
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
                                                 <img src="{{ asset('storage/' . $sac->photo) }}">
+
                                                 <span class="topbar">
-                                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+                                                    <a href="{{ route('favoris.store', $sac->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                                                 </span>
+
                                                 <a class="btn-overlay" href="{{route('details', $sac->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
                                             </div>
                                             <figcaption class="info-wrap border-top">
@@ -268,9 +270,11 @@
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
                                                 <img src="{{ asset('storage/' . $montre->photo) }}">
+
                                                 <span class="topbar">
-                                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+                                                    <a href="{{ route('favoris.store', $montre->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                                                 </span>
+
                                                 <a class="btn-overlay" href="{{route('details', $montre->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
                                             </div>
                                             <figcaption class="info-wrap border-top">
@@ -302,7 +306,7 @@
                             <div class="img-wrap">
                                 <img src="{{ asset('assets/templatefront/images/items/1.jpg') }}">
                                 <span class="topbar">
-                                    <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+                                    <a href="" class="float-right"><i class="fa fa-heart"></i></a>
                                 </span>
                                 <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
                             </div>

@@ -48,22 +48,22 @@
                                         <div class="ml-4">
                                         Statut : 
                                         @if($commande->statut == 'En cours')
-                                            <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">En cours</a>
+                                            <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}"> <i class="fa fa-refresh fa-spin"></i>  En cours</a>
                                         @elseif($commande->statut == 'Emballé')
                                             
-                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" >Emballé</a> 
+                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" ><i class="fa fa-envelope" aria-hidden="true"></i> Emballé</a> 
                                             
                                         @elseif($commande->statut == 'En route')
                                             
-                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-primary btn-circle btn-sm" > En route</a> 
+                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-primary btn-circle btn-sm" ><i class="fa fa-motorcycle" aria-hidden="true"></i>   En route</a> 
                                             
                                         @elseif($commande->statut == 'Livré')
                                             
-                                               <a href="{{ route('non.modif', $commande->id) }}" class=" btn-warning btn-circle btn-sm">Livré</a> 
+                                               <a href="{{ route('non.modif', $commande->id) }}" class=" btn-warning btn-circle btn-sm"><i class="fa big-icon fa-check-circle icon-wrap"></i>  Livré</a> 
                                             
                                             @elseif($commande->statut == 'Annulé')
                                                 
-                                                <a href="" class=" btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}">Annulé</a>
+                                                <a href="" class=" btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}"><i class="fa fa-exclamation-triangle"></i> Annulé</a>
 
                                            @endif
                                         </div><br>

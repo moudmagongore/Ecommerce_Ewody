@@ -7,6 +7,10 @@
 <title>Administration E-Wody</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <!--  Pour le chargement du button -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  End Pour le chargement du button -->
 <!-- favicon
 ============================================ -->
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">

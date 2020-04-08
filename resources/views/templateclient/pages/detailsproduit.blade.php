@@ -102,7 +102,7 @@
                                             </form>
                                             @endif
                                             
-                                            <a href="#" class="btn btn-light">
+                                            <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light">
                                                 <i class="fas fa-heart"></i>
                                                 <span class="text">Ajouter aux favoris</span>
                                             </a>

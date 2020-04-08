@@ -51,17 +51,17 @@
                     <h6>Quand voulez-vous la livraisson ?</h6>
 
                             
-                        <input type="radio" name="aujour" value="aujour" class="form-check-input"><label for="aujour">Aujourd'hui</label>
-
-                        <input type="radio" name="aujour" value="aujour" class="form-check-input ml-4"><label for="aujour" class="ml-5">Demain</label>
+                       <!--  <input type="radio" name="aujour" value="aujour" class="form-check-input"><label for="aujour">Aujourd'hui</label>
+                       
+                       <input type="radio" name="aujour" value="aujour" class="form-check-input ml-4"><label for="aujour" class="ml-5">Demain</label> -->
                    
 
-                                        <div class="input-group">       
+                                        <!-- <div class="input-group">       
                                             
-                                        </div>
+                                        </div> -->
 
-                                       
-                                            <label class="control-label">A une date ulterieur</label>
+                                       <!-- 
+                                            <label class="control-label">A une date ulterieur</label> -->
                                             <input type="date" class="form-control {{$errors->has('date') ? 'is-invalid' : '' }} " value="{{old('date')}}" name="date">
 
                                             {!!$errors->first('date', '<div class="invalid-feedback">:message</div>')!!}

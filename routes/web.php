@@ -128,6 +128,15 @@ Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store')
 
 
 
+/*Route favoris*/
+Route::get('/favoris', 'Favoris\FavorisController@index')->name('favoris');
+Route::get('/favoris/{id}', 'Favoris\FavorisController@store')->name('favoris.store');
+
+Route::post('destroy-favoris/{id}', 'Favoris\FavorisController@destroyFavoris')->name('destroy.favoris');
+/*End Route favoris*/
+
+
+
 Route::get('/commandes', 'Frontend\AccueilController@get_mescommandes_page')->name('commandes');
 
 
@@ -145,8 +154,6 @@ Route::get('detailcategorie', 'Frontend\AccueilController@get_detail_categorie')
 
 
 
-Route::get('/favoris', 'Favoris\FavorisController@index')->name('favoris');
-Route::get('/favoris/{id}', 'Favoris\FavorisController@store')->name('favoris.store');
 
 
 

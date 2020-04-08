@@ -16,8 +16,9 @@ class CreateAvisTable extends Migration
         Schema::create('avis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('produit_id');
             $table->string('commentaire');
-            $table->date('date_comment');
+            /*$table->date('date_comment');*/
             $table->timestamps();
         });
     }

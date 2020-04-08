@@ -19,6 +19,7 @@ use App\Models\Service;
 use App\models\Taille;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\models\Favori;
 
 
 
@@ -135,9 +136,12 @@ class AccueilController extends Controller
     }
 
     public function get_mon_compte_page(){
+
         $user = Auth::user();
-        /*dd($user);*/
-        return view('templateclient.pages.compte', compact('user'));
+        
+        $favoris = Favori::OrderBy('created_at', 'DESC')->where('user_id', $user->id)->take(4)->get();
+        
+        return view('templateclient.pages.compte', compact('user','favoris'));
     }
 
     

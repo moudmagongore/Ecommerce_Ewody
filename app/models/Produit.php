@@ -92,7 +92,7 @@ class Produit extends Model
 
     public function favori()
     {
-        return $this->belongsTo(Favori::class);
+        return $this->belongsToMany(Favori::class);
     }
     
 }

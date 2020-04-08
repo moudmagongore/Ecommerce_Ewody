@@ -12,6 +12,10 @@
      @yield('extra-meta')
 
     <title>E-wody | {{ $title or ' '}}</title>
+    
+   <!--  Pour le chargement du button -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  End Pour le chargement du button -->
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="{{asset('assets/templatefront/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
@@ -82,10 +86,16 @@
                                     <span class="notify">{{Cart::count()}}</span>
                                 </div>
                             </a>
-                            <a href="#" class="widget-header mr-2">
+                            <a href="{{ route('favoris') }}" class="widget-header mr-2">
                                 <div class="icon">
                                     <i class="icon-sm rounded-circle border fa fa-heart" title="Liste de souhait" data-toggle="tooltip" data-placement="bottom"></i>
-                                    <span class="notify">0</span>
+
+                                    @guest
+                                        <span class="notify">0</span>
+                                    @else
+                                        <span class="notify">{{App\models\Favori::where('user_id', Auth::user()->id)->get()->count()}}
+                                        </span>
+                                    @endguest
                                 </div>
                             </a>
                             <div class="widget-header dropdown mt-3 m-sm-0">
