@@ -49,7 +49,7 @@
                                             <div>
                                                 <div class="price-wrap">
                                                     <var class="price">{{$produit->model->getprixminimum()}}</var>
-                                                    <small class="text-muted">148 000 / unité</small>
+                                                    <!-- <small class="text-muted">148 000 / unité</small> -->
                                                 </div>
                                             </div>
                                         </td>
@@ -74,7 +74,7 @@
                                             <div>
                                                 <div class="price-wrap">
                                                     <var class="price">{{getprixminimumhelpers($produit->subtotal())}}</var>
-                                                    <small class="text-muted">148 000 / unité</small>
+                                                    <small class="text-muted">{{$produit->model->getprixminimum()}} / unité</small>
                                                 </div>
                                             </div>
                                         </td>

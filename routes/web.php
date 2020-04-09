@@ -48,11 +48,21 @@ Route::get('/moncompte', 'Frontend\AccueilController@get_mon_compte_page')->name
 
 Route::get('deconnexion', 'Administration\DeconnexionController@deconnexion')->name('deconnexion');
 
+
+
+/*Route produit*/
 Route::get('/listproduit','produit\ProduitController@index')->name('listproduit')->middleware('can:voir-page-produit');
+
 Route::get('/ajoutproduit','produit\ProduitController@create')->name('ajoutproduit')->middleware('can:voir-page-produit');
+
 Route::post('/storeproduit','produit\ProduitController@store')->name('storeproduit')->middleware('can:voir-page-produit');
+
 Route::post('/deleteproduit/{id}','produit\ProduitController@destroy')->name('deleteproduit')->middleware('can:voir-page-produit');
+
 Route::post('/updateproduit/{id}','produit\ProduitController@update')->name('updateproduit')->middleware('can:voir-page-produit');
+/*Route produit*/
+
+
 Route::post('addphoto', 'produit\PhotoController@store')->name('addphoto')->middleware('can:voir-page-produit');
 Route::get('addimage', 'produit\PhotoController@create')->name('addimage')->middleware('can:voir-page-produit');
 
@@ -134,6 +144,12 @@ Route::get('/favoris/{id}', 'Favoris\FavorisController@store')->name('favoris.st
 
 Route::post('destroy-favoris/{id}', 'Favoris\FavorisController@destroyFavoris')->name('destroy.favoris');
 /*End Route favoris*/
+
+
+
+/*Route Avis*/
+Route::post('avis-store/{id}', 'Avis\AvisController@storeAvis')->name('store.avis');
+/*End Route Avis*/
 
 
 

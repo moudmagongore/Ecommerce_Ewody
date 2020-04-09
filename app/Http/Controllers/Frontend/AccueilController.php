@@ -18,6 +18,7 @@ use App\models\Privillege;
 use App\Models\Service;
 use App\models\Taille;
 use Illuminate\Support\Facades\Auth;
+use App\models\Avis;
 use App\User;
 use App\models\Favori;
 
@@ -113,6 +114,10 @@ class AccueilController extends Controller
 
     public function get_details_page($id){
 
+        //Pour recuperer les avis concernants un produit
+        $avis = Avis::where('produit_id', '=', $id)->get();
+
+
         $produits = Produit::find($id);
 
         $quantites = $produits->quantite === 0 ? 'Indisponible' : 'Disponible';
@@ -126,7 +131,7 @@ class AccueilController extends Controller
         
         //dd($caracteristiques);
         
-        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites'));
+        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis'));
     }
 
     public function get_mescommandes_page(){

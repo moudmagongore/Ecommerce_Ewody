@@ -3,12 +3,15 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User
+use App\User;
 
 class Avis extends Model
 {
-    public function users()
+	protected $fillable = ['user_id', 'produit_id', 'commentaire'];
+
+
+    public function user()
     {
-    	return $this->hasMany(User::class);
+    	return $this->belongsTo('App\User');
     }
 }

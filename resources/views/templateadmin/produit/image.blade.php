@@ -32,7 +32,7 @@
                                     <div class="pro-edt-img">
                                     <img src="{{ asset('storage/' . $image->images) }}" alt="" style="height:100px; width:100px"/>
                                     </div>
-                                        <p>pour le produit : {{$image->produit_id}}</p>
+                                        <p>Pour le produit : <strong>{{$image->produit->nom}}</strong></p>
                                     </div>
                                     @endforeach
 

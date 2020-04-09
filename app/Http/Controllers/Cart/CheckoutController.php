@@ -46,7 +46,7 @@ class CheckoutController extends Controller
     		'prenom' => 'required|min:2',    
             'telephone' => 'required|min:2',
             'adresse' => 'required|min:2',
-            /*'date' => 'required|'*/
+            'date' => 'required|'
 
         
     	]);

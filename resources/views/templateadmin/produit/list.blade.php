@@ -22,7 +22,7 @@
                             
                             
                             <th>Nom</th>
-                            <th>Status</th>
+                            
                             <th>Marque</th>
                             <th>Stock</th>                                
                             <th>Prix minimum</th>
@@ -34,9 +34,9 @@
                         
                             @foreach ($produits as $produit)
                                 <tr>
-                                    <td>{{$produit->nom}}</td>                                    
-                                    <td>{{$produit->status}}</td>
-                                    <td>{{$produit->fabricant}}</td>
+                                    <td>{{$produit->nom}}</td>                                   
+                                   
+                                    <td>{{$produit->marque}}</td>
                                     <td>{{$produit->quantite}}</td>
                                     <td>{{$produit->prix_unitaire}}</td>
                                     <td>{{$produit->prix_maximum}}</td>
@@ -44,7 +44,7 @@
                                         <button  title="Detail" class="pd-setting-ed" data-toggle="modal" data-target="#detailmodal{{$produit->id}}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                         <button  title="Edit" class="pd-setting-ed" data-toggle="modal" data-target="#modelId{{$produit->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         <button  title="Trash" class="pd-setting-ed" data-toggle="modal" data-target="#DangerModalalert{{$produit->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        <a  title="image" class="pd-setting-ed btn" href="{{route('addimage',$produit->id)}}" style="color:black;" ><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                        
                                     </td>                                   
                                     
                                 </tr>
@@ -78,7 +78,7 @@
     
 
 
-        <!-- Modal -->
+        <!-- Modal modification produit-->
         <div class="modal fade" id="modelId{{$produit->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -90,55 +90,78 @@
                         </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="{{route('updateproduit', $produit->id)}}" method="POST">
-                                @csrf
+                            <form action="{{route('updateproduit', $produit->id)}}" method="POST" enctype="multipart/form-data">
+
+                                {{ csrf_field() }}
+
                                 <div class="row">                                        
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="">
-                                            <div class="form-group">
+                                            <div class="form-group {{$errors->has('nom') ? 'has-error' : '' }}">
                                                 <label for="">Nom du produit</label>
-                                                <input name="nom" type="text" value="{{$produit->nom}}" class="form-control" placeholder="Nom du produit">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Prix maximum</label>
-                                                <input name="prix_maximum" type="text" value="{{$produit->prix_maximum}}" class="form-control" placeholder="Prix maximum">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Marque</label>
-                                                <input name="fabricant" type="text" value="{{$produit->fabricant}}" class="form-control" placeholder="Fabriquant">
+
+                                                <input name="nom" type="text" class="form-control" value="{{$produit->nom}}" placeholder="Nom du produit">
+
+                                                {!! $errors->first('nom', '<p id="error">:message</p>')!!}
+                                                
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="">Fournisseur</label>
-                                                <input name="fournisseur" type="text" value="{{$produit->fournisseur_id}}" class="form-control" placeholder="Fournisseur">
+
+                                            <div class="form-group {{$errors->has('prix_maximum') ? 'has-error' : '' }}">
+                                                <label for="">Prix maximum</label>
+                                                <input name="prix_maximum" type="text" class="form-control" placeholder="Prix maximum" value="{{$produit->prix_maximum}}">
+
+                                                    {!! $errors->first('prix_maximum', '<p id="error">:message</p>')!!}
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Statut</label>
-                                                <select class="form-control" name="status">
-                                                    <option>Statut</option>
-                                                    <option value="Actif">Actif</option>
-                                                    <option value="Inactif">Inactif</option>
-                                                </select>
+
+                                            <div class="form-group {{$errors->has('marque') ? 'has-error' : '' }}">
+                                                <label for="">Marque</label>
+                                                <input name="marque" type="text" class="form-control" placeholder="Marque" value="{{$produit->marque}}">
+
+                                                {!! $errors->first('marque', '<p id="error">:message</p>')!!}
                                             </div>
+
+                                            
+                                            <div class="form-group {{$errors->has('image') ? 'has-error' : '' }}">
+                                                <label for="image">Image</label>
+                                                <input type="file" class="custom-file-input form-control" value="{{$produit->image}}" id="image" name="image">
+
+                                                {!! $errors->first('image', '<p id="error">:message</p>')!!}
+                                            </div>
+
+
+                                            
+
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="">
-                                            <div class="form-group">
+                                            <div class="form-group {{$errors->has('prix_unitaire') ? 'has-error' : '' }}">
                                                <label for="">Prix minimum</label>
-                                                <input name="prix_unitaire" type="text" value="{{$produit->prix_unitaire}}" class="form-control" placeholder="Prix minimum">
+                                                <input name="prix_unitaire" type="text" class="form-control" placeholder="Prix minimum" value="{{$produit->prix_unitaire}}">
+
+                                                    {!! $errors->first('prix_unitaire', '<p id="error">:message</p>')!!}
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Stock</label>
-                                            <input name="quantite" type="number" value="{{$produit->quantite}}" class="form-control" placeholder="Quantité">
+
+                                            <div class="form-group {{$errors->has('quantite') ? 'has-error' : '' }}">
+                                                <label for="">Quantité</label>
+                                                <input name="quantite" type="number" class="form-control" placeholder="Quantité" value="{{$produit->quantite}}">
+
+                                                {!! $errors->first('quantite', '<p id="error">:message</p>')!!}
                                             </div>
-                                            <div class="form-group">
+
+                                            <div class="form-group {{$errors->has('titre_video') ? 'has-error' : '' }}">
                                                <label for="">Url de la video</label>
-                                                <input name="titre_video" type="text" value="{{$produit->titre_video}}" class="form-control" placeholder="Url de la video">
+                                                <input name="titre_video" type="text" class="form-control" placeholder="Url de la video" value="{{$produit->titre_video}}">
+
+                                                {!! $errors->first('titre_video', '<p id="error">:message</p>')!!}
                                             </div>
-                                            <div class="form-group">
+
+                                            <div class="form-group {{$errors->has('description') ? 'has-error' : '' }}">
                                                 <label for="">Description</label>
-                                                <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{$produit->description}}</textarea> 
+                                                <textarea name="description" id="" cols="50" rows="5" class="form-control" placeholder="Description" value="">{{$produit->description}}</textarea>
+
+                                                {!! $errors->first('description', '<p id="error">:message</p>')!!}
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +240,7 @@
                     <input type="text" class="form-control" disabled  value="{{$produit->nom}}">
                   </div>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" disabled  value="{{$produit->fabricant}}">
+                    <input type="text" class="form-control" disabled  value="{{$produit->marque}}">
                   </div>
                 </div>
                 <div class="row">
@@ -251,3 +274,14 @@
 
     @endforeach
 @endsection
+
+
+<!-- Pour selectionner plusieurs categories -->
+@section('select')
+    <script>
+        $(function()
+        {
+          $(".js-example-basic-multiple").select2();
+        });
+    </script>
+@stop

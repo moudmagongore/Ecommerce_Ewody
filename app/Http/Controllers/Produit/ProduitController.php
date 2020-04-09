@@ -56,7 +56,7 @@ class ProduitController extends Controller
             'marque' => ['required'],
             'fournisseur' => ['required'],
             'description' => ['required'],
-            'marque' => ['required'],
+          
             'prix_unitaire' => ['required'],
             'quantite' => ['required'],
             'titre_video' => ['required']
@@ -166,7 +166,57 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+
+        
+        request()->validate([
+
+            'image' => ['required', 'image'],
+            'nom' => ['required'],
+            'prix_maximum' => ['required'],
+            'description' => ['required'],
+            'marque' => ['required'],
+            'prix_unitaire' => ['required'],
+            'quantite' => ['required'],
+            'titre_video' => ['required']
+        ]);
+
+
+               $produits = Produit::findOrFail($id);
+
+                 $inputData=$request->all();
+
+
+        
+        if($request->file('image')){
+            
+            $images=$request->file('image');
+
+                $path = request('image')->store('avatars_produits', 'public');
+
+                if($images->isValid()){
+
+                    
+
+                   /* $images->storeAs('pics',$path);*/
+                    $inputData['photo']=$path;
+                    /*$inputData['status']=1;*/
+                    
+                    $prod = $produits->update($inputData);
+
+
+
+                   /* $prod->categories()->attach(request('categorie'));*/
+                }
+        }
+        
+        
+        flashy('Le produit a bien été Modifié.');
+        return back();
+
+
+
+
+        /*$this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'prix_unitaire' => 'required',
@@ -189,7 +239,7 @@ class ProduitController extends Controller
             'titre_video' => $request->lien
         ]);
 
-        return redirect()->back();
+        return redirect()->back();*/
     }
 
     /**

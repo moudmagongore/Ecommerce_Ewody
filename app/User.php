@@ -44,9 +44,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Privillege::class);
     }
 
-    public function avi()
+    public function avis()
     {
-        return $this->belongsTo(Avis::class);
+        return $this->hasMany(Avis::class);
     }
 
 

@@ -55,12 +55,7 @@
 
                             {!! $errors->first('prix_maximum', '<p id="error">:message</p>')!!}
                         </div>
-                        <div class="input-group mg-b-pro-edt {{$errors->has('marque') ? 'has-error' : '' }}">
-                            <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                            <input name="marque" type="text" class="form-control" placeholder="Fabriquant" value="{{old('marque')}}">
-
-                            {!! $errors->first('marque', '<p id="error">:message</p>')!!}
-                        </div>
+                        
 
                         <div class="input-group mg-b-pro-edt  {{$errors->has('fournisseur') ? 'has-error' : '' }}">
                             <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
@@ -106,7 +101,7 @@
                     </div>
                     <div class="input-group mg-b-pro-edt {{$errors->has('image') ? 'has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                        <input type="file" class="custom-file-input form-control" value="{{old('image')}}" id="customFile" name="image" value="{{old('image')}}">
+                        <input type="file" class="custom-file-input form-control" id="image" name="image" value="{{old('image')}}">
 
                          {!! $errors->first('image', '<p id="error">:message</p>')!!}
                     </div>
