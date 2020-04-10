@@ -18,12 +18,14 @@ class ProduitController extends Controller
      */
     public function index()
     {
+        
         $produits = Produit::all();
+        $categories = Categorie::all();
         //$produit = Produit::find($id);
 
        // $image = Image::where('produit_id', '=', $produit->id)->get();
         
-        return view('templateadmin.produit.list', compact('produits'));
+        return view('templateadmin.produit.list', compact('produits', 'categories'));
     }
 
     
@@ -54,7 +56,7 @@ class ProduitController extends Controller
             'nom' => ['required'],
             'prix_maximum' => ['required'],
             'marque' => ['required'],
-            'fournisseur' => ['required'],
+            
             'description' => ['required'],
           
             'prix_unitaire' => ['required'],
@@ -92,45 +94,6 @@ class ProduitController extends Controller
 
 
        
-        /* $this->validate($request, [
-            'nom' => 'required',
-            'description' => 'required',
-            'prix_unitaire' => 'required',
-            'prix_maximum' => 'required',            
-            'quantite' => 'required',
-            'fournisseur'  => 'required',
-            'fabricant' => 'required',
-            'titre_video'  => 'required',
-            'photo' => 'required'                   
-        ]); */
-
-       // dd('salut');
-
-       
-       
-       /* if($request->hasFile('image')){
-        $image = $request->image;
-        $ext = $image->getClientOriginalExtension();
-        $filename = uniqid().'.'.$ext;
-        $image->storeAs('public/pics',$filename);
-        //Storage::delete("public/pics/{$client->image}");
-        //$client->image = $filename;
-    }
-
-        Produit::create([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'fabricant' => $request->fabricant,
-            'status' => $status,
-            'quantite' => $request->quantite,
-            'fournisseur_id' => $request->fournisseur,
-            'prix_unitaire' => $request->prix_unitaire,
-            'prix_maximum' => $request->prix_maximum,
-            'titre_video' => $request->lien,
-            'photo' => $filename
-        ]);
-
-      */   //return redirect()->back();
     }
 
     /**
@@ -181,31 +144,31 @@ class ProduitController extends Controller
         ]);
 
 
-               $produits = Produit::findOrFail($id);
+            $produit = Produit::whereId($id)->first();
 
-                 $inputData=$request->all();
+            $inputData=$request->all();
 
 
         
-        if($request->file('image')){
+        if($request->file('image'))
+        {
             
             $images=$request->file('image');
 
                 $path = request('image')->store('avatars_produits', 'public');
 
-                if($images->isValid()){
+                if($images->isValid())
+                {
 
-                    
-
-                   /* $images->storeAs('pics',$path);*/
                     $inputData['photo']=$path;
-                    /*$inputData['status']=1;*/
+
+
+
                     
-                    $prod = $produits->update($inputData);
+                    $produit->update($inputData);
 
 
-
-                   /* $prod->categories()->attach(request('categorie'));*/
+                   $produit->categories()->sync(request('categorie'));
                 }
         }
         
@@ -213,33 +176,6 @@ class ProduitController extends Controller
         flashy('Le produit a bien été Modifié.');
         return back();
 
-
-
-
-        /*$this->validate($request, [
-            'nom' => 'required',
-            'description' => 'required',
-            'prix_unitaire' => 'required',
-            'prix_maximum' => 'required',            
-            'quantite' => 'required',
-            'fournisseur'  => 'required',
-            'fabricant' => 'required',
-            'titre_video'  => 'required',
-            'status' => 'required'                  
-        ]);
-        Produit::whereId($id)->update([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'fabricant' => $request->fabricant,
-            'status' => $request->status,
-            'quantite' => $request->quantite,
-            'fournisseur_id' => $request->fournisseur,
-            'prix_unitaire' => $request->prix_unitaire,
-            'prix_maximum' => $request->prix_maximum,
-            'titre_video' => $request->lien
-        ]);
-
-        return redirect()->back();*/
     }
 
     /**

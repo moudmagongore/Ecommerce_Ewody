@@ -27,6 +27,7 @@
                             <th>Stock</th>                                
                             <th>Prix minimum</th>
                             <th>Prix maximum</th>
+                            <th>Image produit</th>
                             <th>Action</th>
 
                         </tr>
@@ -41,10 +42,13 @@
                                     <td>{{$produit->prix_unitaire}}</td>
                                     <td>{{$produit->prix_maximum}}</td>
                                     <td>
+                                        <img src="{{ asset('storage/' . $produit->photo) }}">
+                                    </td>
+
+                                    <td>
                                         <button  title="Detail" class="pd-setting-ed" data-toggle="modal" data-target="#detailmodal{{$produit->id}}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                         <button  title="Edit" class="pd-setting-ed" data-toggle="modal" data-target="#modelId{{$produit->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         <button  title="Trash" class="pd-setting-ed" data-toggle="modal" data-target="#DangerModalalert{{$produit->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                        
                                     </td>                                   
                                     
                                 </tr>
@@ -97,6 +101,21 @@
                                 <div class="row">                                        
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="">
+                                            <div class="form-group">
+                                                <label for="">Categories</label>
+
+                                                <select class="js-example-basic-multiple" id="categorie" type="text" name="categorie[]"  autofocus multiple="multiple" style="width: 455px">
+
+                                                @foreach($categories as $categorie)
+                                                    <option value="{{ $categorie->id }}" {{$categorie->id == $produit->id ? 'selected' : ''}}> {{ $categorie->designation_categorie }}</option>
+                                                @endforeach
+
+                              
+                            </select>
+                                                
+                                            </div>
+
+
                                             <div class="form-group {{$errors->has('nom') ? 'has-error' : '' }}">
                                                 <label for="">Nom du produit</label>
 
@@ -235,33 +254,41 @@
             </div>
 
             <form class="form-detail">
+
+                <div class="col-md-12">
+                    <img src="{{ asset('storage/' . $produit->photo) }}">
+                </div>
+
                 <div class="row">
                   <div class="col-md-6">
+                    <label>Nom</label>
                     <input type="text" class="form-control" disabled  value="{{$produit->nom}}">
                   </div>
                   <div class="col-md-6">
+                     <label>Marque</label>
                     <input type="text" class="form-control" disabled  value="{{$produit->marque}}">
                   </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
+                         <label>Prix unitaire</label>
                       <input type="text" class="form-control" disabled  value="{{$produit->prix_unitaire}}">
                     </div>
                     <div class="col-md-6">
+                         <label>Prix maximumu</label>
                       <input type="text" class="form-control" disabled  value="{{$produit->prix_maximum}}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
+                         <label>Quantite</label>
                       <input type="text" class="form-control" disabled  value="{{$produit->quantite}}">
-                    </div>
-                    <div class="col-md-6">
-                      <input type="text" class="form-control" disabled  value="{{$produit->status}}">
                     </div>
                 </div>
 
                 <div class="">
-                    <textarea name="description" id="" cols="6" rows="5" class="form-control">{{$produit->description}}</textarea>
+                     <label>Description</label>
+                    <textarea name="description" id="" cols="6" rows="5" class="form-control" disabled>{{$produit->description}}</textarea>
                 </div>
             </form>
         </div>

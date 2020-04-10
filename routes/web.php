@@ -160,7 +160,7 @@ Route::get('/commandes', 'Frontend\AccueilController@get_mescommandes_page')->na
 });
 
 
-Route::get('/acceuil', 'Frontend\AccueilController@index')->name('acceuil');
+Route::get('/', 'Frontend\AccueilController@index')->name('acceuil');
 
 
 

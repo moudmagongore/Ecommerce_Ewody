@@ -57,12 +57,7 @@
                         </div>
                         
 
-                        <div class="input-group mg-b-pro-edt  {{$errors->has('fournisseur') ? 'has-error' : '' }}">
-                            <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                            <input name="fournisseur" type="text" class="form-control" placeholder="Fournisseur" value="{{old('fournisseur')}}">
-
-                            {!! $errors->first('fournisseur', '<p id="error">:message</p>')!!}
-                        </div>
+                        
                         <div class="input-group mg-b-pro-edt {{$errors->has('description') ? 'has-error' : '' }}">
                             <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true"></i></span>
                            <textarea name="description" id="" cols="50" rows="5" class="form-control" placeholder="Description" value="{{old('description')}}"></textarea>
