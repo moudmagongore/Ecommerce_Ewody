@@ -53,8 +53,8 @@ class CartController extends Controller
 
         if ($duplicata->isNotEmpty()) {
 
-          flashy()->error('Le produit à déjà été ajouté !');
-          return redirect()->route('acceuil');
+          flashy()->error('Le produit à déjà été ajouté au panier !');
+          return back();
         }
 
          $produit = Produit::find($request->produits_id);
@@ -63,8 +63,8 @@ class CartController extends Controller
         Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire)
         ->associate('App\models\Produit');
 
-        flashy('Le produit à bien été ajouté');
-        return redirect()->route('acceuil');
+        flashy('Le produit à bien été ajouté au panier');
+        return back();
 
     }
 

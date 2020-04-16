@@ -98,17 +98,21 @@ margin-top: 10px;
 <nav class="sidebar-nav left-sidebar-menu-pro">
 <ul class="metismenu" id="menu1">
     <li class="">
-        <a class="has-arrow" href="index.html">
+        <a class="has-arrow" href="{{ route('accueil.back') }}">
                 <i class="fa big-icon fa-home icon-wrap"></i>
                 <span class="mini-click-non">E-Wody</span>
             </a>
         <ul class="submenu-angle" aria-expanded="true">
-            <li><a title="Admin" href="index.html"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Admin</span></a></li>
+            <li><a title="Admin" href="{{ route('accueil.back') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Admin</span></a></li>
             <li><a title="Site" href="{{route('acceuil')}}"><i class="fa fa-circle-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Site</span></a></li>
         </ul>
     </li>
 
-    <li><a title="Privillege" href="{{route('listcategorie')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Catégorie</span></a></li>
+    @can('voir-page-admin-vendeur')
+    
+    <li><a title="Privillege" href="{{route('listcategorie')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Catégorie</span></a>
+    </li>
+    
 
     <li>
         <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-product-hunt icon-wrap"></i> <span class="mini-click-non">Produit</span></a>
@@ -118,10 +122,13 @@ margin-top: 10px;
             <li><a title="categorie" href="{{route('addimage')}}"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Configuration produit</span></a></li>
         </ul>
     </li>
+    @endcan
         
         @can('voir-page-admin')
             <li><a title="Privillege" href="{{route('list-coupon')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Coupons</span></a></li>
         @endcan
+
+    @can('voir-page-admin-vendeur')
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i>
          <span class="mini-click-non">
@@ -136,6 +143,7 @@ margin-top: 10px;
             <li><a title="Commande" href="{{route('listcommande')}}"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des commandes</span></a></li>
         </ul>
     </li>
+    @endcan
 
 
     
@@ -143,13 +151,17 @@ margin-top: 10px;
         
    
 
-
+    @can('voir-page-admin-vendeur')
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-check-circle icon-wrap"></i> <span class="mini-click-non">Livraison</span></a>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Liste" href="{{route('listlivraison')}}"><i class="fa fa-th sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des livraison</span></a></li>
         </ul>
     </li>
+    @endcan
+
+
+    @can('voir-page-admin')
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-users icon-wrap"></i> <span class="mini-click-non">Clients</span></a>
         <ul class="submenu-angle" aria-expanded="false">
@@ -157,6 +169,8 @@ margin-top: 10px;
             <li><a title="Liste des clients" href="{{route('listclient')}}"><i class="fa fa-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste clients</span></a></li>
         </ul>
     </li>
+    @endcan
+
     @can('voir-page-admin')
     <li>
         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-adn icon-wrap"></i> <span class="mini-click-non">Administration</span></a>
@@ -168,7 +182,10 @@ margin-top: 10px;
     </li>
     @endcan
     
-    <li><a title="Landing Page" href="#" aria-expanded="false"><i class="fa fa-times-circle icon-wrap big-icon" aria-hidden="true"></i> <span class="mini-click-non">Quitter</span></a></li>
+    @can('voir-page-admin-vendeur')
+    <li><a title="Landing Page" href="#" aria-expanded="false"><i class="fa fa-times-circle icon-wrap big-icon" aria-hidden="true"></i> <span class="mini-click-non">Quitter</span></a>
+    </li>
+    @endcan
 </ul>
 </nav>
 </div>

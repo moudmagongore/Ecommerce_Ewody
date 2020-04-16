@@ -133,7 +133,7 @@ class ProduitController extends Controller
         
         request()->validate([
 
-            'image' => ['required', 'image'],
+            'image' => ['nullable', 'image'],
             'nom' => ['required'],
             'prix_maximum' => ['required'],
             'description' => ['required'],
@@ -150,7 +150,7 @@ class ProduitController extends Controller
 
 
         
-        if($request->file('image'))
+        if($request->hasfile('image'))
         {
             
             $images=$request->file('image');
@@ -163,14 +163,13 @@ class ProduitController extends Controller
                     $inputData['photo']=$path;
 
 
-
-                    
-                    $produit->update($inputData);
-
-
-                   $produit->categories()->sync(request('categorie'));
                 }
         }
+
+         $produit->update($inputData);
+
+
+        $produit->categories()->sync(request('categorie'));
         
         
         flashy('Le produit a bien été Modifié.');

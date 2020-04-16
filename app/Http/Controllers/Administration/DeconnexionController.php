@@ -16,4 +16,10 @@ class DeconnexionController extends Controller
     	return redirect()->route('acceuil');
 
     }
+
+
+    public function accueil()
+    {
+    	return view('templateadmin.principale.accueil');
+    }
 }

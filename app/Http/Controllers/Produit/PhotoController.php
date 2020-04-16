@@ -9,6 +9,9 @@ use App\models\Categorie;
 use App\models\Imagemodel;
 use App\models\Image;
 use App\models\Produit;
+use App\models\Couleur;
+use App\models\Taille;
+
 use App\models\SousCategorie;
 
 class PhotoController extends Controller
@@ -32,13 +35,19 @@ class PhotoController extends Controller
      */
     public function create()
     {
+       
+       /* $couleurs =  Couleur::find(3);*/
+       $couleurs = Couleur::all();
+       $tailles = Taille::all();
+
+
        $produits =  Produit::all();
        $images = Image::all();
        $categories = Categorie::all();
        $sous_categories = SousCategorie::all();
        $caracteristiques = Caracteristique::all();
 
-       return view('templateadmin.produit.image', compact('produits','images', 'categories', 'sous_categories', 'caracteristiques'));
+       return view('templateadmin.produit.image', compact('produits','images', 'categories', 'sous_categories', 'caracteristiques', 'couleurs', 'tailles'));
        
     }
 

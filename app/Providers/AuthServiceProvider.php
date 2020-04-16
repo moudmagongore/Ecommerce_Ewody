@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         //seulement admin  et vendeur peut voir la page produit
-        Gate::define('voir-page-produit', function ($user){
+        Gate::define('voir-page-admin-vendeur', function ($user){
             return $user->hasAnyRole(['Administrateur', 'Vendeur']);
         });
     }

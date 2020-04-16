@@ -22,7 +22,7 @@
                             
                             
                             <th>Nom</th>
-                            
+                            <th>Catégories</th>
                             <th>Marque</th>
                             <th>Stock</th>                                
                             <th>Prix minimum</th>
@@ -35,7 +35,13 @@
                         
                             @foreach ($produits as $produit)
                                 <tr>
-                                    <td>{{$produit->nom}}</td>                                   
+                                    <td>{{$produit->nom}}</td>
+
+                                    <td>
+                                        @foreach ($produit->categories as $categorie)
+                                            {{$categorie->designation_categorie}}{{$loop->last ? '' : ', '}}
+                                        @endforeach
+                                    </td>                                   
                                    
                                     <td>{{$produit->marque}}</td>
                                     <td>{{$produit->quantite}}</td>
@@ -107,7 +113,7 @@
                                                 <select class="js-example-basic-multiple" id="categorie" type="text" name="categorie[]"  autofocus multiple="multiple" style="width: 455px">
 
                                                 @foreach($categories as $categorie)
-                                                    <option value="{{ $categorie->id }}" {{$categorie->id == $produit->id ? 'selected' : ''}}> {{ $categorie->designation_categorie }}</option>
+                                                    <option value="{{ $categorie->id }}"> {{ $categorie->designation_categorie }}</option>
                                                 @endforeach
 
                               
@@ -141,11 +147,9 @@
                                             </div>
 
                                             
-                                            <div class="form-group {{$errors->has('image') ? 'has-error' : '' }}">
+                                            <div class="form-group">
                                                 <label for="image">Image</label>
-                                                <input type="file" class="custom-file-input form-control" value="{{$produit->image}}" id="image" name="image">
-
-                                                {!! $errors->first('image', '<p id="error">:message</p>')!!}
+                                                <input type="file" class="custom-file-input form-control" value="" id="image" name="image">
                                             </div>
 
 

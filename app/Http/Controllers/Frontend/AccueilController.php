@@ -17,6 +17,7 @@ use App\models\Produit;
 use App\models\Privillege;
 use App\Models\Service;
 use App\models\Taille;
+use App\models\Couleur;
 use Illuminate\Support\Facades\Auth;
 use App\models\Avis;
 use App\User;
@@ -116,10 +117,19 @@ class AccueilController extends Controller
 
         //Pour recuperer les avis concernants un produit
         $avis = Avis::where('produit_id', '=', $id)->get();
-
-
+        
+        //On recupere l'id du produit concerné
         $produits = Produit::find($id);
 
+
+        //Pour recuperer la couleur concernants un produit
+        $couleurs = $produits->couleurs;
+
+
+         //Pour recuperer la tailles concernants un produit
+        $tailles = $produits->tailles;
+
+        //Rendre la quantite disponible
         $quantites = $produits->quantite === 0 ? 'Indisponible' : 'Disponible';
 
         $images = Image::where('produit_id', $id)->get();
@@ -131,7 +141,7 @@ class AccueilController extends Controller
         
         //dd($caracteristiques);
         
-        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis'));
+        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles'));
     }
 
     public function get_mescommandes_page(){

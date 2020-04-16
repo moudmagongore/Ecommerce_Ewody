@@ -8,7 +8,7 @@
 		// car la function number_format n'accepte que les float ou entier chaine de caractere non 
 		$prix = floatVal($prixEnDecimal) / 1000;
 
-		return number_format($prix, 3, '.', ' '). ' GNF';
+		return number_format($prix, 3, ' ', ' '). ' GNF';
 	}
 
  ?>

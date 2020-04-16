@@ -12,7 +12,7 @@
                             <a class="list-group-item" href="{{route('profile')}}"> Mon profile </a>
                         </ul>
                         <p class="mt-4">
-                            <a class="btn btn-light btn-block" href="#">
+                            <a class="btn btn-light btn-block" href="{{ route('deconnexion') }}">
                                 <i class="fa fa-power-off"></i>
                                 <span class="text">Déconnexion</span>
                             </a>
@@ -37,7 +37,7 @@
                                 <hr>
                                 <p>
                                     <i class="fa fa-map-marker text-muted"></i> &nbsp;
-                                    {{$user->adresse}}, {{$user->telephone}} 
+                                    {{$user->adresse}} {{$user->telephone}} 
                                 </p>
                                 <article class="card-group">
                                     <figure class="card bg">

@@ -398,6 +398,7 @@
     });
 </script>
 
+@yield('sousImage')
 @yield('quantite')
 
 </body>

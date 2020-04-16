@@ -29,6 +29,7 @@ Route::group([
 
 ], function(){
 
+Route::get('/accueil', 'Administration\DeconnexionController@accueil')->name('accueil.back');
 
 	
 Route::get('/listuser', 'Auth\RegisterController@index')->name('listuser')->middleware('can:voir-page-admin');
@@ -51,20 +52,20 @@ Route::get('deconnexion', 'Administration\DeconnexionController@deconnexion')->n
 
 
 /*Route produit*/
-Route::get('/listproduit','produit\ProduitController@index')->name('listproduit')->middleware('can:voir-page-produit');
+Route::get('/listproduit','produit\ProduitController@index')->name('listproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::get('/ajoutproduit','produit\ProduitController@create')->name('ajoutproduit')->middleware('can:voir-page-produit');
+Route::get('/ajoutproduit','produit\ProduitController@create')->name('ajoutproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/storeproduit','produit\ProduitController@store')->name('storeproduit')->middleware('can:voir-page-produit');
+Route::post('/storeproduit','produit\ProduitController@store')->name('storeproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/deleteproduit/{id}','produit\ProduitController@destroy')->name('deleteproduit')->middleware('can:voir-page-produit');
+Route::post('/deleteproduit/{id}','produit\ProduitController@destroy')->name('deleteproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/updateproduit/{id}','produit\ProduitController@update')->name('updateproduit')->middleware('can:voir-page-produit');
+Route::post('/updateproduit/{id}','produit\ProduitController@update')->name('updateproduit')->middleware('can:voir-page-admin-vendeur');
 /*Route produit*/
 
 
-Route::post('addphoto', 'produit\PhotoController@store')->name('addphoto')->middleware('can:voir-page-produit');
-Route::get('addimage', 'produit\PhotoController@create')->name('addimage')->middleware('can:voir-page-produit');
+Route::post('addphoto', 'produit\PhotoController@store')->name('addphoto')->middleware('can:voir-page-admin-vendeur');
+Route::get('addimage', 'produit\PhotoController@create')->name('addimage')->middleware('can:voir-page-admin-vendeur');
 
 
 
@@ -73,12 +74,12 @@ Route::post('/storeclient', 'Client\ClientController@store')->name('storeclient'
 Route::post('/updateclient/{id}', 'Client\ClientController@update')->name('updateclient');
 Route::post('/deleteclient/{id}', 'Client\ClientController@archiver')->name('deleteclient');
 
-Route::get('/listfournisseur', 'Fournisseur\FournisseurController@index')->name('listfournisseur');
-Route::get('/addfournisseur','fournisseur\FournisseurController@create')->name('addfournisseur');
-Route::post('/storefournisseur','fournisseur\FournisseurController@store')->name('storefournisseur');
-Route::post('/updatefournisseur/{id}', 'fournisseur\FournisseurController@update')->name('updatefournisseur');
-Route::post('/deletefournisseur/{id}', 'fournisseur\FournisseurController@destroy')->name('deletefournisseur');
-Route::post('/archivefournisseur/{id}', 'fournisseur\FournisseurController@archiver')->name('archivefournisseur');
+Route::get('/listfournisseur', 'Fournisseur\FournisseurController@index')->name('listfournisseur')->middleware('can:voir-page-admin');
+Route::get('/addfournisseur','fournisseur\FournisseurController@create')->name('addfournisseur')->middleware('can:voir-page-admin');
+Route::post('/storefournisseur','fournisseur\FournisseurController@store')->name('storefournisseur')->middleware('can:voir-page-admin');
+Route::post('/updatefournisseur/{id}', 'fournisseur\FournisseurController@update')->name('updatefournisseur')->middleware('can:voir-page-admin');
+Route::post('/deletefournisseur/{id}', 'fournisseur\FournisseurController@destroy')->name('deletefournisseur')->middleware('can:voir-page-admin');
+Route::post('/archivefournisseur/{id}', 'fournisseur\FournisseurController@archiver')->name('archivefournisseur')->middleware('can:voir-page-admin');
 
 Route::post('/deleteprivillege/{id}', 'Administration\PrivillegeController@destroy')->name('deleteprivillege');
 Route::post('/updateprivillege/{id}', 'Administration\PrivillegeController@update')->name('updateprivillege');
@@ -98,16 +99,16 @@ Route::post('/storecaracteristique','Categorie\CaracteristiqueController@store')
 Route::post('/updatecaracteristique/{id}','Categorie\CaracteristiqueController@update')->name('updatecaracteristique');
 Route::post('/deletecaracteristique/{id}','Categorie\CaracteristiqueController@destroy')->name('deletecaracteristique');
 
-Route::post('/storelivraison', 'Livraison\LivraisonController@store')->name('storelivraison');
-Route::get('/listlivraison', 'Livraison\LivraisonController@index')->name('listlivraison');
-Route::post('/updatelivraison/{id}', 'Livraison\LivraisonController@update')->name('updatelivraison');
-Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->name('deletelivraison');
+Route::post('/storelivraison', 'Livraison\LivraisonController@store')->name('storelivraison')->middleware('voir-page-admin-vendeur');
+Route::get('/listlivraison', 'Livraison\LivraisonController@index')->name('listlivraison')->middleware('voir-page-admin-vendeur');
+Route::post('/updatelivraison/{id}', 'Livraison\LivraisonController@update')->name('updatelivraison')->middleware('voir-page-admin-vendeur');
+Route::post('/deletelivraison/{id}', 'Livraison\LivraisonController@archiver')->name('deletelivraison')->middleware('voir-page-admin-vendeur');
 
 
-Route::get('/listcommande','commande\CommandeController@index')->name('listcommande');
+Route::get('/listcommande','commande\CommandeController@index')->name('listcommande')->middleware('can:voir-page-admin-vendeur');
 
 //modifier statut de la commande par back end
-Route::post('/modifier-statut/{id}','commande\CommandeController@modifierStatut')->name('modifier.statut');
+Route::post('/modifier-statut/{id}','commande\CommandeController@modifierStatut')->name('modifier.statut')->middleware('can:voir-page-admin-vendeur');
 //End modifier statut de la commande par back end
 
 
@@ -128,6 +129,29 @@ Route::post('edit-coupon\{id}','Coupon\CouponsController@postEditCoupon')->name(
 
 Route::post('destroy-coupon\{id}',  'Coupon\CouponsController@destroyCoupon')->name('destroy-coupon')->middleware('can:voir-page-admin');
 /*End Route coupon*/
+
+
+/*Route couleurs*/
+Route::post('couleurs', 'Couleurs\CouleursController@store')->name('couleurs')->middleware('can:voir-page-admin-vendeur');
+
+Route::post('couleurs-edit\{id}', 'Couleurs\CouleursController@postCouleur')->name('couleurs.edit')->middleware('can:voir-page-admin-vendeur');
+
+Route::post('destroy-couleur\{id}', 'Couleurs\CouleursController@destroyCouleur')->name('destroy.couleur')->middleware('can:voir-page-admin-vendeur');
+/*Route couleurs*/
+
+
+
+
+
+/*Route couleurs*/
+Route::post('tailles', 'Tailles\TaillesController@store')->name('tailles')->middleware('can:voir-page-admin-vendeur');
+
+Route::post('tailles-edit\{id}', 'Tailles\TaillesController@postTailles')->name('tailles.edit')->middleware('can:voir-page-admin-vendeur');
+
+Route::post('destroy-tailles\{id}', 'Tailles\TaillesController@destroyTailles')->name('destroy.tailles')->middleware('can:voir-page-admin-vendeur');
+/*Route couleurs*/
+
+
 
 
 

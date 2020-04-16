@@ -127,6 +127,8 @@
 @endsection
 
 
+
+<!-- Pour charger les categories -->
 @section('select')
     <script>
         $(function()

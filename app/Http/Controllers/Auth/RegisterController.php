@@ -225,7 +225,7 @@ class RegisterController extends Controller
             'telephone'     => 'required|string|min:3|max:191',
             'adresse'     => 'required|string|min:3|max:191',
             'email'    => 'required|email|min:3|max:191',
-            'password' => 'nullable|string|max:191|confirmed',
+            'password' => 'required|string|max:191|confirmed',
             'image'    => 'nullable|image|max:1999', //formats: jpeg, png, bmp, gif, svg
         ];
 

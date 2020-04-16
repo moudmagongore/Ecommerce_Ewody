@@ -138,7 +138,7 @@
 
                                     <dl class="dlist-align">
                                         <dt>Montan à payer:</dt>
-                                        <dd class="text-right  h5"><strong>{{getprixminimumhelpers(Cart::total())}}</strong></dd>
+                                        <dd class="text-right  h5 text-danger"><strong>{{getprixminimumhelpers(Cart::total())}}</strong></dd>
                                     </dl>
 
                                  @endif

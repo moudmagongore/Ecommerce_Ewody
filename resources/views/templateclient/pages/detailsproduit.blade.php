@@ -1,4 +1,9 @@
 @extends('templateclient.layouts.app', ['title' => 'Détails d\'un produit'])
+
+@section('extra-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@stop
+
     @section('content')
 
 
@@ -26,7 +31,11 @@
                                    
                                     <article class="gallery-wrap">
                                         <div class="img-big-wrap">
-                                            <div><a ><img src="{{ asset('storage/' . $produits->photo) }}" id="imagePricipale"></a></div>
+                                            <div><a ><img src="{{ asset('storage/' . $produits->photo) }}" id="imagePricipale"></a>
+    
+
+                                            </div>
+
                                         </div>
 
 
@@ -74,9 +83,15 @@
                                         
                                         
                                     </ul>
+
+                                     
+                                        
+
                                     <div class="form-row mt-4 qtte-block">
-                                        <!-- <div class="form-group col-md flex-grow-0">
-                                            <div class="input-group mb-3 input-spinner quantity-manager">
+                                        <div class="form-group col-md flex-grow-0">   
+                                            <!-- <div class="input-group mb-3 input-spinner quantity-manager">
+
+                                                
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-light button-plus" type="button"> + </button>
                                                 </div>
@@ -84,8 +99,15 @@
                                                 <div class="input-group-append">
                                                     <button class="btn btn-light button-minus" type="button"> − </button>
                                                 </div>
-                                            </div>
-                                        </div> -->
+                                            </div> -->
+
+                                             <!-- <input type="number" class="form-control qtte-val" name="qty" id="qty"
+                                             @foreach (Cart::content() as $produit)
+                                                 data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}" value="{{$produit->qty}}" min="1" 
+                                             @endforeach
+                                              style="width: 60px;" min="1"> -->
+
+                                        </div>
                                         <div class="form-group col-md">
                                             @if ($quantites === 'Disponible')
                                                 <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
@@ -164,65 +186,46 @@
                         <div class="tab-pane fade" id="information" role="tabpanel">
                             <div class="row">
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                    <ul class="p-lr-28 p-lr-15-sm">
+                                  
+                                  <ul class="p-lr-28 p-lr-15-sm">
+                                      
+
                                         <li class="flex-w flex-t p-b-7">
                                             <span class="stext-102 cl3 size-205">
-                                                Weight
+                                                Color : 
                                             </span>
 
-                                            <span class="stext-102 cl6 size-206" style="margin-left:10em;">
-                                                0.79 kg
+                                            <span class="stext-102 cl6 size-206">
+                                                @foreach ($couleurs as $couleur)
+                                                    {{$couleur->designation}}{{$loop->last ? '' : ', '}}
+                                                @endforeach
+                                                
                                             </span>
                                         </li>
 
                                         <li class="flex-w flex-t p-b-7">
                                             <span class="stext-102 cl3 size-205">
-                                                Dimensions
+                                                Size : 
                                             </span>
 
-                                            <span class="stext-102 cl6 size-206" style="margin-left:8em;">
-                                                110 x 33 x 100 cm
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Materials
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206" style="margin-left:9em;">
-                                                60% cotton
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Color
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206" style="margin-left:10em;">
-                                                Black, Blue, Grey, Green, Red, White
-                                            </span>
-                                        </li>
-
-                                        <li class="flex-w flex-t p-b-7">
-                                            <span class="stext-102 cl3 size-205">
-                                                Size
-                                            </span>
-
-                                            <span class="stext-102 cl6 size-206" style="margin-left:10em;">
-                                                XL, L, M, S
+                                            <span class="stext-102 cl6 size-206">
+                                                @foreach ($tailles as $taille)
+                                                    {{$taille->designation}}{{$loop->last ? '' : ', '}}
+                                                @endforeach
                                             </span>
                                         </li>
                                     </ul>
+
                                 </div>
+
+                                
                             </div>
                         </div>
 
                         <!-- - -->
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                             <div class="row">
-                                <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <div class="col-sm-10 col-md-6 col-lg-6 m-lr-auto">
                                     <div class="p-b-30 m-lr-15-sm">
                                         <!-- Review -->
                                         <div class="flex-w flex-t p-b-68">
@@ -243,14 +246,21 @@
                                                      </p>
 
                                                      <p style="margin-left: 6em; color:#888;">{{$avi->created_at}}</p>
-                                                     <hr>
+                                                    
                                                 @endforeach
 
                                             </div>
+                                            
                                     
                                         </div>
                                         
-                                        <!-- Add review -->
+                                        
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-10 col-md-6 col-lg-6 " style="margin-top: -5em;">
+                                    <!-- Add review -->
                                         <form action="{{ route('store.avis', $produits->id) }}" method="POST" class="w-full" style="margin-top: 7em;">
 
                                             @csrf
@@ -281,7 +291,6 @@
                                                 <button type="submit" class="btn btn-outline-primary">Poster &raquo;</button>
                                             </div>
                                         </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +311,7 @@
 
     @endsection
 
-@section('quantite')
+@section('sousImage')
     <script>
         var imagePrincipale = document.querySelector('#imagePricipale');
         var sousImage = document.querySelectorAll('.sousImage');
@@ -314,7 +323,19 @@
             //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué
             imagePrincipale.src = this.src;
         }
+
+
+
     </script>
 @stop
+
+
+@section('quantite')
+    <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
+@stop
+
+
+
+
 
 

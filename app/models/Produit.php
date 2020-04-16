@@ -34,7 +34,7 @@ class Produit extends Model
     {
         $prix_unitaire = $this->prix_unitaire / 1000;
 
-        return number_format($prix_unitaire, 3, '.', ' '). ' GNF';
+        return number_format($prix_unitaire, 3, ' ', ' '). ' GNF';
     }
 
 

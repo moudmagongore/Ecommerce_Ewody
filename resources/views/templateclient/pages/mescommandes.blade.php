@@ -51,7 +51,7 @@
                                             <a href="" class="btn-info btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}"> <i class="fa fa-refresh fa-spin"></i>  En cours</a>
                                         @elseif($commande->statut == 'Emballé')
                                             
-                                               <a href="{{ route('non.modif', $commande->id) }}" class="btn-success btn-circle btn-sm" ><i class="fa fa-envelope" aria-hidden="true"></i> Emballé</a> 
+                                               <a href="" class="btn-success btn-circle btn-sm" data-toggle="modal" data-target="#addcouponmodal{{$commande->id}}"><i class="fa fa-envelope" aria-hidden="true"></i> Emballé</a> 
                                             
                                         @elseif($commande->statut == 'En route')
                                             

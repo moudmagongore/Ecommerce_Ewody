@@ -7,8 +7,11 @@ use App\models\Produit;
 
 class Couleur extends Model
 {
+	protected $fillable = ['designation'];
+
+
     public function produits()
     {
-        return $this->belongsToMany(Produit::class);
+        return $this->belongsToMany(Produit::class)->withTimestamps();
     }
 }

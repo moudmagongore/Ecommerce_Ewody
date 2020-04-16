@@ -34,10 +34,11 @@ class LoginController extends Controller
         ]);
 
         $resultat = auth()->attempt([
-
             'email' => request('email'),
             'password' => request('password'),
         ]);
+
+       /* dd($resultat);*/
 
         $user = Auth::user();
 
@@ -49,13 +50,13 @@ class LoginController extends Controller
                 if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Administrateur'))
                 {
                     flashy('Vous êtes bien connecté.');
-                     return redirect()->route('ajoutproduit');
+                     return redirect()->route('accueil.back');
                 }
                 else if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Vendeur'))
                 {
 
                     flashy('Vous êtes bien connecté.');
-                    return redirect()->route('ajoutproduit');
+                    return redirect()->route('accueil.back');
                 }
                 else
                 {
@@ -113,17 +114,17 @@ class LoginController extends Controller
         if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Administrateur'))
         {
              flashy('Vous êtes bien connecté.');
-            return '/ajoutproduit';
+            return 'accueil.back';
         }
         else if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Utilisateur'))
         {
             flashy('Vous êtes bien connecté.');
-             return '/acceuil';
+             return '/';
         }
          else if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Vendeur'))
         {
             flashy('Vous êtes bien connecté.');
-             return '/ajoutproduit';
+             return 'accueil.back';
         }
     }
 }
