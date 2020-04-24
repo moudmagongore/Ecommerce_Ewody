@@ -37,6 +37,7 @@
                         <tr>
                             
                             <th>Couleur</th>
+                            <th>Image couleur</th>
                             <th>Produit</th>
                             <th>Actions</th>
                         </tr>
@@ -46,6 +47,17 @@
                            <tr>
                                 
                                 <td>{{$couleur->designation}}</td>
+                                
+
+                                <td>
+
+                                    @foreach ($couleur->produits as $produit)
+                                         <img src="{{ asset('storage/' . $produit->pivot->images) }}" class="img-thumbnail">
+                                    @endforeach
+                               
+                                </td>
+
+
                                 <td>
                                     @foreach ($couleur->produits as $produit)
                                         {{$produit->nom}}{{$loop->last ? '' : ',  '}}
@@ -86,15 +98,15 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>Liste des couleurs</h4>
+                    <h4>Liste des tailles</h4>
                     <div class="add-product">
-                        <a href=""  data-toggle="modal" data-target="#addtaillemodal">Ajouter une couleurs</a>
+                        <a href=""  data-toggle="modal" data-target="#addtaillemodal">Ajouter une taille</a>
                     </div>
                     <table>
 
                         <tr>
                             
-                            <th>Couleur</th>
+                            <th>Taille</th>
                             <th>Produit</th>
                             <th>Actions</th>
                         </tr>
@@ -115,9 +127,9 @@
                                 
                                 <td>
                                     
-                                    <button data-toggle="modal" data-target="#modelId{{$taille->id}}" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button data-toggle="modal" data-target="#modelIdTaille{{$taille->id}}" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-                                    <button data-toggle="modal" data-target="#DangerModalalert{{$taille->id}}" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button data-toggle="modal" data-target="#DangerModalalertTaille{{$taille->id}}" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                 </td>                                   
                                
                             </tr>
@@ -155,7 +167,7 @@
                                     @foreach ($images as $image)
                                     <div class="col-lg-4">
                                     <div class="pro-edt-img">
-                                    <img src="{{ asset('storage/' . $image->images) }}" alt="" style="height:100px; width:100px"/>
+                                    <img src="{{ asset('storage/' . $image->images) }}" alt="" style="height:100px; width:100px"/ class="img-thumbnail">
                                     </div>
                                         <p>Pour le produit : <strong>{{$image->produit->nom}}</strong></p>
                                     </div>
@@ -252,7 +264,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <form action="{{ route('couleurs') }}" method="POST">
+                        <form action="{{ route('couleurs') }}" method="POST"enctype="multipart/form-data">
                             @csrf
                             <div class="row">                                        
                                 <div class="input-group mg-b-pro-edt ">
@@ -275,7 +287,13 @@
                                     <input name="designation" type="text"  class="form-control" placeholder="Entrez la couleur">
 
                                      {!! $errors->first('designation', '<p id="error">:message</p>')!!}
-                                </div>
+                               </div>
+
+
+                                 <div class="form-group">
+                                        <!-- <label for="image">Image</label> -->
+                                        <input type="file" class="form-control-file" name="image" id="image" value="image">
+                                    </div>
 
                                 
                                 
@@ -390,7 +408,12 @@
                                                 <select class="js-example-basic-multiple" id="produit" type="text" name="produit[]"  autofocus multiple="multiple" style="width: 527px">
 
                                                     @foreach($produits as $produit)
-                                                        <option value="{{ $produit->id }}"> {{ $produit->nom }}</option>
+                                                        <option value="{{ $produit->id }}"
+
+                                                        {{in_array($produit->id, old('produit') ?: $couleur->produits->pluck('id')->toArray()) ? 'selected' : ''}}
+
+
+                                                            > {{ $produit->nom }}</option>
                                                     @endforeach
 
                                                   
@@ -406,6 +429,12 @@
 
                                                     {!! $errors->first('designation', '<p id="error">:message</p>')!!}
                                                 
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <!-- <label for="image">Image</label> -->
+                                                <input type="file" class="form-control-file" name="image" id="image" value="image">
                                             </div>
 
                                         </div>
@@ -466,7 +495,7 @@
     @foreach ($tailles as $taille)
 
              <!-- Modal modification tailles-->
-           <div class="modal fade" id="modelId{{$taille->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+           <div class="modal fade" id="modelIdTaille{{$taille->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content">
                         <div class="modal-header">
@@ -490,7 +519,15 @@
                                                 <select class="js-example-basic-multiple" id="produit" type="text" name="produit[]"  autofocus multiple="multiple" style="width: 527px">
 
                                                     @foreach($produits as $produit)
-                                                        <option value="{{ $produit->id }}"> {{ $produit->nom }}</option>
+                                                        <option value="{{ $produit->id }}"
+                                                            
+
+
+                                                        {{in_array($produit->id, old('produit') ?: $taille->produits->pluck('id')->toArray()) ? 'selected' : ''}}
+
+
+
+                                                            > {{ $produit->nom }}</option>
                                                     @endforeach
 
                                                   
@@ -530,7 +567,7 @@
 
 
         <!-- modal suppression tailles -->
-        <div id="DangerModalalert{{$taille->id}}" class="modal modal-adminpro-general FullColor-popup-DangerModal fade" role="dialog">
+        <div id="DangerModalalertTaille{{$taille->id}}" class="modal modal-adminpro-general FullColor-popup-DangerModal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-close-area modal-close-df">

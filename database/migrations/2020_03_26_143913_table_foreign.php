@@ -57,6 +57,11 @@ class TableForeign extends Migration
 
             $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
         });
+
+
+          Schema::table("categories", function(Blueprint $table){
+            $table->foreign('industrie_id')->references('id')->on('industries')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**

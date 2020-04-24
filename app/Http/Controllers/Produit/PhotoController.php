@@ -40,6 +40,8 @@ class PhotoController extends Controller
        $couleurs = Couleur::all();
        $tailles = Taille::all();
 
+     
+
 
        $produits =  Produit::all();
        $images = Image::all();

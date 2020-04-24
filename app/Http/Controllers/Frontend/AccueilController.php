@@ -11,7 +11,7 @@ use App\models\Client;
 use App\models\Image;
 use App\models\Imagemodel;
 use App\models\SousCategorie;
-use App\Models\Industrie;
+use App\models\Industrie;
 use App\models\Marque;
 use App\models\Produit;
 use App\models\Privillege;
@@ -75,12 +75,12 @@ class AccueilController extends Controller
 
 
 
-    public function allcategories(){
+    /*public function allcategories(){
         $produits = Produit::all();
         $categories = Categorie::all();
 
         return view('templateclient.pages.allcategorie', compact('produits', 'categories'));
-    }
+    }*/
 
     public function allproduits(){
 
@@ -129,6 +129,12 @@ class AccueilController extends Controller
          //Pour recuperer la tailles concernants un produit
         $tailles = $produits->tailles;
 
+
+         /*$taille = Taille::find($id);
+        $quantiteTaille = $taille->quantite === 0 ? 'Indisponible' : 'Disponible';*/
+
+
+
         //Rendre la quantite disponible
         $quantites = $produits->quantite === 0 ? 'Indisponible' : 'Disponible';
 
@@ -141,7 +147,7 @@ class AccueilController extends Controller
         
         //dd($caracteristiques);
         
-        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles'));
+        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles'/*, 'quantiteTaille'*/));
     }
 
     public function get_mescommandes_page(){
@@ -224,8 +230,25 @@ class AccueilController extends Controller
         
         $categories = Categorie::all();
 
+        $industries = Industrie::all();
 
-        return view('templateclient.pages.detailcategorie', compact('categories', 'produits'));
+
+        return view('templateclient.pages.detailcategorie', compact('categories', 'produits', 'industries'));
+    }
+
+
+    public function get_detail_industrie($id)
+    {
+            $industries = Industrie::find($id);
+           
+
+            $categories = Categorie::with('industrie')->where('industrie_id', $industries->id)->get();
+
+
+
+        return view('templateclient.pages.allcategorie', compact('categories'));
+        
+    
     }
 
     

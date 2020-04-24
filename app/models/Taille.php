@@ -8,10 +8,10 @@ use App\models\Produit;
 
 class Taille extends Model
 {
-    protected $fillable = ['designation'];
+    protected $fillable = ['designation', 'produit_taille'];
 
     public function produits()
     {
-        return $this->belongsToMany(Produit::class)->withTimestamps();
+        return $this->belongsToMany(Produit::class)/*->withPivot('quantite')*/->withTimestamps();
     }
 }

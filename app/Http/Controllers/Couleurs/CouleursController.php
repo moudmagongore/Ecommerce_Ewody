@@ -16,11 +16,17 @@ class CouleursController extends Controller
             
         ]);
 
-    	$data = $request->all();
 
-    	$couleurs = Couleur::create($data);
 
-        $couleurs->produits()->attach(request('produit'));
+    	$couleurs = Couleur::create([
+            'designation' => $request->designation,
+            /*'photo' => $path*/
+        ]);
+
+        $path = request('image')->store('avatars_couleur', 'public');
+        
+
+        $couleurs->produits()->attach(request('produit'), ['images' => $path]);
 
         flashy('La couleur a bien été ajouté.');
         return back();
@@ -33,16 +39,24 @@ class CouleursController extends Controller
          request()->validate([
 
             'designation' => ['required'],
+            'image' => ['nullable', 'image'],
             
         ]);
 
+
+
          $couleurs = Couleur::whereId($id)->first();
 
-         $data = $request->all();
+        /* $data = $request->all();*/
 
-         $couleurs->update($data);
+         $couleurs->update([
 
-         $couleurs->produits()->sync(request('produit'));
+            'designation' => $request->designation,
+         ]);
+
+         $path = request('image')->store('avatars_couleur', 'public');
+
+         $couleurs->produits()->sync(request('produit'), ['photo' => $path]);
 
          flashy('La couleur à bien été modifié.');
          return back();

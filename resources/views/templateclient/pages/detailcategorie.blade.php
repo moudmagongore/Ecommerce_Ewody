@@ -10,12 +10,17 @@
                         <aside class="col-md-3">
                             <h6 class="text-uppercase">
                                 <i class="fa fa-list-alt"></i>
-                                Catégories
+                                Industries
                             </h6>
                             <nav class="nav-home-aside">
                                 <ul class="menu-category">
-                                    @foreach ($categories as $categorie)
-                                <li><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></li>
+                                    @foreach ($industries as $industrie)
+                                <li><a href="{{route('detailindustrie', $industrie->id)}}">{{$industrie->designation_industrie}}</a>
+
+                                            
+                                                
+                                               
+                                </li>
                                     @endforeach
                                     
                                 </ul>

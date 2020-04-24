@@ -54,9 +54,16 @@ class CategorieController extends Controller
             'designation_categorie' => 'required'
         ]);
 
+         $path = request('image')->store('avatars_categories', 'public');
+
         Categorie::create([
-            'designation_categorie' => $request->designation_categorie
+            'industrie_id' => $request->industrie,
+            'designation_categorie' => $request->designation_categorie,
+            'image' => $path
         ]);
+
+
+        flashy('La catégorie est bien ajouté.');
 
         return redirect()->back();
     }

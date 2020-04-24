@@ -82,6 +82,7 @@
                                 <tr class="small text-uppercase">
                                     <th scope="col">Prduit</th>
                                     <th scope="col">Nom</th>
+                                    <th scope="col">Taille</th>
                                     <th scope="col">Prix unitaire</th>
                                     <th scope="col-fluid">Quantié</th>
                                    
@@ -104,6 +105,14 @@
                                         <div>
                                             <div class="price-wrap">
                                                 <var class="price">{{$produit[0]}}</var>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                     <td class="prices">
+                                        <div>
+                                            <div class="price-wrap">
+                                                <var class="price">{{$produit[4]}}</var>
                                             </div>
                                         </div>
                                     </td>

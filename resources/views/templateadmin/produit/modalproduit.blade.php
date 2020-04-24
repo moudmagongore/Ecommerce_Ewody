@@ -10,12 +10,28 @@
                 </button>
               </div>
               <div class="modal-body">
-                  <form action="{{route('storecategorie')}}" method="POST">
+                  <form action="{{route('storecategorie')}}" method="POST"enctype="multipart/form-data">
                     @csrf
+
+                    <div class="chosen-select-single mg-b-20 form-group">
+                        <label>Nom du l'industrie</label>
+                        <select name="industrie" data-placeholder="Choisi une industrie" class="chosen-select form-control" tabindex="-2">
+                            @foreach ($industries as $industrie)
+                                <option value="{{$industrie->id}}">{{$industrie->designation_industrie}}</option>
+                            @endforeach
+                        </select>
+                    </div> 
                       <div class="form-group">
                           <label for="nom_categorie">Nom de la catégorie</label>
                           <input name="designation_categorie" type="text" class="form-control" id="nom_categorie">
                       </div>
+
+                      <div class="form-group">
+                         <label for="image">Image</label>
+                          <input type="file" class="form-control-file" name="image" id="image" value="image">
+                      </div>
+
+
                       <button type="button" class="btn btn-danger float-right" data-dismiss="modal" aria-label="Close">Annuler</button>
                       <button type="submit" class="btn btn-primary float-right">Ajouter</button>
                   </form>

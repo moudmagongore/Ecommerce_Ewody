@@ -10,15 +10,35 @@
                         <aside class="col-md-3">
                             <h6 class="text-uppercase">
                                 <i class="fa fa-list-alt"></i>
-                                Catégories
+                               Catégories
                             </h6>
                             <nav class="nav-home-aside">
                                 <ul class="menu-category">
-                                    @foreach ($categories as $categorie)
-                                <li><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></li>
+                                    @foreach ($industries as $industrie)
+                                <li><a href="{{route('detailindustrie', $industrie->id)}}">{{$industrie->designation_industrie}}</a>
+
+                                            
+                                                
+                                               
+                                </li>
                                     @endforeach
-                                    
-                                </ul>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plus</a>
+                                            <div class="dropdown-menu">
+                                                
+                                                
+                                                <a class="dropdown-item" href="#">Categorie 1</a>
+                                                <a class="dropdown-item" href="#">Categorie 2</a>
+                                                <a class="dropdown-item" href="#">Categorie 3</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Categorie 1</a>
+                                                <a class="dropdown-item" href="#">Categorie 2</a>
+                                                <a class="dropdown-item" href="#">Categorie 3</a>
+                                            </div>    
+                                        </li>
+                                                
+                                    </ul>
                             </nav>
                         </aside>
 

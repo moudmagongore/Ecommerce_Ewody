@@ -48,7 +48,7 @@
                                     <td>{{$produit->prix_unitaire}}</td>
                                     <td>{{$produit->prix_maximum}}</td>
                                     <td>
-                                        <img src="{{ asset('storage/' . $produit->photo) }}">
+                                        <img src="{{ asset('storage/' . $produit->photo) }}" class="img-thumbnail">
                                     </td>
 
                                     <td>
@@ -113,7 +113,11 @@
                                                 <select class="js-example-basic-multiple" id="categorie" type="text" name="categorie[]"  autofocus multiple="multiple" style="width: 455px">
 
                                                 @foreach($categories as $categorie)
-                                                    <option value="{{ $categorie->id }}"> {{ $categorie->designation_categorie }}</option>
+                                                    <option value="{{ $categorie->id }}"
+                                                        
+                                                        {{in_array($categorie->id, old('categorie') ?: $produit->categories->pluck('id')->toArray()) ? 'selected' : ''}}
+
+                                                        > {{ $categorie->designation_categorie }}</option>
                                                 @endforeach
 
                               

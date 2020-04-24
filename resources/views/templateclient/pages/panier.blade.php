@@ -15,7 +15,10 @@
                                 <thead class="text-muted">
                                     <tr class="small text-uppercase">
                                         <th scope="col">Produit</th>
+                                       
                                         <th scope="col">Nom</th>
+
+                                         <th scope="col">Tailles</th>
                                         
                                         <th scope="col">Prix (GNF)</th>
 
@@ -30,11 +33,19 @@
                                        <tr>
                                         <td>
                                             <div>
+                                            @if ($produit->options->couleur)
+                                                <figure class="itemside">
+                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->options->couleur) }}"></div>
+                                                </figure>
+                                            @else
                                                 <figure class="itemside">
                                                     <div class="aside"><img src="{{ asset('storage/' . $produit->model->photo) }}"></div>
                                                 </figure>
+                                            @endif
                                             </div>
                                         </td>
+
+                                        
 
                                         <td class="prices">
                                             <div>
@@ -42,6 +53,11 @@
                                                     <var class="price">{{$produit->model->nom}}</var>
                                                 </div>
                                             </div>
+                                        </td>
+
+
+                                        <td>
+                                            {{$produit->options->has('taille') ? $produit->options->taille : ''}}
                                         </td>
 
                                         

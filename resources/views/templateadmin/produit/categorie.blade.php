@@ -23,6 +23,7 @@
 <tr>
     <th>#</th>
     <th>Designation</th>
+    <th>Industrie</th>
     <th>Action</th>                                                
 </tr>
 </thead>
@@ -32,6 +33,7 @@
         <tr>
             <td>{{$categorie->id}}</td>
             <td>{{$categorie->designation_categorie}}</td>
+            <td>{{$categorie->industrie->designation_industrie}}</td>
             <td>
                 <button  title="Edit" class="pd-setting-ed" data-toggle="modal" data-target="#modalcat{{$categorie->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <button  title="Trash" class="pd-setting-ed" data-toggle="modal" data-target="#DangerModalcategorie{{$categorie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -293,7 +295,7 @@
 <div class="sparkline10-hd">
 <div class="main-sparkline10-hd" id="entetetab">
 <h1>Liste des industries</h1>
-<button  class="btn" data-toggle="modal" data-target="#modalindustrie">Ajouter</button>
+<button  class="btn" data-toggle="modal" data-target="#modalcarAjout">Ajouter</button>
 </div>
 </div>
 <div class="sparkline10-graph">
@@ -312,11 +314,51 @@
         <tr>
             <td>{{$industrie->id}}</td>
             <td>{{$industrie->designation_industrie}}</td>
+           
             <td>
                 <button  title="Edit" class="pd-setting-ed" data-toggle="modal" data-target="#modalcar{{$industrie->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <button  title="Trash" class="pd-setting-ed" data-toggle="modal" data-target="#DangerModalindustrie{{$industrie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </td>   
         </tr>
+
+
+
+         <!-- Modal  ajout  industrie-->
+        <div class="modal fade" id="modalcarAjout" tabindex="-1" role="dialog" aria-labelledby="modaltypelabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modaltypelabel">
+                        Ajout d'une industrie
+                    </h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('store.industrie')}}" method="POST">
+                        @csrf
+
+
+
+                            <div class="form-group">
+                                <label for="nom_type">Nom industrie</label>
+                                <input name="designation_industrie" type="text" class="form-control" id="nom_type">
+                            </div>
+                                                
+                            <button type="button" class="btn btn-danger float-right" data-dismiss="modal" aria-label="Close">Annuler</button>
+                            <button type="submit" class="btn btn-primary float-right">Ajoutery</button>
+                        </form>
+                            
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- Modal  Modification  caracteristique-->
         <div class="modal fade" id="modalcar{{$industrie->id}}" tabindex="-1" role="dialog" aria-labelledby="modaltypelabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -358,7 +400,7 @@
                         <p>Êtes-vous sûr de vouloir supprimer cette industrie?</p>
                     </div>
                     <div class="modal-footer">
-                        <form action="{{route('deleteindustrie', $industrie->id)}}" method="POST">
+                        <form action="" method="POST">
                             @csrf
                             <a data-dismiss="modal" href="#">Annuler</a>
                             <input type="submit" value="Supprimer">

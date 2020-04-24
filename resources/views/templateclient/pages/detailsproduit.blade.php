@@ -30,8 +30,9 @@
                                         
                                    
                                     <article class="gallery-wrap">
+
                                         <div class="img-big-wrap">
-                                            <div><a ><img src="{{ asset('storage/' . $produits->photo) }}" id="imagePricipale"></a>
+                                            <div><a ><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
     
 
                                             </div>
@@ -70,6 +71,9 @@
                                         </span>
 
                                         @endif
+
+
+                                       
 
                                     </p>
                                     <div class="mb-3">
@@ -115,22 +119,72 @@
                                                 @csrf
 
                                                 <input type="hidden" name="produits_id" value="{{$produits->id}}">
-                                                
 
-                                                <button type="submit" class="btn  btn-primary">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                    @if ($tailles->count() > 0)
+                                                <div>
+                                                    <label><strong>Tailles : </strong></label>
+                                                </div>
+                                                    <select name="tailles" id="tailles" class=" form-control col-md-7 mt-4">
+
+                                                    <option disabled="" selected>Selectionnez</option>
+
+                                                       
+                                                        @foreach ($tailles as $taille)
+                                                        
+                                                           <option >{{$taille->designation}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                
+                                            @endif
+                                            </div>
+
+                                            
+                                            <div class="col-md-6">
+                                                @if ($couleurs->count() > 0)
+                                                <div>
+                                                    <h6>Couleur : </h6>
+                                               </div>
+                                               <div class="thumbs-wrap mt-4">
+                                               
+                                                @foreach ($couleurs as $couleur)
+
+                                                <input type="radio" name="couleurs" value="{{$couleur->pivot->images}}" class="form-check-input ml-4" style="margin-top: 62px;">
+
+                                                    <label for="couleurs">
+                                                        <a  class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="60px;" class="sousImage img-thumbnail" title="Clique" alt="Une couleur"></a>
+                                                    </label>
+                                                @endforeach
+
+                                                <!-- <select name="couleurs" class="form-control col-md-6 mt-4">
+                                                    @foreach ($couleurs as $couleur)
+                                                        <option>{{$couleur->designation}}</option>
+                                                    @endforeach
+                                                    
+                                                </select> -->
+                                            </div>
+                                            @endif
+                                            </div>
+                                        </div>
+                                        <hr>    
+
+                                            <button type="submit" class="btn  btn-primary mt-4" >
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="text">Ajouter au panier</span>
                                             </button>
                                             </form>
                                             @endif
                                             
-                                            <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light">
+                                            <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light mt-4">
                                                 <i class="fas fa-heart"></i>
                                                 <span class="text">Ajouter aux favoris</span>
                                             </a>
                                         </div>
                                     </div>
-                                    <hr>
+                                   
+
+                                    
                                     <!-- <div class="form-row total">
                                         <div class="form-group col-md">
                                             <h5 class="price total h4 text-right">120 000 </h5>
@@ -301,7 +355,18 @@
 
 
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
 
 
 
@@ -313,7 +378,7 @@
 
 @section('sousImage')
     <script>
-        var imagePrincipale = document.querySelector('#imagePricipale');
+        var imagePrincipale = document.querySelector('.imagePricipale');
         var sousImage = document.querySelectorAll('.sousImage');
 
         sousImage.forEach((element) => element.addEventListener('click', changeImage));
@@ -330,8 +395,17 @@
 @stop
 
 
+
+
+
 @section('quantite')
     <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
+@stop
+
+
+
+@section('modalimage')
+    <script src="{{ asset('assets/templatefront/js/modalimage.js') }}"></script>
 @stop
 
 

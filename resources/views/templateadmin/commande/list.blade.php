@@ -212,6 +212,10 @@
                             <tr>
                                 <th>PRODUIT</th>
                                 <th>NOM</th>
+                                @if (unserialize($commande->produits) > 0)
+                                   <th>TAILLE</th>
+                                @endif
+                                
                                 <th>PRIX UNITAIRE</th>
                                 <th>QUANTIÉ</th>                                            
                             </tr>
@@ -227,6 +231,11 @@
 
                                         <td>
                                             {{$produit[0]}}
+                                        </td>
+
+                                        <td>
+                                           
+                                                {{$produit[4]}}
                                         </td>
 
                                         <td>

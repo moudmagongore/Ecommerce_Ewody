@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\models\Commande;
 use App\models\Produit;
+use App\models\Taille;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -74,12 +75,15 @@ class CheckoutController extends Controller
         //Pour ajouter une commade_id unique dans commande 
         $code    = 'ewody#'.rand(1, 1000);
 
+       
     	$commande = new Commande();
 
         //On insere le montant en bd
         $commande->montant = $total;
 
+        //On insere le la commande en bd
         $commande->commande_id = $code;
+
 
 
 
@@ -102,7 +106,16 @@ class CheckoutController extends Controller
             $produits['produit_' . $i][] = $produit->model->nom;
             $produits['produit_' . $i][] = $produit->model->prix_unitaire;
             $produits['produit_' . $i][] = $produit->qty;
-            $produits['produit_' . $i][] = $produit->model->photo;
+            if ($produit->options->couleur) {
+
+                $produits['produit_' . $i][] = $produit->options->couleur;
+            }
+            else
+            {
+                 $produits['produit_' . $i][] = $produit->model->photo;
+            }
+
+            $produits['produit_' . $i][] = $produit->options->taille;
 
             /*$produits['produit_' . $i][] = $montantTotalProduit;*/
 

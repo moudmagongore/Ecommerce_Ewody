@@ -16,6 +16,7 @@ class CreateTaillesTable extends Migration
         Schema::create('tailles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('designation');
+            $table->integer('quantite');
             $table->timestamps();
         });
     }

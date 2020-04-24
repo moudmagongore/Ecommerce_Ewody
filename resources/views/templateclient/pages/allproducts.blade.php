@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <ol class="breadcrumb float-left">
                             <li class="breadcrumb-item"><a href="{{route('acceuil')}}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('categories')}}">Tous nos produits</a></li>                            
+                            <li class="breadcrumb-item"><a href="{{route('produits')}}">Tous nos produits</a></li>                            
                         </ol>
                     </div>
                 </div>

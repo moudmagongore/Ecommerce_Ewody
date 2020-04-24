@@ -13,9 +13,9 @@
 
 
 //Connexion
-Route::get('/connexion', 'Auth\loginController@getLogin')->name('connexion');
+Route::get('/connexion', 'Auth\LoginController@getLogin')->name('connexion');
 
-Route::post('connexion', 'Auth\loginController@postLogin');
+Route::post('connexion', 'Auth\LoginController@postLogin');
 
 Route::get('statut/{id}', 'Auth\RegisterController@getStatut')->name('statut');
 //END CONNEXION
@@ -52,20 +52,35 @@ Route::get('deconnexion', 'Administration\DeconnexionController@deconnexion')->n
 
 
 /*Route produit*/
-Route::get('/listproduit','produit\ProduitController@index')->name('listproduit')->middleware('can:voir-page-admin-vendeur');
+Route::get('/listproduit','Produit\ProduitController@index')->name('listproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::get('/ajoutproduit','produit\ProduitController@create')->name('ajoutproduit')->middleware('can:voir-page-admin-vendeur');
+Route::get('/ajoutproduit','Produit\ProduitController@create')->name('ajoutproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/storeproduit','produit\ProduitController@store')->name('storeproduit')->middleware('can:voir-page-admin-vendeur');
+Route::post('/storeproduit','Produit\ProduitController@store')->name('storeproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/deleteproduit/{id}','produit\ProduitController@destroy')->name('deleteproduit')->middleware('can:voir-page-admin-vendeur');
+Route::post('/deleteproduit/{id}','Produit\ProduitController@destroy')->name('deleteproduit')->middleware('can:voir-page-admin-vendeur');
 
-Route::post('/updateproduit/{id}','produit\ProduitController@update')->name('updateproduit')->middleware('can:voir-page-admin-vendeur');
+Route::post('/updateproduit/{id}','Produit\ProduitController@update')->name('updateproduit')->middleware('can:voir-page-admin-vendeur');
 /*Route produit*/
 
 
-Route::post('addphoto', 'produit\PhotoController@store')->name('addphoto')->middleware('can:voir-page-admin-vendeur');
-Route::get('addimage', 'produit\PhotoController@create')->name('addimage')->middleware('can:voir-page-admin-vendeur');
+
+
+
+/*Route industrie*/
+Route::post('store-industrie','Industries\IndustrieController@storeIndustrie')->name('store.industrie');
+/*End Route industrie*/
+
+
+
+
+
+
+
+
+
+Route::post('addphoto', 'Produit\PhotoController@store')->name('addphoto')->middleware('can:voir-page-admin-vendeur');
+Route::get('addimage', 'Produit\PhotoController@create')->name('addimage')->middleware('can:voir-page-admin-vendeur');
 
 
 
@@ -191,6 +206,15 @@ Route::get('/', 'Frontend\AccueilController@index')->name('acceuil');
 Route::get('detailcategorie', 'Frontend\AccueilController@get_detail_categorie')->name('detailcategorie');
 
 
+Route::get('details-industrie/{id}', 'Frontend\AccueilController@get_detail_industrie')->name('detailindustrie');
+
+/*Route::get('/categories', 'Frontend\AccueilController@allcategories')->name('categories');*/
+
+
+
+
+
+
 
 
 
@@ -207,7 +231,7 @@ Route::post('/storeinscription', 'Frontend\AccueilController@storeInscription')-
 Route::view('/base', 'templateadmin.layouts.app');
 
 
-Route::get('/categories', 'Frontend\AccueilController@allcategories')->name('categories');
+
 Route::get('/produits', 'Frontend\AccueilController@allproduits')->name('produits');
 
 /*Route::get('/connexion', 'Frontend\AccueilController@get_connexion_page')->name('connexion');
@@ -227,6 +251,9 @@ Route::post('/panier/ajouter', 'Cart\CartController@store')->name('cart.store');
 
 //route pour la quantite
 Route::put('/panier/{rowId}', 'Cart\CartController@update')->name('cart.update');
+
+/*Route::put('/updatequantitetaille/{id}', 'Cart\CartController@quantite')->name('cart.quantite');
+*/
 
 Route::get('/panier', 'Cart\CartController@index')->name('cart.index');
 

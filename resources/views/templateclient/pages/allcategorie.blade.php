@@ -9,7 +9,8 @@
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="all-categories.html">Tous nos produits</a></li>
+                        <li class="breadcrumb-item"><a href="all-categories.html">categorie</a></li>
+                         <li class="breadcrumb-item"><a href="all-categories.html"></a></li>
                     </ol>
                 </div>
             </div>
@@ -18,10 +19,10 @@
                     <div class="col-md-3">
                         <div class="card card-category"  data-aos="zoom-in"  data-aos-duration="700">
                             <div class="img-wrap">
-                                <img src="images/items/1.jpg">
+                                <img src="{{ asset('storage/' .$categorie->image) }}">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="{{route('produits')}}">{{$categorie->designation_categorie}}</a></h4>
+                                <h4 class="card-title"><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></h4>
                                 <ul class="list-menu">
                                     @foreach ($categorie->sous_categories as $sous_cat)
                                         <li><a href="">{{$sous_cat->designation_s_categorie}}</a></li>

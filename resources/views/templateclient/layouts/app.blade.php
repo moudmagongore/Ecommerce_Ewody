@@ -400,6 +400,7 @@
 
 @yield('sousImage')
 @yield('quantite')
+@yield('modalimage')
 
 </body>
 </html>

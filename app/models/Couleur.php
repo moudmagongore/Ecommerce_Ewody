@@ -12,6 +12,6 @@ class Couleur extends Model
 
     public function produits()
     {
-        return $this->belongsToMany(Produit::class)->withTimestamps();
+        return $this->belongsToMany(Produit::class)->withTimestamps()->withPivot('images');
     }
 }

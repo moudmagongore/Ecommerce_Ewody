@@ -57,12 +57,22 @@ class CartController extends Controller
           return back();
         }
 
+        //Pour recuperer la taille concernants un produit
+        $tailles = $request->tailles;
+
+         //Pour recuperer la couleur concernants un produit
+        $couleurs = $request->couleurs;
+
          $produit = Produit::find($request->produits_id);
 
+         /*$tailles = $produit->tailles;*/
+
     
-        Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire)
+        Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
         ->associate('App\models\Produit');
 
+       /* dd(Cart::content());
+*/
         flashy('Le produit à bien été ajouté au panier');
         return back();
 
@@ -179,6 +189,19 @@ class CartController extends Controller
         return response()
             ->json(['success' => 'Cart Quantity Has Been Updated']);
     }
+
+    /*public function quantite(Request $request, $id)
+    {
+        $data = $request->json()->all();
+
+        Cart::update($id, $data['tailles']);
+
+         flashy()->success('La taille du produit est passé à ' . $data['tailles'] . '.');
+
+        return response()
+            ->json(['success' => 'Cart Quantity Has Been Updated']);
+    }*/
+
 
     /**
      * Remove the specified resource from storage.
