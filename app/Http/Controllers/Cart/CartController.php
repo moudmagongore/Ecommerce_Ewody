@@ -61,18 +61,22 @@ class CartController extends Controller
         $tailles = $request->tailles;
 
          //Pour recuperer la couleur concernants un produit
-        $couleurs = $request->couleurs;
+        /*$couleurs = $request->file('couleurs');*/
+         $couleurs = $request->couleurs;
+
+
+
 
          $produit = Produit::find($request->produits_id);
 
-         /*$tailles = $produit->tailles;*/
-
-    
+         
         Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
         ->associate('App\models\Produit');
 
-       /* dd(Cart::content());
-*/
+        dd(Cart::content());
+
+        
+
         flashy('Le produit à bien été ajouté au panier');
         return back();
 

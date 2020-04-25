@@ -114,7 +114,7 @@
                                         </div>
                                         <div class="form-group col-md">
                                             @if ($quantites === 'Disponible')
-                                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline" enctype="multipart/form-data">
     
                                                 @csrf
 
@@ -150,26 +150,23 @@
                                                
                                                 @foreach ($couleurs as $couleur)
 
-                                                <input type="radio" name="couleurs" value="{{$couleur->pivot->images}}" class="form-check-input ml-4" style="margin-top: 62px;">
+                                                    
 
                                                     <label for="couleurs">
-                                                        <a  class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="60px;" class="sousImage img-thumbnail" title="Clique" alt="Une couleur"></a>
+                                                        <a class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="60px;" class="sousImage img-thumbnail" title="Clique" alt="Une couleur" id="sousImageCouleur"></a>
                                                     </label>
                                                 @endforeach
 
-                                                <!-- <select name="couleurs" class="form-control col-md-6 mt-4">
-                                                    @foreach ($couleurs as $couleur)
-                                                        <option>{{$couleur->designation}}</option>
-                                                    @endforeach
-                                                    
-                                                </select> -->
+                                                <input type="hidden" name="couleurs" id="couleurs">
+
+                                                <!-- select -->
                                             </div>
                                             @endif
                                             </div>
                                         </div>
                                         <hr>    
 
-                                            <button type="submit" class="btn  btn-primary mt-4" >
+                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" title="Veuillez selectionner une taille">
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="text">Ajouter au panier</span>
                                             </button>
@@ -358,14 +355,14 @@
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
-  <!-- The Close Button -->
-  <span class="close">&times;</span>
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
 
-  <!-- Modal Content (The Image) -->
-  <img class="modal-content" id="img01">
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="img01">
 
-  <!-- Modal Caption (Image Text) -->
-  <div id="caption"></div>
+      <!-- Modal Caption (Image Text) -->
+      <div id="caption"></div>
 </div>
 
 
@@ -380,6 +377,32 @@
     <script>
         var imagePrincipale = document.querySelector('.imagePricipale');
         var sousImage = document.querySelectorAll('.sousImage');
+        var sousImageCouleur = document.querySelectorAll('#sousImageCouleur');
+
+
+          /*imagePrincipale.src = sousImageCouleur[0].src; */
+          @if ($couleurs->count() > 0 || $tailles->count() > 0)
+
+                /*Pour selectionner une couleur par defaut qui est l'img 0*/
+                @if ($couleurs->count() > 0)
+                    document.querySelector('#couleurs').value = sousImageCouleur[0].src;
+
+                @endif
+               
+                /*Pour rendre le button ajouter panier disabled tant qu'on ne click pas sur la taille*/
+               var tailles = document.querySelector('#tailles');
+               var buttonPanier = document.querySelector('#buttonPanier');
+               buttonPanier.disabled = true;
+               tailles.onchange = function(){
+                   if(tailles.value)
+                   {
+                       buttonPanier.disabled = false;
+                   }
+
+               }
+
+          @endif
+         
 
         sousImage.forEach((element) => element.addEventListener('click', changeImage));
 
@@ -387,6 +410,9 @@
         {
             //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué
             imagePrincipale.src = this.src;
+
+            /*On recupere le name de l'input on remplace par l'image */
+            document.querySelector('#couleurs').value = imagePrincipale.src;
         }
 
 
@@ -396,6 +422,11 @@
 
 
 
+
+
+@section('quantite')
+    <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
+@stop
 
 
 @section('quantite')
