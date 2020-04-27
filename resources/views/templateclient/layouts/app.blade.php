@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  End Pour le chargement du button -->
 
+
+     <!--  Pour le chargement du exzoom -->
+    <link rel="stylesheet" href="{{asset('assets/templatefront/css/jquery.exzoom.css')}}">
+    <!--  End Pour le chargement du exzoom -->
+
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="{{asset('assets/templatefront/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
     <link href="{{asset('assets/templatefront/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
@@ -317,6 +322,14 @@
     </a>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="{{asset('assets/templatefront/js/owlcarousel/owl.carousel.min.js')}}"></script>
+
+
+
+    <!--  Pour le chargement du exzoom -->
+    <script src="{{asset('assets/templatefront/js/jquery.exzoom.js')}}" type="text/javascript"></script>
+    <!--  End Pour le chargement du exzoom -->
+
+
 
     <!-- Bootstrap4 files-->
     <script src="{{asset('assets/templatefront/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>

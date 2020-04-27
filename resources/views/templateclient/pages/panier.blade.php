@@ -33,9 +33,12 @@
                                        <tr>
                                         <td>
                                             <div>
+
                                             @if ($produit->options->couleur)
-                                                <figure class="itemside">
-                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->options->couleur) }}"></div>
+                                               <figure class="itemside">
+                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->options->has('couleur') ? $produit->options->couleur : '') }}"></div>
+
+
                                                 </figure>
                                             @else
                                                 <figure class="itemside">

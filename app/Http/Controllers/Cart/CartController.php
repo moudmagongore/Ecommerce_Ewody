@@ -73,7 +73,7 @@ class CartController extends Controller
         Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
         ->associate('App\models\Produit');
 
-        dd(Cart::content());
+        /*dd(Cart::content());*/
 
         
 

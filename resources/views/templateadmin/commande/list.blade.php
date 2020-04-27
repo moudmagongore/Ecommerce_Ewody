@@ -225,8 +225,10 @@
                                     <tr>
                                         <td>
                                             <figure class="itemside">
-                                                <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                                <div class="aside"><img src="{{ asset('storage/' . $produit[3] ? $produit[3] : '') }}" class="img-sm"></div>
                                             </figure>
+
+                                            
                                         </td>
 
                                         <td>

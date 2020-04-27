@@ -26,10 +26,19 @@
                         <div class="row">
                             <aside class="col-md-4">
                                 <div class="card">
+
+                                   <!--  <div class="exzoom hidden" id="exzoom">
+                                       <div class="exzoom_img_box">
+                                           <ul class='exzoom_img_ul'>
+                                              
+                                              
+                                           </ul>
+                                       </div>
+                                       <div class="exzoom_nav"></div>    
+                                   </div> -->
+         
                                    
-                                        
-                                   
-                                    <article class="gallery-wrap">
+                                    <article class="gallery-wrap " >
 
                                         <div class="img-big-wrap">
                                             <div><a ><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
@@ -41,14 +50,20 @@
 
 
                                         <div class="thumbs-wrap mt-4">
-                                            <!-- pour recuperer l'image principale -->
-                                            <a class="item-thumb"><img src="{{ asset('storage/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
+                                            
+                                                <!-- pour recuperer l'image principale -->
+                                                <a class="item-thumb"><img src="{{ asset('storage/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
 
 
-                                            @foreach ($images as $image)
-                                                <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage"></a>
-                                            @endforeach
+                                                @foreach ($images as $image)
+                                                    <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage"></a>
+                                                @endforeach
+                                            
+                                            
                                         </div>
+
+                                       
+
                                     </article>
                                 </div>
                             </aside>
@@ -353,18 +368,18 @@
 
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<!-- <div id="myModal" class="modal">
 
-      <!-- The Close Button -->
+      The Close Button
       <span class="close">&times;</span>
 
-      <!-- Modal Content (The Image) -->
+      Modal Content (The Image)
       <img class="modal-content" id="img01">
 
-      <!-- Modal Caption (Image Text) -->
+      Modal Caption (Image Text)
       <div id="caption"></div>
-</div>
-
+</div> -->
+<!--End The Modal -->
 
 
 
@@ -388,6 +403,8 @@
                     document.querySelector('#couleurs').value = sousImageCouleur[0].src;
 
                 @endif
+
+               
                
                 /*Pour rendre le button ajouter panier disabled tant qu'on ne click pas sur la taille*/
                var tailles = document.querySelector('#tailles');
@@ -402,6 +419,8 @@
                }
 
           @endif
+
+
          
 
         sousImage.forEach((element) => element.addEventListener('click', changeImage));
@@ -417,6 +436,17 @@
 
 
 
+    </script>
+
+
+    <script type="text/javascript">
+        $(function(){
+
+          $("#exzoom").exzoom({
+            // options here
+          });
+
+        });
     </script>
 @stop
 
