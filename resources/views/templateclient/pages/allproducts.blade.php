@@ -98,7 +98,7 @@
                     <main class="col-md-10">
                         <header class="mb-3">
                             <div class="form-inline">
-                                <strong class="mr-md-auto">32 Items found </strong>
+                                <strong class="mr-md-auto">{{$produits->count()}} produits </strong>
                                 <select class="mr-2 form-control">
                                     <option>Latest items</option>
                                     <option>Trending</option>
@@ -127,21 +127,22 @@
 
                                             <a class="btn-overlay" href="{{route('details', $produit->id)}}"><i class="fa fa-search-plus"></i>&nbsp;Détails</a>
                                         </div>
-                                        <figcaption class="info-wrap">
+                                        <figcaption class="info-wrap border-top">
                                         <a href="{{route('details', $produit->id)}}" class="title mb-2">{{$produit->nom}}</a>
+                                       
                                             <div class="price-wrap">
                                                 <span class="price d-block text-right">{{$produit->getprixminimum()}}</span>
                                             </div>
-                                            <hr>
+                                            
 
-                                            <form action="{{ route('cart.store') }}" method="post">
-
-                                                @csrf
-
-                                                <input type="hidden" name="produits_id" value="{{$produit->id}}">
-
-                                                <button type="submit" class="btn btn-outline-primary btn-block"> <i class="fa fa-cart-plus"></i> Ajouter au panier </button>
-                                            </form>
+                                           <!--  <form action="{{ route('cart.store') }}" method="post">
+                                           
+                                               @csrf
+                                           
+                                               <input type="hidden" name="produits_id" value="{{$produit->id}}">
+                                           
+                                               <button type="submit" class="btn btn-outline-primary btn-block"> <i class="fa fa-cart-plus"></i> Ajouter au panier </button>
+                                           </form> -->
 
                                             
                                         </figcaption>

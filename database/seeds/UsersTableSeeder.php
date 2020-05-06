@@ -24,11 +24,15 @@ class UsersTableSeeder extends Seeder
 
         //quest ce quon veut quant on tape php artisan db:seed nous  ce quon veut ces créer des utilisateurs
         $admin = User::create([
+            'name' => 'Administrateur',
+            'telephone' => '621785645',
             'email' => 'administrateur@gmail.com',
         	'password' => Hash::make('admin')
         ]);
 
         $utilisateur = User::create([
+            'name' => 'Utilisateur',
+            'telephone' => '666054168',
             'email' => 'utilisateur@gmail.com',
         	'password' => Hash::make('utilisateur')
         ]);

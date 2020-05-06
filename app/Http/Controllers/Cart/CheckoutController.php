@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
+
+
     public function merci()
     {
     	return Session::has('success') ? view('templateclient.pages.merci') : redirect()->route('acceuil');
@@ -25,6 +27,25 @@ class CheckoutController extends Controller
     {
         
         return view('templateclient.pages.checkout');
+    }
+
+   
+
+    public function indexAchat()
+    {
+         return view('templateclient.pages.checkoutAchat');
+    }
+
+
+     public function  indexAchatInvite()
+    {
+         return view('templateclient.pages.checkoutAchatInvite');
+    }
+
+
+    public function getCheckoutInvite()
+    {
+        return view('templateclient.pages.checkoutInvite');
     }
 
 
@@ -43,33 +64,32 @@ class CheckoutController extends Controller
 
     	$this->validate($request, [
 
-    		'nom' => 'required|min:2',
-    		'prenom' => 'required|min:2',    
+    		'name' => 'required|min:2',    
             'telephone' => 'required|min:2',
-            'adresse' => 'required|min:2',
-            'date' => 'required|'
+           /* 'email' => 'email',*/
+            'ville' => 'required|min:2',
+            'quartier' => 'required|min:2',
+            'lieuProche' => 'required|min:2',
+           /* 'date' => 'required'*/
 
         
     	]);
 
-    	/*$commandes = Commande::create([
 
-    		'nom' => $request->nom,
-    		'prenom' => $request->prenom,
-        'telephone' => $request->telephone,
-        'adresse' => $request->adresse,
+        /*Pour ajouter le montant total des produits dans le panier soit avec remise ou pas ou avec achat directe*/
 
-    	]);*/
-
-
-        /*Pour ajouter le montant total des produits dans le panier soit avec remise ou pas */
         if (request()->session()->has('coupon')) {
-           
-           $total = Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'];
+          $total = Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'];
         }
-        else
+        elseif(Cart::content()->count() > 0)
+        {  
+           $total = Cart::total();
+        }
+        elseif(request()->session()->has('cart'))
         {
-            $total = Cart::total();
+           foreach (session('cart') as $id => $details) {
+               $total= $details['prix_unitaire'] * $details['quantite'];
+           }
         }
 
         //Pour ajouter une commade_id unique dans commande 
@@ -81,7 +101,7 @@ class CheckoutController extends Controller
         //On insere le montant en bd
         $commande->montant = $total;
 
-        //On insere le la commande en bd
+        //On insere  la commande en bd
         $commande->commande_id = $code;
 
 
@@ -89,53 +109,101 @@ class CheckoutController extends Controller
 
         $commande->statut = "En cours";
 
-         $commande->nom = $request->nom;
-         $commande->prenom = $request->prenom;
+         $commande->name = $request->name;
          $commande->telephone = $request->telephone;
-         $commande->adresse = $request->adresse;
+         $commande->email = $request->email;
+         $commande->ville = $request->ville;
+         $commande->quartier = $request->quartier;
+         $commande->lieuProche = $request->lieuProche;
          $commande->date_livraison = $request->date;
 
     	//On vas serializer notre panier
-       $produits = [];
+         //Pour le panier
+        if (Cart::content()->count() > 0) {
+           $produits = [];
 
-       /*$montantTotalProduit = Cart::subtotal();*/
+           $i = 0;
 
-       $i = 0;
+           foreach (Cart::content() as $produit) {
+                $produits['produit_' . $i][] = $produit->model->nom;
+                $produits['produit_' . $i][] = $produit->model->prix_unitaire;
+                $produits['produit_' . $i][] = $produit->qty;
+                if ($produit->options->couleur) {
 
-       foreach (Cart::content() as $produit) {
-            $produits['produit_' . $i][] = $produit->model->nom;
-            $produits['produit_' . $i][] = $produit->model->prix_unitaire;
-            $produits['produit_' . $i][] = $produit->qty;
-            if ($produit->options->couleur) {
+                    $produits['produit_' . $i][] = $produit->options->couleur;
+                }
+                else
+                {
+                     $produits['produit_' . $i][] = $produit->model->photo;
+                }
 
-                $produits['produit_' . $i][] = $produit->options->couleur;
-            }
-            else
+                $produits['produit_' . $i][] = $produit->options->taille;
+
+                /*$produits['produit_' . $i][] = $montantTotalProduit;*/
+
+                $i++;
+           }
+            $commande->produits = serialize($produits);
+             //Pour commander sans avoir a se connecter 
+          /* $commande->user_id = Auth()->user()->id ?? '';*/
+
+          //Pour mettre une clé etrangere en null il faut 0
+          $commande->user_id = Auth()->user()->id ?? '0';
+
+           //Se connecter avant de commander
+           /*$commande->user_id = Auth()->user()->id;*/
+           $commande->save();
+
+          /*On fait appel a une function pour decrementer le stock*/
+                $this->updateStock();
+
+           Cart::destroy();
+
+           Session::flash('success', 'Votre commande à été traitée avec succès.');
+
+           return view('templateclient.pages.merci');
+            //End Pour le panier
+        }
+        elseif(request()->session()->has('cart'))
+        {
+            //On vas serialiser notre achat direct
+             //Pour l'achat directe
+            $produit = [];
+
+            $i = 0;
+
+            foreach(session('cart') as $id => $details)
             {
-                 $produits['produit_' . $i][] = $produit->model->photo;
+                $produit['produit_' . $i][] = $details['nom'];
+                $produit['produit_' . $i][] = $details['prix_unitaire'];
+                $produit['produit_' . $i][] = $details['quantite'];
+                $produit['produit_' . $i][] = $details['photo'];
+
+                $i++;
             }
 
-            $produits['produit_' . $i][] = $produit->options->taille;
+            $commande->produitsAchat = serialize($produit);
 
-            /*$produits['produit_' . $i][] = $montantTotalProduit;*/
+           //Pour commander sans avoir a se connecter 
+          /* $commande->user_id = Auth()->user()->id ?? '';*/
 
-            $i++;
-       }
+          //Pour mettre une clé etrangere en null il faut 0
+          $commande->user_id = Auth()->user()->id ?? '0';
 
-       $commande->produits = serialize($produits);
-       //Pour commander sans avoir a se connecter
-       /*$commande->user_id = Auth()->user()->id ?? '';*/
-       $commande->user_id = Auth()->user()->id;
-       $commande->save();
+           //Se connecter avant de commander
+           /*$commande->user_id = Auth()->user()->id;*/
+           $commande->save();
 
-      /*On fait appel a une function pour decrementer le stock*/
-            $this->updateStock();
+          /*On fait appel a une function pour decrementer le stock*/
+                $this->updateStock();
 
-       Cart::destroy();
+           Cart::destroy();
 
-       Session::flash('success', 'Votre commande à été traitée avec succès.');
+           Session::flash('success', 'Votre commande à été traitée avec succès.');
 
-       return view('templateclient.pages.merci');
+           return view('templateclient.pages.merci');
+           //End Pour l'achat directe
+        }
 
        
     }

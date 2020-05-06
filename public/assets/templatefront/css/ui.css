@@ -1732,8 +1732,8 @@ body {
     height: 280px;
     width: auto;
     display: inline-block;
-    cursor: -webkit-zoom-in;
-    cursor: zoom-in;
+   /*  cursor: -webkit-zoom-in;
+   cursor: zoom-in; */
 }
 
 .gallery-wrap .thumbs-wrap {
@@ -2170,6 +2170,22 @@ body {
 /*---------------------
     End About page
 -----------------------*/
+
+
+
+
+/* .wm-zoom-box
+{
+    width: 200px;
+    height: 70px;
+    display: block;
+
+}
+
+#myImg{
+    max-height: 100%;
+    max-width: 100%;
+} */
 
 
 

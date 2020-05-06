@@ -29,7 +29,7 @@
                                     </td>
 
                                     <td>
-                                        {{$commande->prenom. ' ' .$commande->nom}}
+                                        {{$commande->name}}
                                     </td>
 
                                     <td>
@@ -42,7 +42,7 @@
                                     </td>
 
                                     <td>
-                                        {{$commande->created_at}}
+                                        {{Carbon\Carbon::parse($commande->created_at)->format('d/m/Y à H:i')}}
                                     </td>
 
 
@@ -143,16 +143,16 @@
                         <div class="row">  
                             <h4> Détails de facturation</h4><br>                             
                             <div class="col-lg-6 col-md-6 col-sm-12">
-                                <h5> Prénom</h5>
+                                <h5> Prénom && Nom</h5>
                                 <p>
-                                    {{$commande->prenom}}
+                                    {{$commande->name}}
                                 </p>
                             </div> 
 
                             <div class="col-lg-4 col-md-4 col-sm-12">
-                               <h5> Nom</h5>
+                               <h5>Ville</h5>
                                 <p>
-                                    {{$commande->nom}}
+                                    {{$commande->ville}}
                                 </p>
 
                             </div> 
@@ -161,9 +161,9 @@
 
                         <div class="row">                               
                             <div class="col-lg-6 col-md-6 col-sm-12">
-                             <h5> Adresse</h5>
+                             <h5> Quartier</h5>
                                 <p>
-                                    {{$commande->adresse}}
+                                    {{$commande->quartier}}
                                 </p>
 
                             </div> 
@@ -192,17 +192,49 @@
                                     </p>
                             </div> 
                         </div><br>
+                        
 
+                        <div class="row">                               
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h5>Date de livraison</h5>
+                                 <p>
+                                    
+                                    {{$commande->date_livraison ? Carbon\Carbon::parse($commande->date_livraison)->format('d/m/Y') : Carbon\Carbon::parse($commande->created_at)->format('d/m/Y')}}
+                                 </p>
+                            </div> 
 
-                        <div>
-                            <h5>Date de livraison</h5>
-                             <p>
-                                {{$commande->date_livraison}}
-                             </p>
-                        </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                               <h5> Lieu le plus proche</h5>
+                                    <p>
+                                      {{$commande->lieuProche}}
+                                    </p>
+                            </div> 
+                        </div><br>
+
+                        <div class="row">                               
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                 <h5>Statut</h5>
+                                    <p>
+                                      
+
+                                      {{$commande->user_id ? 'Détient un compte' : 'Un invité'}}
+                                    </p>
+                            </div> 
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                               <h5> </h5>
+                                    <p>
+                                      
+                                    </p>
+                            </div> 
+                        </div><br>
+
+                        
                     </div><br><br>
 
 
+
+                      
 
                         <!-- Tableau -->
                         <div class="sparkline8-graph">
@@ -212,43 +244,82 @@
                             <tr>
                                 <th>PRODUIT</th>
                                 <th>NOM</th>
-                                @if (unserialize($commande->produits) > 0)
-                                   <th>TAILLE</th>
-                                @endif
-                                
+                                <th>TAILLE</th>
                                 <th>PRIX UNITAIRE</th>
                                 <th>QUANTIÉ</th>                                            
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach (unserialize($commande->produits) as $produit)
-                                    <tr>
-                                        <td>
-                                            <figure class="itemside">
-                                                <div class="aside"><img src="{{ asset('storage/' . $produit[3] ? $produit[3] : '') }}" class="img-sm"></div>
-                                            </figure>
+                                @if ($commande->produits)
+                                   @foreach (unserialize($commande->produits) as $produit)
+                                        <tr>
+                                            <td>
+                                                 <!-- photo couleur -->
+                                                <figure class="itemside">
+                                                    <div class="aside"><img src="{{ asset('storage/' . $produit[3] ? $produit[3] : '') }}" class="img-sm"></div>
+                                                </figure>
 
+                                                
+                                            </td>
                                             
-                                        </td>
+                                            <!-- nom -->
+                                            <td>
+                                                {{$produit[0]}}
+                                            </td>
+                                            
+                                            <!-- taille -->
+                                            <td>
+                                               
+                                                    {{$produit[4]}}
+                                            </td>
 
-                                        <td>
-                                            {{$produit[0]}}
-                                        </td>
+                                            <!-- prixUnitaire -->
+                                            <td>
+                                                {{getprixminimumhelpers($produit[1])}}
+                                            </td>
+                                            
+                                            <!-- quantité -->
+                                            <td>
+                                                {{$produit[2]}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    @foreach (unserialize($commande->produitsAchat) as $produit)
+                                        <tr>
+                                            <td>
+                                                <!-- photo couleur -->
+                                                <figure class="itemside">
+                                                    <div class="aside"><img src="{{ asset('storage/' . $produit[3]) ? $produit[3] : ''}}" class="img-sm"></div>
+                                                </figure>
 
-                                        <td>
-                                           
-                                                {{$produit[4]}}
-                                        </td>
+                                                
+                                            </td>
+                                            
+                                            <!-- nom -->
+                                            <td>
+                                                {{$produit[0]}}
+                                            </td>
+                                            
+                                            <!-- taille -->
+                                            <td>
+                                               
+                                                taille
+                                            </td>
+                                            
+                                            <!-- prixUnitaire -->
+                                            <td>
+                                                {{getprixminimumhelpers($produit[1])}}
+                                            </td>
+                                            
+                                            <!-- quantité -->
+                                            <td>
+                                                {{$produit[2]}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
 
-                                        <td>
-                                            {{getprixminimumhelpers($produit[1])}}
-                                        </td>
-
-                                        <td>
-                                            {{$produit[2]}}
-                                        </td>
-                                    </tr>
-                                @endforeach                                       
                             </tbody>
                             </table>
                             </div>

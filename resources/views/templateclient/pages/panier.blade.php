@@ -58,10 +58,14 @@
                                             </div>
                                         </td>
 
-
-                                        <td>
+                                        @if ($produit->options->taille)
+                                            <td>
                                             {{$produit->options->has('taille') ? $produit->options->taille : ''}}
-                                        </td>
+                                            </td>
+                                        @else
+                                            <td>Null</td>
+                                        @endif
+                                        
 
                                         
                                         <td class="prices">
@@ -121,8 +125,42 @@
                             </table>
 
                             <div class="card-body border-top">
-                                <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                @guest
+                                    <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                @else
+                                    <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                @endguest
                                 <a href="{{route('acceuil')}}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuer mes achats </a>
+
+
+    <!--  Modal pour modifier statut -->
+   <div class="modal fade" id="addcouponmodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin-left: 6em;">Faites un choix !</h4>
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                    <div class="text-center mt-4 h6 ">
+                       <a href="{{route('checkout.invite')}}"> <p>Voulez-vous achêtez en tant qu'invitez ?</p></a><hr>
+
+                        <a href="{{ route('inscrire') }}"> <p>Ou créer un compte avant d'achêtez ?</p></a>
+                    </div>
+                   
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+   <!--  End Modal pour modifier statut -->
                             </div>
                         </div>
                     </main>
@@ -235,6 +273,11 @@
             </p> <br><br>
         </div>
        @endif
+
+
+
+
+     
 
 @endsection   
 

@@ -60,25 +60,76 @@ class CartController extends Controller
         //Pour recuperer la taille concernants un produit
         $tailles = $request->tailles;
 
+        //Pour recuperer la quantite concernants un produit
+        $quantites = $request->quantites;
+
          //Pour recuperer la couleur concernants un produit
         /*$couleurs = $request->file('couleurs');*/
          $couleurs = $request->couleurs;
 
-
-
-
+         //Pour recuperer l'id du produit concerné
          $produit = Produit::find($request->produits_id);
 
          
-        Cart::add($produit->id, $produit->nom, 1, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
+        Cart::add($produit->id, $produit->nom, $quantites, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
         ->associate('App\models\Produit');
 
-        /*dd(Cart::content());*/
+       /* dd(Cart::content());*/
 
         
 
         flashy('Le produit à bien été ajouté au panier');
+
         return back();
+
+
+    }
+
+
+    public function acheter(Request $request)
+    {
+
+        //Pour recuperer l'id du produit concerné
+         $produit = Produit::find($request->produits_id);
+
+         //On crée une session qui a pour nom 'cart' on le met dans $cart
+        $cart = session()->get('cart');
+
+        /*$quantites = $request->quantites;*/
+
+        // if cart is empty then this the first product
+       /* if($cart) {*/
+
+            $cart = [
+                   $request->produits_id => [
+                        "nom" => $produit->nom,
+                        "quantite" => 1,
+                        "prix_unitaire" => $produit->prix_unitaire,
+                        "photo" => $produit->photo
+                    ]
+            ];
+
+            /*dd($cart);*/
+
+            session()->put('cart', $cart);
+          /* session()->forget('cart');*/
+
+            $users = Auth::user();
+
+            if ($users)
+            {
+               return redirect()->route('checkout.achat');
+            
+            }
+            else
+            {
+                return redirect()->route('checkout.achatInvite');
+            }
+
+
+
+             
+       /* }*/
 
     }
 

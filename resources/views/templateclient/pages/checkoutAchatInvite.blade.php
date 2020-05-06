@@ -1,7 +1,7 @@
 @extends('templateclient.layouts.app', ['title' => 'Chekout'])
 @section('content')
 
-	@if (Cart::count() > 0 )
+	@if (count(session('cart')) > 0 )
         <section class="checkout container">
 
             <div class="row mt-4 justify-content-center">
@@ -15,13 +15,12 @@
 
 
 
-
-                                    <div class="form-group">
+                                    
+                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : '' }}" value="{{old('name')}}" name="name" placeholder="Prenom && nom">
+                                            <input id="myinputEmail" type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" name="email" placeholder="email">
 
-                                            {!!$errors->first('name', '<div class="invalid-feedback">:message</div>')!!}
-
+                                            {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}
                                         </div>
                                     </div>
 
@@ -34,6 +33,21 @@
                                             {!!$errors->first('telephone', '<div class="invalid-feedback">:message</div>')!!}
                                         </div>
                                     </div>
+
+
+
+
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : '' }}" value="{{old('name')}}" name="name" placeholder="Prenom && nom">
+
+                                            {!!$errors->first('name', '<div class="invalid-feedback">:message</div>')!!}
+
+                                        </div>
+                                    </div>
+
+                                    
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -127,42 +141,32 @@
                             <div class="card-body">
                                  <h6 class="text-center text-uppercase mb-4">votre commande</h6>
                                  <hr>
-                                @foreach (Cart::content() as $produit)
+
+                                  <?php $total = 0 ?>
+
+                                @foreach(session('cart') as $id => $details)
+                                 
 
                                     <dl class="dlist-align">
-                                        <dt><strong>{{$produit->qty}}×</strong> {{$produit->model->nom}}</dt>
-                                        <dd class="text-right  h6"><strong>{{getprixminimumhelpers($produit->subtotal())}}</strong></dd>
+                                        <dt><strong>{{$details['quantite']}}×</strong> {{$details['nom']}}</dt>
+                                        <dd class="text-right  h6"><strong></strong>{{ getprixminimumhelpers( $details['prix_unitaire'] * $details['quantite'] ) }}</dd>
                                     </dl>
                                     <hr>
                                 @endforeach
-
-                                  @if (request()->session()->has('coupon'))
-
-                                    <!--Pour calculer le nouveau sous totale c'et le subtotal - le coupon -->
-                                        <dl class="dlist-align">
-                                            <dt>N-sous-total:</dt>
-                                            <dd class="text-right h5"><strong>{{getprixminimumhelpers(Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'])}}</strong></dd>
-                                        </dl>
-                                        <hr>
-
-                                        <dl class="dlist-align">
-                                            <dt>Montan à payer:</dt>
-                                            <dd class="text-right  h5"><strong>{{getprixminimumhelpers(Cart::subtotal() - request()->session()->get('coupon')['remise_en_pourcentage'])}}</strong></dd>
-                                        </dl>
-                                  @else
+                                 
 
                                      <dl class="dlist-align">
                                     <dt>Sous-total:</dt>
-                                    <dd class="text-right h5"><strong>{{getprixminimumhelpers(Cart::subtotal())}}</strong></dd>
+                                    <dd class="text-right h5"><strong>{{ getprixminimumhelpers( $details['prix_unitaire'] * $details['quantite'] ) }}</strong></dd>
                                     </dl>
                                     <hr>
 
                                     <dl class="dlist-align">
                                         <dt>Montan à payer:</dt>
-                                        <dd class="text-right  h5 text-danger"><strong>{{getprixminimumhelpers(Cart::total())}}</strong></dd>
+                                        <dd class="text-right  h5 text-danger"><strong>{{ getprixminimumhelpers( $details['prix_unitaire'] * $details['quantite'] ) }}</strong></dd>
                                     </dl>
 
-                                 @endif
+                                
                                  <hr>
                                 
                                 

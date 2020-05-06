@@ -172,7 +172,9 @@ Route::post('destroy-tailles\{id}', 'Tailles\TaillesController@destroyTailles')-
 
 /*Route pour enregistrer les info de livraison*/
 Route::get('checkout', 'Cart\CheckoutController@index')->name('checkout');
-Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store');
+Route::get('checkout-achat', 'Cart\CheckoutController@indexAchat')->name('checkout.achat');
+
+/*.................*/
 /*End Route pour enregistrer les info de livraison*/
 
 
@@ -197,6 +199,15 @@ Route::get('/commandes', 'Frontend\AccueilController@get_mescommandes_page')->na
 
 
 });
+
+
+/*Route pour enregistrer les info de livraison d'un invité*/
+Route::get('checkout-invite', 'Cart\CheckoutController@getCheckoutInvite')->name('checkout.invite');
+
+Route::get('checkout-achat-invite', 'Cart\CheckoutController@indexAchatInvite')->name('checkout.achatInvite');
+/*Route pour enregistrer les info de livraison d'un client connecté et invité car dans le middleware Auth il ns oblige a se connecté*/
+Route::post('checkout', 'Cart\CheckoutController@store')->name('checkout.store');
+/*End Route pour enregistrer les info de livraison d'un invité*/
 
 
 Route::get('/', 'Frontend\AccueilController@index')->name('acceuil');
@@ -245,9 +256,11 @@ Route::get('/inscription', 'Frontend\Auth\RegisterController@store')->name('insc
 
 
 
+Route::post('acheter', 'Cart\CartController@acheter')->name('acheter');
 
 /*Shopping Cart*/
 Route::post('/panier/ajouter', 'Cart\CartController@store')->name('cart.store');
+
 
 //route pour la quantite
 Route::put('/panier/{rowId}', 'Cart\CartController@update')->name('cart.update');
@@ -281,4 +294,11 @@ Route::get('apropos', 'Frontend\AccueilController@apropos')->name('apropos');
 Route::get('faq', 'Frontend\AccueilController@faq')->name('faq');
 
 /*End Route pour les pages*/
+
+
+
+/*Route pour le button acheter maintenant*/
+
+/*End Route pour le button acheter maintenant*/
+
 

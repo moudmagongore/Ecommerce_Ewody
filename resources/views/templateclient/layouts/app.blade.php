@@ -12,15 +12,22 @@
      @yield('extra-meta')
 
     <title>E-wody | {{ $title or ' '}}</title>
+
+
+   <!--  Chargement pour l'autocompletion-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
+    <!--  End  chargement pour l'autocompletion -->
+
+
     
    <!--  Pour le chargement du button -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  End Pour le chargement du button -->
 
 
-     <!--  Pour le chargement du exzoom -->
-    <link rel="stylesheet" href="{{asset('assets/templatefront/css/jquery.exzoom.css')}}">
-    <!--  End Pour le chargement du exzoom -->
+     <!--  Pour le chargement du zoom -->
+    <link rel="stylesheet" href="{{asset('assets/templatefront/css/jquery.wm-zoom-1.0.min.css')}}">
+    <!--  End Pour le chargement du zoom -->
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="{{asset('assets/templatefront/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
@@ -120,7 +127,7 @@
                                             @csrf
 
                                         <div class="form-group">
-                                            <input type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" placeholder="Email" name="email" value="{{old('email')}}">
+                                            <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" placeholder="Username" name="email" value="{{old('email')}}">
 
                                             {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}
 
@@ -320,14 +327,27 @@
     <a href="#top-page" class="btn btn-dark rounded-pill scroll-to-top" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px; display: none;">
         <i class="fa fa-arrow-up"></i> 
     </a>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="{{asset('assets/templatefront/js/owlcarousel/owl.carousel.min.js')}}"></script>
 
 
 
-    <!--  Pour le chargement du exzoom -->
-    <script src="{{asset('assets/templatefront/js/jquery.exzoom.js')}}" type="text/javascript"></script>
-    <!--  End Pour le chargement du exzoom -->
+
+
+     <!--  Chargement pour l'autocompletion-->
+    <script type="text/javascript" src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
+
+    @yield('autocompletion')
+    <!--  End  chargement pour l'autocompletion -->
+
+  
+
+
+
 
 
 
@@ -363,7 +383,7 @@
         });
 
         
-        new Drift(document.querySelector(".img-big-wrap img"), {
+        /*new Drift(document.querySelector(".img-big-wrap img"), {
             paneContainer: document.querySelector("p"),
             onShow: function () {
                 $('.product-info-aside .list-check, .qtte-block, .total').css('visibility', 'hidden');
@@ -371,7 +391,7 @@
             onHide: function () {
                 $('.product-info-aside .list-check, .qtte-block, .total').css('visibility', '');
             },
-        });
+        });*/
 
         /*Change current big image*/
         var currentBigImage = $('.gallery-wrap .img-big-wrap img');
@@ -414,6 +434,7 @@
 @yield('sousImage')
 @yield('quantite')
 @yield('modalimage')
+@yield('zoom')
 
 </body>
 </html>

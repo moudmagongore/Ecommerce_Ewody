@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
-    @section('content')
+@section('content')
 
 
         <section class="section-name padding-y-sm">
@@ -23,30 +23,34 @@
             <div class="container">
                 <section class="section-content bg-white padding-y">
                     <div class="container">
+
                         <div class="row">
                             <aside class="col-md-4">
                                 <div class="card">
 
-                                   <!--  <div class="exzoom hidden" id="exzoom">
-                                       <div class="exzoom_img_box">
-                                           <ul class='exzoom_img_ul'>
-                                              
-                                              
-                                           </ul>
-                                       </div>
-                                       <div class="exzoom_nav"></div>    
-                                   </div> -->
-         
+                                    
+
                                    
-                                    <article class="gallery-wrap " >
+                                    <article class="gallery-wrap ">
 
-                                        <div class="img-big-wrap">
-                                            <div><a ><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
-    
+                                        <!-- img-big-wrap -->
+                                    <div class=" wm-zoom-container my-zoom-1">
+                                        <div class="wm-zoom-box">
 
-                                            </div>
-
+                                            
+                                     
+                                            <a><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('storage/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}" width="300px;"></a>
+                                     
                                         </div>
+                                    </div>
+
+                                       <!--  <div class="img-big-wrap">
+                                           <div><a ><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
+                                           
+                                       
+                                           </div>
+                                       
+                                       </div> -->
 
 
                                         <div class="thumbs-wrap mt-4">
@@ -56,7 +60,7 @@
 
 
                                                 @foreach ($images as $image)
-                                                    <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage"></a>
+                                                    <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage" ></a>
                                                 @endforeach
                                             
                                             
@@ -76,7 +80,7 @@
 
                                         <!-- Pour afficher le stock -->
                                         @if ($quantites === 'Disponible')
-                                            <span class="badge badge-pill badge-success">
+                                            <span class="badge badge-pill btn-warning">
                                             {{$quantites}}
                                         </span>
 
@@ -120,11 +124,7 @@
                                                 </div>
                                             </div> -->
 
-                                             <!-- <input type="number" class="form-control qtte-val" name="qty" id="qty"
-                                             @foreach (Cart::content() as $produit)
-                                                 data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}" value="{{$produit->qty}}" min="1" 
-                                             @endforeach
-                                              style="width: 60px;" min="1"> -->
+                                             
 
                                         </div>
                                         <div class="form-group col-md">
@@ -136,12 +136,19 @@
                                                 <input type="hidden" name="produits_id" value="{{$produits->id}}">
 
                                         <div class="row">
-                                            <div class="col-md-4">
+
+                                            <div class="col-md-2">
+                                                <label> <strong>Quantité</strong></label>
+                                                 <input name="quantites" type="number" class="form-control qtte-val" name="qty" id="qty" data-id="" data-quantite="" value="1" min="1" style="width: 60px;" >
+                                            </div>  
+
+
+                                            <div class="col-md-3">
                                                     @if ($tailles->count() > 0)
                                                 <div>
                                                     <label><strong>Tailles : </strong></label>
                                                 </div>
-                                                    <select name="tailles" id="tailles" class=" form-control col-md-7 mt-4">
+                                                    <select name="tailles" id="tailles" class=" form-control col-md-10 mb-4">
 
                                                     <option disabled="" selected>Selectionnez</option>
 
@@ -153,22 +160,22 @@
                                                     </select>
                                                 
                                             @endif
-                                            </div>
-
+                                            </div> 
                                             
-                                            <div class="col-md-6">
+                                            
+                                            <div class="col-md-4">
                                                 @if ($couleurs->count() > 0)
                                                 <div>
                                                     <h6>Couleur : </h6>
                                                </div>
-                                               <div class="thumbs-wrap mt-4">
+                                               <div class="thumbs-wrap mb-4">
                                                
                                                 @foreach ($couleurs as $couleur)
 
                                                     
 
                                                     <label for="couleurs">
-                                                        <a class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="60px;" class="sousImage img-thumbnail" title="Clique" alt="Une couleur" id="sousImageCouleur"></a>
+                                                        <a class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="45px;" class="sousImage sousImageCouleur img-thumbnail" title="Clique" alt="Une couleur" ></a>
                                                     </label>
                                                 @endforeach
 
@@ -178,22 +185,101 @@
                                             </div>
                                             @endif
                                             </div>
-                                        </div>
-                                        <hr>    
 
-                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" title="Veuillez selectionner une taille">
+
+                                        </div>
+                                        <hr> 
+                                            
+                                           
+
+
+
+                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier">
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="text">Ajouter au panier</span>
                                             </button>
+
+                                           
+
+
+                                            <!-- <button type="text" class="btn btn-success mt-4">
+                                                <i class="fas fa-heart"></i>
+                                                <span class="text">Achêter maintenant</span>
+                                            </button> -->
                                             </form>
                                             @endif
                                             
-                                            <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light mt-4">
-                                                <i class="fas fa-heart"></i>
-                                                <span class="text">Ajouter aux favoris</span>
-                                            </a>
+                                           <!-- <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light mt-4">
+                                               <i class="fas fa-heart"></i>
+                                               <span class="text">Ajouter aux favoris</span>
+                                           </a> -->
+
+                                           <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
+
+                                                @csrf
+
+                                                <input type="hidden" name="produits_id" value="{{$produits->id}}">
+
+
+
+                                               @guest
+                                                    <button type="text" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal">
+                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                    <span class="text">Achêter maintenant</span>
+                                                    </button>
+                                               @else
+                                                    <button type="text" class="btn btn-success mt-4 buttonAchat">
+                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                    <span class="text">Achêter maintenant</span>
+                                                    </button>
+                                               @endguest
+
+            <!--  Modal pour modifier statut -->
+           <div class="modal fade" id="addAchatModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="margin-left: 6em;">Faites un choix !</h4>
+
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                            <div class="text-center mt-4 h6 ">
+                             
+
+                               <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
+
+                                    @csrf
+
+                                    <input type="hidden" name="produits_id" value="{{$produits->id}}">
+
+                                   
+                                   
+                                        <button type="submit" class=" btn-success mt-4">
+                                        Voulez-vous achêtez en tant qu'invitez ?
+                                        </button>   
+                               </form>
+                               <hr>
+
+                                <a href="{{ route('inscrire') }}"> <p>Ou créer un compte avant d'achêtez ?</p></a>
+                            </div>
+                           
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+           <!--  End Modal pour modifier statut -->
+                                           </form>
                                         </div>
                                     </div>
+                                    
                                    
 
                                     
@@ -246,6 +332,124 @@
                                     Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
                                 </p>
                             </div>
+                            <hr>
+
+
+
+                            <!-- copie color taille -->
+                            <div class="row">
+                                <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                  
+                                  <ul class="p-lr-28 p-lr-15-sm">
+                                      
+
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Color : 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                                @foreach ($couleurs as $couleur)
+                                                    {{$couleur->designation}}{{$loop->last ? '' : ', '}}
+                                                @endforeach
+                                                
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Size : 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                                @foreach ($tailles as $taille)
+                                                    {{$taille->designation}}{{$loop->last ? '' : ', '}}
+                                                @endforeach
+                                            </span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                
+                            </div>
+                              <!-- End copie color taille -->
+
+
+                              <hr>
+                              <!-- copie commentaire -->
+                                <div class="row">
+                                <div class="col-sm-10 col-md-6 col-lg-6 m-lr-auto">
+                                    <div class="p-b-30 m-lr-15-sm">
+                                        <!-- Review -->
+                                        <div class="flex-w flex-t p-b-68">
+
+                                            <div class="icon">
+                                                @foreach ($avis as $avi)
+                                                    <img class="rounded-circle img-sm border mt-5" 
+                                                src="{{ asset('storage/' . $avi->user->photo) }}" alt="AVATAR">
+
+                                                    <span class="ml-3 mb-4">
+                                                        <strong>
+                                                          {{$avi->user->name}}  
+                                                        </strong>
+                                                    </span>
+
+                                                    <p style="margin-left: 6em; margin-top: -2em;">
+                                                            {{$avi->commentaire}}
+                                                     </p>
+
+                                                     <p style="margin-left: 6em; color:#888;">{{$avi->created_at}}</p>
+                                                    
+                                                @endforeach
+
+                                            </div>
+                                            
+                                    
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-10 col-md-6 col-lg-6 " style="margin-top: -5em;">
+                                    <!-- Add review -->
+                                        <form action="{{ route('store.avis', $produits->id) }}" method="POST" class="w-full" style="margin-top: 7em;">
+
+                                            @csrf
+
+
+                                            @if ($avis->count() > 0)
+                                                <h4 class="mtext-108 cl2 p-b-7">
+                                                Ajouter un avis sur cet produit
+                                                </h4>
+                                            @else
+                                                <h4 class="mtext-108 cl2 p-b-7">
+                                                Soyez le premier à ajouter un avis sur cet produit
+                                                </h4>
+                                            @endif
+
+                                            
+
+                                            <div class="row p-b-25">
+                                                <div class="col-12 p-b-5 mt-5">
+                                                    <label class="stext-102 cl3" for="message">Votre avis</label>
+                                                    <textarea class="form-control {{$errors->has('message') ? 'is-invalid' : '' }}" rows="10" cols="5" name="message">{{old('message')}}</textarea>
+
+                                                    {!!$errors->first('message', '<div class="invalid-feedback">:message</div>')!!}
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mt-4">
+                                                <button type="submit" class="btn btn-outline-primary">Poster &raquo;</button>
+                                            </div>
+                                        </form>
+                                </div>
+                            </div>
+                              <!-- copie commentaire -->
+                              <hr>
+
                         </div>
 
                         <!-- - -->
@@ -283,7 +487,7 @@
                                     </ul>
 
                                 </div>
-
+                                
                                 
                             </div>
                         </div>
@@ -367,36 +571,34 @@
 
 
 
-<!-- The Modal -->
-<!-- <div id="myModal" class="modal">
+    <!-- The Modal -->
+    <!-- <div id="myModal" class="modal">
 
-      The Close Button
-      <span class="close">&times;</span>
+          The Close Button
+          <span class="close">&times;</span>
 
-      Modal Content (The Image)
-      <img class="modal-content" id="img01">
+          Modal Content (The Image)
+          <img class="modal-content" id="img01">
 
-      Modal Caption (Image Text)
-      <div id="caption"></div>
-</div> -->
-<!--End The Modal -->
+          Modal Caption (Image Text)
+          <div id="caption"></div>
+    </div> -->
+    <!--End The Modal -->
 
+        
 
-
-
-
-
-    @endsection
+        
+@endsection
 
 @section('sousImage')
     <script>
         var imagePrincipale = document.querySelector('.imagePricipale');
         var sousImage = document.querySelectorAll('.sousImage');
-        var sousImageCouleur = document.querySelectorAll('#sousImageCouleur');
+        var sousImageCouleur = document.querySelectorAll('.sousImageCouleur');
 
+    
 
-          /*imagePrincipale.src = sousImageCouleur[0].src; */
-          @if ($couleurs->count() > 0 || $tailles->count() > 0)
+          @if (/*$couleurs->count() > 0 ||*/ $tailles->count() > 0)
 
                 /*Pour selectionner une couleur par defaut qui est l'img 0*/
                 @if ($couleurs->count() > 0)
@@ -409,6 +611,18 @@
                 /*Pour rendre le button ajouter panier disabled tant qu'on ne click pas sur la taille*/
                var tailles = document.querySelector('#tailles');
                var buttonPanier = document.querySelector('#buttonPanier');
+              /* var buttonAchat = document.querySelector('.buttonAchat');
+               buttonAchat.disabled = true;
+               tailles.onchange = function(){
+                   if(tailles.value)
+                   {
+                       buutonAchat.disabled = false;
+                   }
+
+               }*/
+
+            
+
                buttonPanier.disabled = true;
                tailles.onchange = function(){
                    if(tailles.value)
@@ -430,43 +644,61 @@
             //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué
             imagePrincipale.src = this.src;
 
-            /*On recupere le name de l'input on remplace par l'image */
-            document.querySelector('#couleurs').value = imagePrincipale.src;
+           /* Pour changez l'image hover*/
+            imagePrincipale.dataset.hightSrc = this.src; 
+           /* $('.imagePrincipale').attr('data-hight-src', this.src); */
+
+        }
+
+        sousImageCouleur.forEach((element) => element.addEventListener('click', changeCouleur));
+
+        function changeCouleur(element){
+
+             /*On recupere le name de l'input on remplace par l'image */
+             document.querySelector('#couleurs').value = this.src;
         }
 
 
 
+
+
     </script>
 
 
-    <script type="text/javascript">
-        $(function(){
-
-          $("#exzoom").exzoom({
-            // options here
-          });
-
-        });
-    </script>
 @stop
 
 
 
-
-
-@section('quantite')
-    <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
-@stop
-
-
-@section('quantite')
-    <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
-@stop
 
 
 
 @section('modalimage')
     <script src="{{ asset('assets/templatefront/js/modalimage.js') }}"></script>
+@stop
+
+
+@section('zoom')
+     <!--  Pour le chargement du zoom -->
+    <script src="{{asset('assets/templatefront/js/jquery-1.11.1.js')}}"></script>
+    <script src="{{asset('assets/templatefront/js/jquery.wm-zoom-1.0.min.js')}}"></script>
+    <!--  End Pour le chargement du zoom -->
+
+
+    <script type="text/javascript">
+
+       $(document).ready(function(){
+            $('.my-zoom-1').WMZoom();
+
+            $('.my-zoom-2').WMZoom({
+
+                config : {inner : true}
+            });
+        });
+    </script>
+
+
+   
+
 @stop
 
 

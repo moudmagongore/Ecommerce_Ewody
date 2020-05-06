@@ -248,7 +248,7 @@
                                             </div>
                                             <figcaption class="info-wrap border-top">
                                                 <a href="{{route('details', $sac->id)}}" class="title">{{$sac->nom}}</a>
-                                                <div class="price mt-2">{{$sac->getprixminimum()}}</div>
+                                                <div class="price mt-2 text-right">{{$sac->getprixminimum()}}</div>
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -299,7 +299,7 @@
                                             </div>
                                             <figcaption class="info-wrap border-top">
                                             <a href="{{route('details', $montre->id)}}" class="title">{{$montre->nom}}</a>
-                                                <div class="price mt-2">{{$montre->getprixminimum()}}</div>
+                                                <div class="price mt-2 text-right">{{$montre->getprixminimum()}}</div>
                                             </figcaption>
                                         </figure>
                                     </div>

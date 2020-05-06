@@ -16,12 +16,14 @@ class CreateCommandesTable extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('commande_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->text('produits');
-            $table->string('nom');
-            $table->string('prenom');
+            $table->string('name');
             $table->string('telephone');
-            $table->string('adresse');
+            $table->string('email')->nullable();
+            $table->string('ville');
+            $table->string('quartier');
+            $table->string('lieuProche');
             $table->date('date_commande')->nullable();
             $table->double('montant');
             $table->date('date_echeance')->nullable();

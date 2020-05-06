@@ -10,7 +10,7 @@ use App\User;
 class Commande extends Model
 {
 
-	protected $fillable = ['nom', 'prenom', 'telephone', 'adresse'];
+	protected $fillable = ['name', 'telephone',  'email', 'ville', 'quartier', 'lieuProche'];
 
 
      public function user()

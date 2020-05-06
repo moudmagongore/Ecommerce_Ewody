@@ -14,6 +14,23 @@
                                     @csrf
 
 
+                                     <div class="form-group">
+                                        <div class="input-group">
+                                            <input id="myinputEmail" type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" name="email" placeholder="email">
+
+                                            {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control {{$errors->has('telephone') ? 'is-invalid' : '' }}" value="{{old('telephone')}}" name="telephone" placeholder="Telephone">
+
+                                            {!!$errors->first('telephone', '<div class="invalid-feedback">:message</div>')!!}
+                                        </div>
+                                    </div>
 
 
                                     <div class="form-group">
@@ -25,21 +42,15 @@
                                         </div>
                                     </div>
 
+
+
                                    
-
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control {{$errors->has('telephone') ? 'is-invalid' : '' }}" value="{{old('telephone')}}" name="telephone" placeholder="Telephone">
-
-                                            {!!$errors->first('telephone', '<div class="invalid-feedback">:message</div>')!!}
-                                        </div>
-                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input id="myinputVille" type="text" class="form-control {{$errors->has('ville') ? 'is-invalid' : '' }}" value="{{old('ville')}}" name="ville" placeholder="ville">
+                                                    <input id="myinputVille" type="text" class=" form-control {{$errors->has('ville') ? 'is-invalid' : '' }}" value="{{old('ville')}}" name="ville" placeholder="ville">
 
                                                     {!!$errors->first('ville', '<div class="invalid-feedback">:message</div>')!!}
                                                 </div>
@@ -49,7 +60,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input id="myinputQuartier" type="text" class="form-control {{$errors->has('quartier') ? 'is-invalid' : '' }}" value="{{old('quartier')}}" name="quartier" placeholder="quartier">
+                                                    <input id="myinputQuartier" type="text" class=" form-control {{$errors->has('quartier') ? 'is-invalid' : '' }}" value="{{old('quartier')}}" name="quartier" placeholder="quartier">
 
                                                     {!!$errors->first('quartier', '<div class="invalid-feedback">:message</div>')!!}
                                                 </div>
@@ -66,7 +77,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                 <div class="form-group container">
                     <h6>Quand voulez-vous la livraisson ?</h6>

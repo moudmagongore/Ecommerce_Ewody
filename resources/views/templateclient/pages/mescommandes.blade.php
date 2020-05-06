@@ -90,58 +90,98 @@
                             </thead>
                             <tbody>
 
-                                @foreach (unserialize($commande->produits) as $produit)
+                                @if ($commande->produits)
+                                    @foreach (unserialize($commande->produits) as $produit)
                                         
-                                         <tr>
-                                    <td>
-                                        <div>
-                                            <figure class="itemside">
-                                                <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
-                                            </figure>
-                                        </div>
-                                    </td>
+                                       <tr>
+                                            <td>
+                                                <div>
+                                                    <figure class="itemside">
+                                                        <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                                    </figure>
+                                                </div>
+                                            </td>
 
-                                     <td class="prices">
-                                        <div>
-                                            <div class="price-wrap">
-                                                <var class="price">{{$produit[0]}}</var>
-                                            </div>
-                                        </div>
-                                    </td>
+                                             <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">{{$produit[0]}}</var>
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                     <td class="prices">
-                                        <div>
-                                            <div class="price-wrap">
-                                                <var class="price">{{$produit[4]}}</var>
-                                            </div>
-                                        </div>
-                                    </td>
+                                             <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">{{$produit[4]}}</var>
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                    <td class="prices">
-                                        <div>
-                                            <div class="price-wrap">
-                                                <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                                <small class="text-muted">148 000 / unité</small>
-                                            </div>
-                                        </div>
-                                    </td>
+                                            <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
+                                                        <small class="text-muted">148 000 / unité</small>
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                    <td>
-                                        <div>
-                                          {{$produit[2]}}
-                                        </div>
-                                    </td>
-                                    
+                                            <td>
+                                                <div>
+                                                  {{$produit[2]}}
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>          
+                                    @endforeach
+                                @else
+                                    @foreach (unserialize($commande->produitsAchat) as $produit)
+                                        
+                                       <tr>
+                                            <td>
+                                                <div>
+                                                    <figure class="itemside">
+                                                        <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                                    </figure>
+                                                </div>
+                                            </td>
 
-                                    
-                                </tr>        
-                                    
-                                   
-                                @endforeach
+                                             <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">{{$produit[0]}}</var>
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                     
-                               
-                                
+                                             <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">taille</var>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="prices">
+                                                <div>
+                                                    <div class="price-wrap">
+                                                        <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
+                                                        <small class="text-muted">148 000 / unité</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div>
+                                                  {{$produit[2]}}
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>          
+                                    @endforeach
+                                @endif
+                             
                             </tbody>
                         </table>
 

@@ -66,7 +66,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="email" name="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" placeholder="Email">
+						<input type="text" name="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" placeholder="Username">
 
 
 						 {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}

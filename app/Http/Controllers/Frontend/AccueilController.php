@@ -86,13 +86,15 @@ class AccueilController extends Controller
 
         $produits = Produit::all();
         $sous_categories = SousCategorie::all();
-        $tailles = Taille::all();
         $industries = Industrie::all();
        /* $marques = Marque::all();*/
+       $tailles = Taille::all();
+       $couleurs = Couleur::all();
+      
 
 
         return view('templateclient.pages.allproducts', compact('produits', 'sous_categories','industries',
-            'tailles',/*'marques'*/));
+            'tailles','couleurs'));
     }
 
 
@@ -151,9 +153,8 @@ class AccueilController extends Controller
     }
 
     public function get_mescommandes_page(){
-        $user = Auth::user();
         
-        return view('templateclient.pages.mescommandes', compact('user'));
+        return view('templateclient.pages.mescommandes');
     }
 
     public function get_mon_compte_page(){

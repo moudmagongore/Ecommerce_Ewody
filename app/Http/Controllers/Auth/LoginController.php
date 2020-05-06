@@ -33,17 +33,19 @@ class LoginController extends Controller
 
         ]);
 
-        $resultat = auth()->attempt([
+        /*$resultat = auth()->attempt([
             'email' => request('email'),
             'password' => request('password'),
-        ]);
+        ]);*/
 
        /* dd($resultat);*/
 
-        $user = Auth::user();
+       
 
-        if($resultat)
+        if(auth()->attempt(['name' => request('email'), 'password' => request('password')]))
         {
+             $user = Auth::user();
+
             if($user->statut == 1)
             {
 
@@ -63,27 +65,75 @@ class LoginController extends Controller
                     flashy('Vous êtes bien connecté.');
                      return redirect()->route('acceuil');
                 }
-
-                
-
-                /*return redirect()->route('acceuil')->withInput()->with('success', 'Vous êtes bien connecté.');*/
             }
-
-            /*withInput renvoie a la page precedente avec les données saisie par le user*/
-
-
-
-            /*return back()->withInput()->with('danger', 'Vous êtes suspendus.');*/
 
             flashy()->error('Vous êtes suspendus.');
             return back();
-         }
+        }
+        elseif(auth()->attempt(['email' => request('email'), 'password' => request('password')]))
+        {
+            $user = Auth::user();
+
+            if($user->statut == 1)
+            {
+
+                if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Administrateur'))
+                {
+                    flashy('Vous êtes bien connecté.');
+                     return redirect()->route('accueil.back');
+                }
+                else if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Vendeur'))
+                {
+
+                    flashy('Vous êtes bien connecté.');
+                    return redirect()->route('accueil.back');
+                }
+                else
+                {
+                    flashy('Vous êtes bien connecté.');
+                     return redirect()->route('acceuil');
+                }
+            }
+
+            flashy()->error('Vous êtes suspendus.');
+            return back();
+        }
+        elseif(auth()->attempt(['telephone' => request('email'), 'password' => request('password')]))
+        {
+            $user = Auth::user();
+
+            if($user->statut == 1)
+            {
+
+                if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Administrateur'))
+                {
+                    flashy('Vous êtes bien connecté.');
+                     return redirect()->route('accueil.back');
+                }
+                else if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Vendeur'))
+                {
+
+                    flashy('Vous êtes bien connecté.');
+                    return redirect()->route('accueil.back');
+                }
+                else
+                {
+                    flashy('Vous êtes bien connecté.');
+                     return redirect()->route('acceuil');
+                }
+            }
+
+            flashy()->error('Vous êtes suspendus.');
+            return back();
+        }
+        else
+        {
+            flashy()->error('Vos identifiants sont incorrects.');
+            return back();
+        }
 
 
-        /*return back()->withInput()->with('danger', 'Vos identifiants sont incorrects.');*/
-
-         flashy()->error('Vos identifiants sont incorrects.');
-         return back();
+         
         
     }
     
