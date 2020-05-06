@@ -35,7 +35,7 @@
                                         <div class="img-wrap">
                                             <span class="badge badge-success"> NEW </span>
                                             
-                                                <img src="{{ asset('storage/' . $produit->photo)}}">
+                                                <img src="{{ asset('uploads/' . $produit->photo)}}">
                                             
                                            <!-- favoris -->
                                             <span class="topbar">

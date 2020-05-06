@@ -153,6 +153,8 @@ class AccueilController extends Controller
     }
 
     public function get_mescommandes_page(){
+
+        
         
         return view('templateclient.pages.mescommandes');
     }

@@ -39,13 +39,13 @@
 
                                             
                                      
-                                            <a><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('storage/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}" width="300px;"></a>
+                                            <a><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('uploads/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}" width="300px;"></a>
                                      
                                         </div>
                                     </div>
 
                                        <!--  <div class="img-big-wrap">
-                                           <div><a ><img id="myImg" src="{{ asset('storage/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
+                                           <div><a ><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
                                            
                                        
                                            </div>
@@ -56,11 +56,11 @@
                                         <div class="thumbs-wrap mt-4">
                                             
                                                 <!-- pour recuperer l'image principale -->
-                                                <a class="item-thumb"><img src="{{ asset('storage/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
+                                                <a class="item-thumb"><img src="{{ asset('uploads/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
 
 
                                                 @foreach ($images as $image)
-                                                    <a  class="item-thumb"><img src="{{ asset('storage/' . $image->images) }}" height="60px" width="60px;" class="sousImage" ></a>
+                                                    <a  class="item-thumb"><img src="{{ asset('uploads/' . $image->images) }}" height="60px" width="60px;" class="sousImage" ></a>
                                                 @endforeach
                                             
                                             
@@ -175,7 +175,7 @@
                                                     
 
                                                     <label for="couleurs">
-                                                        <a class="item-thumb"><img src="{{ asset('storage/' . $couleur->pivot->images) }}" height="60px" width="45px;" class="sousImage sousImageCouleur img-thumbnail" title="Clique" alt="Une couleur" ></a>
+                                                        <a class="item-thumb"><img src="{{ asset('uploads/' . $couleur->pivot->images) }}" height="60px" width="45px;" class="sousImage sousImageCouleur img-thumbnail" title="Clique" alt="Une couleur" ></a>
                                                     </label>
                                                 @endforeach
 
@@ -223,10 +223,10 @@
 
 
                                                @guest
-                                                    <button type="text" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal">
+                                                    <a href="" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
-                                                    </button>
+                                                    </a>
                                                @else
                                                     <button type="text" class="btn btn-success mt-4 buttonAchat">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -341,11 +341,51 @@
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                   
                                   <ul class="p-lr-28 p-lr-15-sm">
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                               <strong> Nom : </strong>
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{$produits->nom}}
+                                               
+                                                
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                               <strong> Marque :</strong> 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{$produits->marque}}
+                                               
+                                                
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                                <strong>Prix unitaire :</strong> 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{getprixminimumhelpers($produits->prix_unitaire)}}
+                                               
+                                                
+                                            </span>
+                                        </li>
                                       
 
-                                        <li class="flex-w flex-t p-b-7">
+                                        @if ($couleurs->count() > 0)
+                                            <li class="flex-w flex-t p-b-7 mt-3">
                                             <span class="stext-102 cl3 size-205">
-                                                Color : 
+                                               <strong>Color : </strong>
                                             </span>
 
                                             <span class="stext-102 cl6 size-206">
@@ -355,10 +395,12 @@
                                                 
                                             </span>
                                         </li>
+                                        @endif
 
-                                        <li class="flex-w flex-t p-b-7">
+                                        @if ($tailles->count() > 0)
+                                           <li class="flex-w flex-t p-b-7 mt-3">
                                             <span class="stext-102 cl3 size-205">
-                                                Size : 
+                                               <strong> Size : </strong>
                                             </span>
 
                                             <span class="stext-102 cl6 size-206">
@@ -367,6 +409,7 @@
                                                 @endforeach
                                             </span>
                                         </li>
+                                        @endif
                                     </ul>
 
                                 </div>
@@ -387,7 +430,7 @@
                                             <div class="icon">
                                                 @foreach ($avis as $avi)
                                                     <img class="rounded-circle img-sm border mt-5" 
-                                                src="{{ asset('storage/' . $avi->user->photo) }}" alt="AVATAR">
+                                                src="{{ asset('uploads/' . $avi->user->photo) }}" alt="AVATAR">
 
                                                     <span class="ml-3 mb-4">
                                                         <strong>
@@ -400,6 +443,7 @@
                                                      </p>
 
                                                      <p style="margin-left: 6em; color:#888;">{{$avi->created_at}}</p>
+                                                     <hr>
                                                     
                                                 @endforeach
 
@@ -442,13 +486,15 @@
                                             </div>
 
                                             <div class="form-group mt-4">
-                                                <button type="submit" class="btn btn-outline-primary">Poster &raquo;</button>
+                                                <button type="submit" class="btn btn-primary btn-block">Poster &raquo;</button>
+
+                                                <!-- btn btn-outline-primary btn-block -->
                                             </div>
                                         </form>
                                 </div>
                             </div>
                               <!-- copie commentaire -->
-                              <hr>
+                              
 
                         </div>
 
@@ -458,11 +504,51 @@
                                 <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                   
                                   <ul class="p-lr-28 p-lr-15-sm">
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                               <strong> Nom : </strong>
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{$produits->nom}}
+                                               
+                                                
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                               <strong> Marque :</strong> 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{$produits->marque}}
+                                               
+                                                
+                                            </span>
+                                        </li>
+
+                                        <li class="flex-w flex-t p-b-7 mt-3">
+                                            <span class="stext-102 cl3 size-205">
+                                                <strong>Prix unitaire :</strong> 
+                                            </span>
+
+                                            <span class="stext-102 cl6 size-206">
+                                               
+                                            {{getprixminimumhelpers($produits->prix_unitaire)}}
+                                               
+                                                
+                                            </span>
+                                        </li>
                                       
 
-                                        <li class="flex-w flex-t p-b-7">
+                                        @if ($couleurs->count() > 0)
+                                            <li class="flex-w flex-t p-b-7 mt-3">
                                             <span class="stext-102 cl3 size-205">
-                                                Color : 
+                                               <strong>Color : </strong>
                                             </span>
 
                                             <span class="stext-102 cl6 size-206">
@@ -472,10 +558,12 @@
                                                 
                                             </span>
                                         </li>
+                                        @endif
 
-                                        <li class="flex-w flex-t p-b-7">
+                                        @if ($tailles->count() > 0)
+                                           <li class="flex-w flex-t p-b-7 mt-3">
                                             <span class="stext-102 cl3 size-205">
-                                                Size : 
+                                               <strong> Size : </strong>
                                             </span>
 
                                             <span class="stext-102 cl6 size-206">
@@ -484,8 +572,8 @@
                                                 @endforeach
                                             </span>
                                         </li>
+                                        @endif
                                     </ul>
-
                                 </div>
                                 
                                 
@@ -503,7 +591,7 @@
                                             <div class="icon">
                                                 @foreach ($avis as $avi)
                                                     <img class="rounded-circle img-sm border mt-5" 
-                                                src="{{ asset('storage/' . $avi->user->photo) }}" alt="AVATAR">
+                                                src="{{ asset('uploads/' . $avi->user->photo) }}" alt="AVATAR">
 
                                                     <span class="ml-3 mb-4">
                                                         <strong>
@@ -516,6 +604,7 @@
                                                      </p>
 
                                                      <p style="margin-left: 6em; color:#888;">{{$avi->created_at}}</p>
+                                                     <hr>
                                                     
                                                 @endforeach
 
@@ -558,7 +647,9 @@
                                             </div>
 
                                             <div class="form-group mt-4">
-                                                <button type="submit" class="btn btn-outline-primary">Poster &raquo;</button>
+                                                <button type="submit" class="btn btn-primary btn-block">Poster &raquo;</button>
+
+
                                             </div>
                                         </form>
                                 </div>

@@ -17,7 +17,8 @@ class CreateCommandesTable extends Migration
             $table->bigIncrements('id');
             $table->string('commande_id');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->text('produits');
+            $table->text('produits')->nullable();
+            $table->text('produitsAchat')->nullable();
             $table->string('name');
             $table->string('telephone');
             $table->string('email')->nullable();

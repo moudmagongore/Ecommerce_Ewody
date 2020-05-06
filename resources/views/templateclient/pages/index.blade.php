@@ -53,10 +53,10 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="{{asset('assets/templatefront/images/banners/bb2.jpg')}}" alt="First slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/slide1.jpg')}}" alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="{{asset('assets/templatefront/images/banners/bb3.jpg')}}" alt="Second slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/slide2.jpg')}}" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
                                         <img src="{{asset('assets/templatefront/images/banners/bb1.png')}}" alt="Third slide">
@@ -146,7 +146,7 @@
                         <figure class="card card-product-grid rounded shadow-sm"
                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                         <div class="img-wrap">
-                            <img src="{{ asset('storage/' . $phare->photo) }}">
+                            <img src="{{ asset('uploads/' . $phare->photo) }}">
                             <span class="topbar">
                                 <a href="{{ route('favoris.store', $phare->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                             </span>
@@ -238,7 +238,7 @@
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
-                                                <img src="{{ asset('storage/' . $sac->photo) }}">
+                                                <img src="{{ asset('uploads/' . $sac->photo) }}">
 
                                                 <span class="topbar">
                                                     <a href="{{ route('favoris.store', $sac->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
@@ -289,7 +289,7 @@
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
-                                                <img src="{{ asset('storage/' . $montre->photo) }}">
+                                                <img src="{{ asset('uploads/' . $montre->photo) }}">
 
                                                 <span class="topbar">
                                                     <a href="{{ route('favoris.store', $montre->id) }}" class="float-right"><i class="fa fa-heart"></i></a>

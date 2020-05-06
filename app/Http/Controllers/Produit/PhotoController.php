@@ -63,7 +63,17 @@ class PhotoController extends Controller
     {
        
     
-        $path = request('image')->store('avatars_sousImagesProduit', 'public');
+        /*$path = request('image')->store('avatars_sousImagesProduit', 'public');*/
+
+         //
+            $image = request('image');
+
+            $ext = $image->getclientOriginalExtension();
+            $filename = uniqid().'.'.$ext;
+
+            $path = $image->storeAs('avatars_sousImagesProduit', $filename, 'public_uploads');
+         //
+
 
           Image::create([
             'produit_id' => $request->produits,

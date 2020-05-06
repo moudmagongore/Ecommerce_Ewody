@@ -97,7 +97,7 @@
                                             <td>
                                                 <div>
                                                     <figure class="itemside">
-                                                        <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                                        <div class="aside"><img src="{{ asset('uploads/' . $produit[3]) }}" class="img-sm"></div>
                                                     </figure>
                                                 </div>
                                             </td>
@@ -142,7 +142,7 @@
                                             <td>
                                                 <div>
                                                     <figure class="itemside">
-                                                        <div class="aside"><img src="{{ asset('storage/' . $produit[3]) }}" class="img-sm"></div>
+                                                        <div class="aside"><img src="{{ asset('uploads/' . $produit[3]) }}" class="img-sm"></div>
                                                     </figure>
                                                 </div>
                                             </td>

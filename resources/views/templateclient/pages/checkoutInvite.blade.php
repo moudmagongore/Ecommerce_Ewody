@@ -16,7 +16,8 @@
 
                                      <div class="form-group">
                                         <div class="input-group">
-                                            <input id="myinputEmail" type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" name="email" placeholder="email">
+                                           <!--  id="myinputEmail" -->
+                                            <input id="" type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : '' }}" value="{{old('email')}}" name="email" placeholder="email">
 
                                             {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}
                                         </div>

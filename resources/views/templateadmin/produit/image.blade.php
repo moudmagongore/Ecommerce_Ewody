@@ -52,7 +52,7 @@
                                 <td>
 
                                     @foreach ($couleur->produits as $produit)
-                                         <img src="{{ asset('storage/' . $produit->pivot->images) }}" class="img-thumbnail">
+                                         <img src="{{ asset('uploads/' . $produit->pivot->images) }}" class="img-thumbnail">
                                     @endforeach
                                
                                 </td>
@@ -167,7 +167,7 @@
                                     @foreach ($images as $image)
                                     <div class="col-lg-4">
                                     <div class="pro-edt-img">
-                                    <img src="{{ asset('storage/' . $image->images) }}" alt="" style="height:100px; width:100px"/ class="img-thumbnail">
+                                    <img src="{{ asset('uploads/' . $image->images) }}" alt="" style="height:100px; width:100px"/ class="img-thumbnail">
                                     </div>
                                         <p>Pour le produit : <strong>{{$image->produit->nom}}</strong></p>
                                     </div>

@@ -72,7 +72,17 @@ class ProduitController extends Controller
             
             $images=$request->file('image');
 
-                $path = request('image')->store('avatars_produits', 'public');
+                /*$path = request('image')->store('avatars_produits', 'public');*/
+
+                 //
+                    
+
+                    $ext = $images->getclientOriginalExtension();
+                    $filename = uniqid().'.'.$ext;
+
+                    $path = $images->storeAs('avatars_produits', $filename, 'public_uploads');
+                 //
+
 
                 if($images->isValid()){
 
@@ -155,7 +165,17 @@ class ProduitController extends Controller
             
             $images=$request->file('image');
 
-                $path = request('image')->store('avatars_produits', 'public');
+                /*$path = request('image')->store('avatars_produits', 'public');*/
+
+                 //
+                    
+
+                    $ext = $images->getclientOriginalExtension();
+                    $filename = uniqid().'.'.$ext;
+
+                    $path = $images->storeAs('avatars_produits', $filename, 'public_uploads');
+                 //
+
 
                 if($images->isValid())
                 {

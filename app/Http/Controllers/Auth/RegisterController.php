@@ -245,11 +245,16 @@ class RegisterController extends Controller
         
         if($request->hasFile('image')){
             
-            $path = request('image')->store('avatars_profile', 'public');
-            /*$image = $request->image;
+           /* $path = request('image')->store('avatars_profile', 'public');*/
+
+            //
+            $image = request('image');
+
             $ext = $image->getclientOriginalExtension();
             $filename = uniqid().'.'.$ext;
-            $image->storeAs('public/pics',$filename)*/;
+
+            $path = $image->storeAs('avatars_profile', $filename, 'public_uploads');
+         //
            
             $user->photo = $path;
         }

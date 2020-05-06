@@ -32,7 +32,7 @@
                                         </p>
                                         <figure class="itemside  mb-3">
 
-                                            <div class="aside"><img src="{{ asset('storage/' . $fav->produit->photo) }}" class="border img-sm">
+                                            <div class="aside"><img src="{{ asset('uploads/' . $fav->produit->photo) }}" class="border img-sm">
                                             </div>
                                             <div class="">
                                                 <div>

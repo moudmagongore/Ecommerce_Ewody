@@ -48,7 +48,7 @@
                                     <td>{{$produit->prix_unitaire}}</td>
                                     <td>{{$produit->prix_maximum}}</td>
                                     <td>
-                                        <img src="{{ asset('storage/' . $produit->photo) }}" class="img-thumbnail">
+                                        <img src="{{ asset('uploads/' . $produit->photo) }}" class="img-thumbnail">
                                     </td>
 
                                     <td>

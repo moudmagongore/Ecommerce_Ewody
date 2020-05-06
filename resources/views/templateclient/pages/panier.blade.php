@@ -36,13 +36,13 @@
 
                                             @if ($produit->options->couleur)
                                                <figure class="itemside">
-                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->options->has('couleur') ? $produit->options->couleur : '') }}"></div>
+                                                    <div class="aside"><img src="{{ asset('uploads/' . $produit->options->has('couleur') ? $produit->options->couleur : '') }}"></div>
 
 
                                                 </figure>
                                             @else
                                                 <figure class="itemside">
-                                                    <div class="aside"><img src="{{ asset('storage/' . $produit->model->photo) }}"></div>
+                                                    <div class="aside"><img src="{{ asset('uploads/' . $produit->model->photo) }}"></div>
                                                 </figure>
                                             @endif
                                             </div>

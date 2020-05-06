@@ -23,7 +23,16 @@ class CouleursController extends Controller
             /*'photo' => $path*/
         ]);
 
-        $path = request('image')->store('avatars_couleur', 'public');
+        /*$path = request('image')->store('avatars_couleur', 'public');*/
+
+         //
+            $image = request('image');
+
+            $ext = $image->getclientOriginalExtension();
+            $filename = uniqid().'.'.$ext;
+
+            $path = $image->storeAs('avatars_couleur', $filename, 'public_uploads');
+         //
         
 
         $couleurs->produits()->attach(request('produit'), ['images' => $path]);
@@ -54,7 +63,16 @@ class CouleursController extends Controller
             'designation' => $request->designation,
          ]);
 
-         $path = request('image')->store('avatars_couleur', 'public');
+         /*$path = request('image')->store('avatars_couleur', 'public');*/
+
+          //
+            $image = request('image');
+
+            $ext = $image->getclientOriginalExtension();
+            $filename = uniqid().'.'.$ext;
+
+            $path = $image->storeAs('avatars_couleur', $filename, 'public_uploads');
+         //
 
          $couleurs->produits()->sync(request('produit'), ['photo' => $path]);
 

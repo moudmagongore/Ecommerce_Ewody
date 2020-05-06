@@ -28,7 +28,7 @@
                                 @csrf
                                 <div class="form-group d-flex align-items-center">
                                     <div class="mr-2">
-                                    <img src="{{ asset('storage/' . $user->photo) }}" class="img-sm rounded-circle border">
+                                    <img src="{{ asset('uploads/' . $user->photo) }}" class="img-sm rounded-circle border">
                                     </div>
                                     <div class="col-sm-3 custom-file">
                                         <input type="file" class="custom-file-input" id="customFile" name="image">

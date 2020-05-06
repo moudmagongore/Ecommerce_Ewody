@@ -54,7 +54,16 @@ class CategorieController extends Controller
             'designation_categorie' => 'required'
         ]);
 
-         $path = request('image')->store('avatars_categories', 'public');
+        /* $path = request('image')->store('avatars_categories', 'public');*/
+
+         //
+            $image = request('image');
+
+            $ext = $image->getclientOriginalExtension();
+            $filename = uniqid().'.'.$ext;
+
+            $path = $image->storeAs('avatars_categories', $filename, 'public_uploads');
+         //
 
         Categorie::create([
             'industrie_id' => $request->industrie,

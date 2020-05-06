@@ -24,7 +24,7 @@
                                 <figure class="icontext">
                                     <div class="icon">
                                         <img class="rounded-circle img-sm border" 
-                                        src="{{ asset('storage/' . $user->photo) }}">
+                                        src="{{ asset('uploads/' . $user->photo) }}">
                                     </div>
                                     <div class="text">
                                         <p class="mb-2">
@@ -85,7 +85,7 @@
 
 
                                         <figure class="itemside  mb-3">
-                                            <div class="aside"><img src="{{ asset('storage/' . $fav->produit->photo) }}" class="border img-sm"></div>
+                                            <div class="aside"><img src="{{ asset('uploads/' . $fav->produit->photo) }}" class="border img-sm"></div>
                                             <div class="">
                                                 <div>
                                                     <form action="{{ route('cart.store') }}" method="post">
