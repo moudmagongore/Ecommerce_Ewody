@@ -134,7 +134,7 @@ class CheckoutController extends Controller
                 }
                 else
                 {
-                     $produits['produit_' . $i][] = $produit->model->photo;
+                     $produits['produit_' . $i][] = 'http://localhost:8000/uploads/'.$produit->model->photo;
                 }
 
                 $produits['produit_' . $i][] = $produit->options->taille;
@@ -177,7 +177,16 @@ class CheckoutController extends Controller
                 $produit['produit_' . $i][] = $details['nom'];
                 $produit['produit_' . $i][] = $details['prix_unitaire'];
                 $produit['produit_' . $i][] = $details['quantite'];
-                $produit['produit_' . $i][] = $details['photo'];
+                if ($details['couleurs']) {
+                  $produit['produit_' . $i][] = $details['couleurs'];
+                }
+                else
+                {
+                  $produit['produit_' . $i][] = 'http://localhost:8000/uploads/'.$details['photo'];
+                }
+                
+                
+                $produit['produit_' . $i][] = $details['tailles'];
 
                 $i++;
             }

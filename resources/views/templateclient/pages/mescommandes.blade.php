@@ -80,7 +80,7 @@
                         <table class="table table-borderless table-shopping-cart">
                             <thead class="text-muted">
                                 <tr class="small text-uppercase">
-                                    <th scope="col">Prduit</th>
+                                    <th scope="col">Produit</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Taille</th>
                                     <th scope="col">Prix unitaire</th>
@@ -97,7 +97,7 @@
                                             <td>
                                                 <div>
                                                     <figure class="itemside">
-                                                        <div class="aside"><img src="{{ asset('uploads/' . $produit[3]) }}" class="img-sm"></div>
+                                                        <div class="aside"><img src="{{ asset($produit[3]) }}" class="img-sm"></div>
                                                     </figure>
                                                 </div>
                                             </td>
@@ -142,7 +142,7 @@
                                             <td>
                                                 <div>
                                                     <figure class="itemside">
-                                                        <div class="aside"><img src="{{ asset('uploads/' . $produit[3]) }}" class="img-sm"></div>
+                                                        <div class="aside"><img src="{{ asset($produit[3]) }}" class="img-sm"></div>
                                                     </figure>
                                                 </div>
                                             </td>
@@ -158,7 +158,7 @@
                                              <td class="prices">
                                                 <div>
                                                     <div class="price-wrap">
-                                                        <var class="price">taille</var>
+                                                        <var class="price">{{$produit[4]}}</var>
                                                     </div>
                                                 </div>
                                             </td>

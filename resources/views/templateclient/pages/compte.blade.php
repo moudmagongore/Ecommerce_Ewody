@@ -88,15 +88,9 @@
                                             <div class="aside"><img src="{{ asset('uploads/' . $fav->produit->photo) }}" class="border img-sm"></div>
                                             <div class="">
                                                 <div>
-                                                    <form action="{{ route('cart.store') }}" method="post">
-
-                                                        @csrf
-
-                                                        <input type="hidden" name="produits_id" value="{{$fav->produit->id}}">
-
-                                                        <button type="submit" class="btn btn-primary ml-1"> <i class="fa fa-shopping-cart"></i></button>
-                                                    </form>
-                                                    
+                                                   
+                                                    <a href="{{route('details', $fav->produit->id)}}" class="btn btn-primary ml-1"> <i class="fa fa-search-plus"></i></a>
+                                                   
                                                 </div>
                                                 <div class="mt-1 ml-1">
                                                     <form action=" {{ route('destroy.favoris', $fav->id) }} " method="POST" 

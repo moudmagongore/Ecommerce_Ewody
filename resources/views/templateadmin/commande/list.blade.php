@@ -256,7 +256,7 @@
                                             <td>
                                                  <!-- photo couleur -->
                                                 <figure class="itemside">
-                                                    <div class="aside"><img src="{{ asset('uploads/' . $produit[3] ? $produit[3] : '') }}" class="img-sm"></div>
+                                                    <div class="aside"><img src="{{ asset($produit[3]) }}" class="img-sm"></div>
                                                 </figure>
 
                                                 
@@ -290,7 +290,7 @@
                                             <td>
                                                 <!-- photo couleur -->
                                                 <figure class="itemside">
-                                                    <div class="aside"><img src="{{ asset('uploads/' . $produit[3]) ? $produit[3] : ''}}" class="img-sm"></div>
+                                                    <div class="aside"><img src="{{ asset($produit[3])}}" class="img-sm"></div>
                                                 </figure>
 
                                                 
@@ -304,7 +304,7 @@
                                             <!-- taille -->
                                             <td>
                                                
-                                                taille
+                                                {{$produit[4]}}
                                             </td>
                                             
                                             <!-- prixUnitaire -->

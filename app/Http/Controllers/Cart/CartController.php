@@ -95,7 +95,13 @@ class CartController extends Controller
          //On crée une session qui a pour nom 'cart' on le met dans $cart
         $cart = session()->get('cart');
 
-        /*$quantites = $request->quantites;*/
+        $quantites = $request->quantitesAchat;
+
+        $couleurs = $request->couleurAchat;
+
+        $tailles = $request->tailleAchat;
+
+       /* dd($quantites);*/
 
         // if cart is empty then this the first product
        /* if($cart) {*/
@@ -103,9 +109,11 @@ class CartController extends Controller
             $cart = [
                    $request->produits_id => [
                         "nom" => $produit->nom,
-                        "quantite" => 1,
+                        "quantite" => $quantites,
                         "prix_unitaire" => $produit->prix_unitaire,
-                        "photo" => $produit->photo
+                        "photo" => $produit->photo,
+                        "tailles" => $tailles,
+                        "couleurs" => $couleurs,
                     ]
             ];
 

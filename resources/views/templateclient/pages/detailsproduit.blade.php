@@ -139,7 +139,7 @@
 
                                             <div class="col-md-2">
                                                 <label> <strong>Quantité</strong></label>
-                                                 <input name="quantites" type="number" class="form-control qtte-val" name="qty" id="qty" data-id="" data-quantite="" value="1" min="1" style="width: 60px;" >
+                                                 <input name="quantites" type="number" class="form-control qtte-val" name="qty" id="qty" data-id="" data-quantite="" value="1" min="1" max="50" style="width: 60px;" >
                                             </div>  
 
 
@@ -220,21 +220,30 @@
 
                                                 <input type="hidden" name="produits_id" value="{{$produits->id}}">
 
+                                                <!-- Pour la quantité  -->
+                                                <input type="hidden" name="quantitesAchat" class="qtyAchat" value="1">
+
+                                                <!-- Pour la couleur  -->
+                                                <input type="hidden" name="couleurAchat" class="couleurAchat">
+
+                                                <!-- Pour la taille  -->
+                                                <input type="hidden" name="tailleAchat" class="tailleAchat">
+
 
 
                                                @guest
-                                                    <a href="" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal">
+                                                    <button type ="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal" id="buttonAchat">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
-                                                    </a>
+                                                    </button>
                                                @else
-                                                    <button type="text" class="btn btn-success mt-4 buttonAchat">
+                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
                                                     </button>
                                                @endguest
 
-            <!--  Modal pour modifier statut -->
+            <!--  Modal pour inviter -->
            <div class="modal fade" id="addAchatModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content">
@@ -248,23 +257,16 @@
                         </div>
 
                             <div class="text-center mt-4 h6 ">
-                             
 
-                               <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
-
-                                    @csrf
-
-                                    <input type="hidden" name="produits_id" value="{{$produits->id}}">
-
-                                   
-                                   
-                                        <button type="submit" class=" btn-success mt-4">
-                                        Voulez-vous achêtez en tant qu'invitez ?
-                                        </button>   
-                               </form>
-                               <hr>
+                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat">
+                                    
+                                    <span class="text">Voulez-vous achêter en tant qu'invité ? </span>
+                                    </button>   
+                               
+                                     <hr>
 
                                 <a href="{{ route('inscrire') }}"> <p>Ou créer un compte avant d'achêtez ?</p></a>
+
                             </div>
                            
                         <div class="modal-body">
@@ -275,7 +277,9 @@
                     </div>
                 </div>
             </div>
-           <!--  End Modal pour modifier statut -->
+           <!--  End Modal pour invité -->
+
+           
                                            </form>
                                         </div>
                                     </div>
@@ -687,6 +691,12 @@
         var sousImage = document.querySelectorAll('.sousImage');
         var sousImageCouleur = document.querySelectorAll('.sousImageCouleur');
 
+       //Pour selectionner la quantité du premier formulaire pour le second formulaire
+        $("#qty").bind('keyup mouseup', function () {
+            document.querySelector('.qtyAchat').value = this.value;
+        });
+
+
     
 
           @if (/*$couleurs->count() > 0 ||*/ $tailles->count() > 0)
@@ -695,31 +705,42 @@
                 @if ($couleurs->count() > 0)
                     document.querySelector('#couleurs').value = sousImageCouleur[0].src;
 
+                    /*Pour selectionner une couleur par defaut qui est l'img 0 pour le 2eme formulaire*/
+                    document.querySelector('.couleurAchat').value = sousImageCouleur[0].src;
+
                 @endif
 
+                /*Pour selectionner une quantite par defaut pour le second formulaire qui est 1*/
+                /*document.querySelector('.qtyAchat').value = 1;*/
+
+
+               
+
+
                
                
-                /*Pour rendre le button ajouter panier disabled tant qu'on ne click pas sur la taille*/
+                /*Pour rendre le button ajouter panier et acheter maintenant disabled tant qu'on ne click pas sur la taille*/
                var tailles = document.querySelector('#tailles');
                var buttonPanier = document.querySelector('#buttonPanier');
-              /* var buttonAchat = document.querySelector('.buttonAchat');
-               buttonAchat.disabled = true;
-               tailles.onchange = function(){
-                   if(tailles.value)
-                   {
-                       buutonAchat.disabled = false;
-                   }
-
-               }*/
-
+               var buttonAchat = document.querySelector('#buttonAchat');
+               
             
 
                buttonPanier.disabled = true;
+               buttonAchat.disabled = true;
+             
                tailles.onchange = function(){
                    if(tailles.value)
                    {
-                       buttonPanier.disabled = false;
+                        buttonPanier.disabled = false;
+                        buttonAchat.disabled = false;
+                       
                    }
+
+                   //Pour selectionner la taille du premier formulaire pour le second formulaire
+                    document.querySelector('.tailleAchat').value = this.value;
+
+
 
                }
 
@@ -747,6 +768,10 @@
 
              /*On recupere le name de l'input on remplace par l'image */
              document.querySelector('#couleurs').value = this.src;
+
+             //Pour selectionner la couleur du premier formulaire pour le second formulaire
+             document.querySelector('.couleurAchat').value = this.src;
+
         }
 
 
