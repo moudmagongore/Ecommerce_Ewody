@@ -297,8 +297,10 @@ Route::get('faq', 'Frontend\AccueilController@faq')->name('faq');
 
 
 
-/*Route pour le button acheter maintenant*/
+/*Route pour la recherche*/
+Route::get('search', 'Search\SearchController@search')->name('search');
+/*End Route pour la recherche*/
 
-/*End Route pour le button acheter maintenant*/
+
 
 

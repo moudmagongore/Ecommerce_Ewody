@@ -19,6 +19,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
+
     public function getLogin()
     {
          return view('templateclient.pages.login');
@@ -158,7 +160,7 @@ class LoginController extends Controller
     }
 
 
-    protected function redirectTo()
+   /* protected function redirectTo()
     {
         //Est ce que sa contient admin
         if(Auth::user()->privilleges()->pluck('designation_privillege')->contains('Administrateur'))
@@ -176,5 +178,11 @@ class LoginController extends Controller
             flashy('Vous êtes bien connecté.');
              return 'accueil.back';
         }
+    }*/
+
+
+    public function redirectTo()
+    {
+         return session('url.intended') ?? $this->redirectTo;
     }
 }

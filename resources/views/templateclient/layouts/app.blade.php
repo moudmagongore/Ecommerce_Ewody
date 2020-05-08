@@ -73,22 +73,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 my-3 my-sm-0">
-                        <form action="#" class="search">
-                            <div class="input-group w-100">
-                                <input type="search" class="form-control" style="width:55%;" placeholder="Rechercher un produit">
-                                <select class="custom-select" name="category_name">
-                                    <option value="">Tout type</option>
-                                    <option value="codex">Promo</option>
-                                    <option value="comments">Nouvautés</option>
-                                    <option value="content">Moins chers</option>
-                                </select>
-                                <div class="input-group-append search-wrapper">
-                                    <button class="btn btn-primary btn-submit-search" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                       @include('templateclient.layouts.search')
                     </div>
                     <div class="col-12 col-sm-3">
                         <div class="widgets-wrap float-md-right">

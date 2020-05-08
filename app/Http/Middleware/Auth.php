@@ -20,7 +20,7 @@ class Auth
            /* return redirect()->route('connexion')->withInput()->with('danger', 'Vous devez être connecté pour voir cette page.');*/
             
            flashy("Vous devez être connecté pour voir cette page."); 
-            return redirect()->route('connexion');
+            return redirect()->intended('connexion');
         }
 
         

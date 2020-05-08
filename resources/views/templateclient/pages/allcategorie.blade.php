@@ -23,22 +23,22 @@
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title"><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></h4>
-                                <ul class="list-menu">
+                                <!-- <ul class="list-menu">
                                     @foreach ($categorie->sous_categories as $sous_cat)
                                         <li><a href="">{{$sous_cat->designation_s_categorie}}</a></li>
                                     @endforeach
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
                 @endforeach    
                 
             </nav>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12 d-flex justify-content-center">
                     <a href="" class="btn btn-outline-primary rounded-pill text-blue">Plus de catégories</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </div>

@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="all-categories.html">Tous nos produits</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('produits') }}">Tous nos produits</a></li>
                         <li class="breadcrumb-item">Catégorie</li>
                         @foreach ($produits->categories as $categorie)
                            <li class="breadcrumb-item">{{$categorie->designation_categorie}}</li>
@@ -194,7 +194,7 @@
 
 
 
-                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier">
+                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" >
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="text">Ajouter au panier</span>
                                             </button>
@@ -728,6 +728,7 @@
 
                buttonPanier.disabled = true;
                buttonAchat.disabled = true;
+
              
                tailles.onchange = function(){
                    if(tailles.value)
@@ -736,6 +737,8 @@
                         buttonAchat.disabled = false;
                        
                    }
+
+                  
 
                    //Pour selectionner la taille du premier formulaire pour le second formulaire
                     document.querySelector('.tailleAchat').value = this.value;
