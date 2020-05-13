@@ -52,14 +52,14 @@
                                     <li data-target="#carousel1_indicator" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="{{asset('assets/templatefront/images/banners/slide1.jpg')}}" alt="First slide">
+                                    <div class="carousel-item active img-fluid" >
+                                        <img src="{{asset('assets/templatefront/images/banners/nouvel/flyers-with-all-products-4.gif')}}" alt="First slide">
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="{{asset('assets/templatefront/images/banners/slide2.jpg')}}" alt="Second slide">
+                                    <div class="carousel-item img-fluid">
+                                        <img src="{{asset('assets/templatefront/images/banners/nouvel/electronics-F4.gif')}}" alt="Second slide">
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="{{asset('assets/templatefront/images/banners/bb1.png')}}" alt="Third slide">
+                                    <div class="carousel-item img-fluid">
+                                        <img src="{{asset('assets/templatefront/images/banners/slide1.jpg')}}" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
@@ -82,7 +82,7 @@
             <!-- card.// -->
         </section>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="50">
                     <figure class="text-center">
@@ -93,7 +93,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="250">
                     <figure class="text-center">
@@ -104,7 +104,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="350">
                     <figure class="text-center">
@@ -115,7 +115,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="450">
                     <figure class="text-center">

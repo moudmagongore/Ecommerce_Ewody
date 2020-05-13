@@ -25,7 +25,7 @@ $(document).ready(function() {
     }
   });
 
-  // Smooth scrolling using jQuery easing
+  // Smooth scrolling using jQuery easing pour remonter avec un effet
   $(document).on('click', 'a.scroll-to-top', function(e) {
     var $anchor = $(this);
     $('html, body').stop().animate({
@@ -33,6 +33,22 @@ $(document).ready(function() {
     }, 1000, 'easeInOutExpo');
     e.preventDefault();
   });
+
+
+
+  /*Pour les buttons en bas*/
+  $(document).on('scroll', function() {
+    var scrollDistance = $(this).scrollTop();
+  
+      $('.scroll-to-top-button-en-bas').fadeIn();
+    
+  });
+  /*End Pour les buttons en bas*/
+
+
+
+
+
 
   const updateScrollPercentage = function() { 
     const heightOfWindow = window.innerHeight,

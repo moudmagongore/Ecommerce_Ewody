@@ -1,48 +1,4 @@
-.mobile-block {
-    display: none;
-}
 
-@media (min-width: 1040px) {
-    .container {
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-    }
-}
-
-@media (max-width: 1140px) {
-    .card-deal .col-heading {
-        min-width: 280px;
-        flex-basis: 280px;
-    }
-    .nav-home-aside {
-        width: 200px;
-    }
-}
-
-@media (max-width: 992px) {
-    /* small tablet devices */
-    .table-shopping-cart tr td:first-child {
-        width: 250px;
-    }
-    .table-shopping-cart .itemside .info {
-        padding: 0;
-    }
-    .table-shopping-cart .itemside .aside {
-        display: none;
-    }
-    .card-deal {
-        display: block;
-    }
-    .card-deal .col-heading {
-        min-width: 280px;
-    }
-    .slider-home-banner {
-        margin-bottom: 20px;
-    }
-    .slider-home-banner .carousel-item img {
-        max-height: 350px;
-    }
-}
 
 @media all and (max-width: 768px) {
     .nav-home-aside {
@@ -123,3 +79,155 @@
 }
 
 /*# sourceMappingURL=responsive.css.map */
+
+
+
+
+
+
+
+/* Mahmoud */
+/* Responsive */
+/* @media screen and (max-width: 900px) */
+@media all and (max-device-width: 480px){
+
+    /* Pour cacher les buttons en haut sauf panier*/
+    #buttonHomeHaut
+    {
+        display: none;
+    }
+    #buttonFavorisHaut
+    {
+        display: none;
+    }
+    #buttonMonCompteHaut
+    {
+        display: none;
+    }
+    /*End  Pour cacher les buttons en haut */
+
+    /* Cacher la fleche retour en haut */
+    .topNon
+    {
+        display: none;
+    }
+    /*End Cacher la fleche retour en haut */
+
+
+/*button en bas */    
+  #buttonEnBas 
+  {
+    /* Pour deplacer un boutton 452px*/
+    /* position: relative;
+    top: 600px; */
+    /* End Pour deplacer un boutton */
+    background-color: #fff;
+    text-align: center;
+   
+
+
+  }
+
+  #buttonPanierEnBas
+  {
+    display: none;
+    /* margin-left: 25px; */
+  } 
+
+  #buttonCategorieEnBas
+  {
+     margin-left: 25px;
+  }
+
+  #buttonMonCompteEnBas
+  {
+    margin-left: 30px;
+  }
+  
+  #buttonFavorisEnBas
+  {
+    margin-left: 35px;
+  }
+  
+  #buttonHomeEnBas
+  {
+    margin-left: 10px;
+  } 
+  /* End button en bas */
+
+
+
+
+/* Pour reduire la taille du logo */
+.brand-wrap .logo {
+    max-height: 40px !important;
+}
+/*End Pour reduire la taille du logo */
+
+/* Pour deplacer le button panier en haut a droite*/
+#buttonPanierHaut
+{
+    margin-top: -110px !important;
+    float: right;
+
+}
+/*End Pour deplacer le button panier en haut*/
+
+
+#logoresponsive
+{
+ 
+}
+
+
+  #rechercher
+  {
+   /* width: 200px !important;
+   margin-left: 120px !important;
+   margin-top: -60px !important; */
+
+  }
+
+
+
+
+
+/* Pour le button news letters
+   */  #buttonNew
+  {
+    margin-top: 15px;
+  }
+
+
+
+/* Details produit */
+ #buttonAchat
+ {
+
+ }
+/* End Details produit */
+
+
+
+/* panier */
+  /* .table-shopping-cart tr td{
+       font-size: 10px;
+   }
+  
+   .aside>img
+   {
+    width: 30px;
+   }
+  
+   .table-shopping-cart .qtte-val{
+    
+   }
+  
+   .section-content .cardpanier
+   {
+    width: 500px;
+   } */
+
+/* End panier */
+
+}

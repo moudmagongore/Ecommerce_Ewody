@@ -91,6 +91,7 @@ class CheckoutController extends Controller
                $total= $details['prix_unitaire'] * $details['quantite'];
            }
         }
+        
 
         //Pour ajouter une commade_id unique dans commande 
         $code    = 'ewody#'.rand(1, 1000);
@@ -157,7 +158,11 @@ class CheckoutController extends Controller
           /*On fait appel a une function pour decrementer le stock*/
                 $this->updateStock();
 
+         /* Pour vider le panier aprés achat*/
            Cart::destroy();
+          /* Pour vider le coupon aprés achat*/
+          request()->session()->forget('coupon');
+        
 
            Session::flash('success', 'Votre commande à été traitée avec succès.');
 
@@ -206,8 +211,12 @@ class CheckoutController extends Controller
           /*On fait appel a une function pour decrementer le stock*/
                 $this->updateStock();
 
+          /* Pour vider le panier aprés achat*/
            Cart::destroy();
+          /* Pour vider le coupon aprés achat*/
+          request()->session()->forget('coupon');
 
+          
            Session::flash('success', 'Votre commande à été traitée avec succès.');
 
            return view('templateclient.pages.merci');

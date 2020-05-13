@@ -75,12 +75,12 @@ class AccueilController extends Controller
 
 
 
-    /*public function allcategories(){
-        $produits = Produit::all();
+    public function allcategories(){
+       
         $categories = Categorie::all();
 
-        return view('templateclient.pages.allcategorie', compact('produits', 'categories'));
-    }*/
+        return view('templateclient.pages.allcategoriesansid', compact('categories'));
+    }
 
     public function allproduits(){
 

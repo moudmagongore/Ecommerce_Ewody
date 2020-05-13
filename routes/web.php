@@ -219,7 +219,9 @@ Route::get('detailcategorie', 'Frontend\AccueilController@get_detail_categorie')
 
 Route::get('details-industrie/{id}', 'Frontend\AccueilController@get_detail_industrie')->name('detailindustrie');
 
-/*Route::get('/categories', 'Frontend\AccueilController@allcategories')->name('categories');*/
+/*Route pour les categories sans passer l'id*/
+Route::get('/categories', 'Frontend\AccueilController@allcategories')->name('allcategories');
+/*End Route pour les categories sans passer l'id*/
 
 
 

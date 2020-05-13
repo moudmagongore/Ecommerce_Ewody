@@ -9,8 +9,8 @@
            <section class="section-content padding-y">
             <div class="container">
                 <div class="row">
-                    <main class="col-md-8">
-                        <div class="card">
+                    <main class="col-md-8 mb-4">
+                        <div class="cardpanier card">
                             <table class="table table-borderless table-shopping-cart">
                                 <thead class="text-muted">
                                     <tr class="small text-uppercase">
@@ -20,11 +20,11 @@
 
                                          <th scope="col">Tailles</th>
                                         
-                                        <th scope="col">Prix (GNF)</th>
+                                        <th scope="col">Prix</th>
 
-                                        <th scope="col-fluid">Quantié</th>
-                                         <th scope="col-fluid">Total</th>
-                                        <th scope="col" class="text-right"> </th>
+                                        <th scope="col">Quantié</th>
+                                         <th scope="col">Total</th>
+                                        <th scope="col" > Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,7 +79,7 @@
 
                                         <td>
 
-                                            <div>
+                                            <div >
 
                                                 <input type="number" class="form-control qtte-val" name="qty" id="qty" data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}" value="{{$produit->qty}}" min="1">
 

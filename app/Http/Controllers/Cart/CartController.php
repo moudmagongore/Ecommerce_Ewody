@@ -92,8 +92,6 @@ class CartController extends Controller
         //Pour recuperer l'id du produit concerné
          $produit = Produit::find($request->produits_id);
 
-         //On crée une session qui a pour nom 'cart' on le met dans $cart
-        $cart = session()->get('cart');
 
         $quantites = $request->quantitesAchat;
 
@@ -102,6 +100,10 @@ class CartController extends Controller
         $tailles = $request->tailleAchat;
 
        /* dd($quantites);*/
+
+
+         //On crée une session qui a pour nom 'cart' on le met dans $cart
+        $cart = session()->get('cart');
 
         // if cart is empty then this the first product
        /* if($cart) {*/
@@ -172,6 +174,7 @@ class CartController extends Controller
 
           flashy()->success('Le coupon est appliqué.');
           return back();
+
         
 
 

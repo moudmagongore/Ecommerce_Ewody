@@ -2289,3 +2289,61 @@ The Close Button
   }
 }
 End Css modal image */
+
+
+
+
+/* Sur tous types d'écran, quand la largeur
+ de la fenêtre est comprise
+ entre 500px et 1366px c a d un ordi on cache les button suivants*/
+@media all and (min-width: 500px) and (max-width: 1366px){
+
+     /* Pour cacher le buttons  home en haut */
+    #buttonHomeHaut
+    {
+        display: none;
+    }
+    /*End Pour cacher le buttons  home en haut */
+
+
+    /* Pour cacher le buttons  home en bas de l'ordi */
+     #buttonHomeEnBas
+    {
+        display: none;
+    }
+    /*End Pour cacher le buttons  home en bas de l'ordi */
+
+
+    /* Pour cacher le buttons  categories en bas de l'ordi */
+     #buttonCategorieEnBas
+    {
+        display: none;
+    }
+    /*End Pour cacher le buttons  categories en bas de l'ordi */
+
+    
+    /* Pour cacher le buttons  panier en bas de l'ordi */
+    #buttonPanierEnBas
+    {
+        display: none;
+    }
+    /*End  Pour cacher le buttons  panier en bas de l'ordi */
+
+
+    /* Pour cacher le buttons  favoris en bas de l'ordi */
+    #buttonFavorisEnBas
+    {
+        display: none;
+    }
+    /*End Pour cacher le buttons  favoris en bas de l'ordi */
+
+
+    /* Pour cacher le buttons  compte en bas de l'ordi */
+    #buttonMonCompteEnBas
+    {
+        display: none;
+    }
+    /*End  Pour cacher le buttons  compte en bas de l'ordi */
+
+    
+}
