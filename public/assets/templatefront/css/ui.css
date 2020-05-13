@@ -1635,7 +1635,7 @@ body {
 
 .slider-home-banner .carousel-item img {
     width: 100%;
-    height: 375px;
+   /*  height: 375px; */
     -o-object-fit: cover;
     object-fit: cover;
 }
@@ -2304,6 +2304,19 @@ End Css modal image */
         display: none;
     }
     /*End Pour cacher le buttons  home en haut */
+
+   
+
+
+
+    /* Pour cacher le panier mobile dans l'ordi */
+    #panierMobile
+    {
+        display: none;
+    }
+    /*End Pour cacher le panier mobile dans l'ordi */
+
+
 
 
     /* Pour cacher le buttons  home en bas de l'ordi */

@@ -16,7 +16,7 @@
                                     <tr class="small text-uppercase">
                                         <th scope="col">Produit</th>
                                        
-                                        <th scope="col">Nom</th>
+                                        <th scope="col" id="nomP">Nom</th>
 
                                          <th scope="col">Tailles</th>
                                         
@@ -24,13 +24,13 @@
 
                                         <th scope="col">Quantié</th>
                                          <th scope="col">Total</th>
-                                        <th scope="col" > Actions</th>
+                                        <th scope="col" id="actionsP" > Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     
                                     @foreach (Cart::content() as $produit)
-                                       <tr>
+                                       <tr id="contenueTableau">
                                         <td>
                                             <div>
 
@@ -124,13 +124,99 @@
                                 </tbody>
                             </table>
 
+
+                              <!--  Pour mobile-->
+                            <div class="row container" id="panierMobile">
+                             @foreach (Cart::content() as $produit)
+                               <aside class="col-md col-6 ">
+                                    <h6 class="title">Produit</h6>
+                                    <h6 class="title mt-5">Nom</h6>
+                                    <h6 class="title mt-5">Taille</h6>
+                                    <h6 class="title mt-5">Prix</h6>
+                                    <h6 class="title mt-5">Quantité</h6>
+                                    <h6 class="title mt-5 ">Total</h6>
+                                    <h6 class="title mt-5">Actions</h6>
+                                    <hr style="margin-top: 60px;">
+                                   
+                                    
+                                </aside>
+                               
+
+                                
+                                    <aside class="col-md col-6">
+                                       
+                                            @if ($produit->options->couleur)
+                                               
+                                            
+                                                <p class="title titleImg mt-5">
+                                                    <img src="{{ asset('uploads/' . $produit->options->has('couleur') ? $produit->options->couleur : '') }}">
+                                                </p>
+
+                                                
+                                            @else
+                                                
+                                                <p class="title titleImg  mt-5">
+                                                    <img src="{{ asset('uploads/' . $produit->model->photo) }}">
+                                                </p>
+                                                
+                                            @endif
+
+
+                                        <p class="title mt-3 ">
+                                            {{$produit->model->nom}}
+                                        </p>
+
+                                        <p class="title mt-5">
+                                            @if ($produit->options->taille)
+                                                <p>
+                                                    {{$produit->options->has('taille') ? $produit->options->taille : ''}}
+                                                </p>
+                                            @else
+                                                <p>Null</p>
+                                            @endif
+                                        </p>
+
+                                        <p class="title mt-5">
+                                            {{$produit->model->getprixminimum()}}
+                                        </p>
+
+                                        <p class="title mt-5">
+                                            <input type="number" class="form-control qtte-val" name="qty" id="qty" data-id="{{$produit->rowId}}" data-quantite="{{$produit->model->quantite}}" value="{{$produit->qty}}" min="1" style="width: 70px; margin-top: -18px;">
+                                        </p>
+
+                                        <p class="title" style="margin-top: 35px;">
+                                            {{getprixminimumhelpers($produit->subtotal())}}
+                                        </p>
+
+                                        <p class="title" style="margin-top: 35px;">
+                                            <form action="{{ route('cart.destroy', $produit->rowId) }}" method="post"
+                                                onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet produit ?')" 
+                                                    >
+
+                                                    @csrf
+
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-light"> <i class="fa fa-trash"></i></button>
+                                                    
+                                                </form>
+                                                 
+
+                                        </p>
+
+                                    </aside>
+                                @endforeach
+                                 <hr>
+                            </div>
+
+                           <!--End  Pour mobile-->
                             <div class="card-body border-top">
                                 @guest
                                     <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
                                 @else
                                     <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
                                 @endguest
-                                <a href="{{route('acceuil')}}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuer mes achats </a>
+                                <a href="{{route('acceuil')}}" id="buttonContinuerAchat" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuer mes achats </a>
 
 
     <!--  Modal pour modifier statut -->

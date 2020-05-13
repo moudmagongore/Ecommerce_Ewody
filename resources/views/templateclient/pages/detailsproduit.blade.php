@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('produits') }}">Tous nos produits</a></li>
+                        <li class="breadcrumb-item"><a >Tous nos produits</a></li>
                         <li class="breadcrumb-item">Catégorie</li>
                         @foreach ($produits->categories as $categorie)
                            <li class="breadcrumb-item">{{$categorie->designation_categorie}}</li>
@@ -143,7 +143,7 @@
                                             </div>  
 
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-3" id="tailleResponsive">
                                                     @if ($tailles->count() > 0)
                                                 <div>
                                                     <label><strong>Tailles : </strong></label>
@@ -163,9 +163,9 @@
                                             </div> 
                                             
                                             
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" id="couleurResponsive">
                                                 @if ($couleurs->count() > 0)
-                                                <div>
+                                                <div id="couleurResponsive">
                                                     <h6>Couleur : </h6>
                                                </div>
                                                <div class="thumbs-wrap mb-4">
@@ -311,7 +311,7 @@
             
         <div class="bor10 m-t-50 p-t-43 p-b-40">
                 <!-- Tab01 -->
-                <div class="tab01 ml-4">
+                <div class="tab01 ml-2">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item p-b-10">
@@ -328,10 +328,10 @@
                     </ul>
 
                     <!-- Tab panes -->
-                    <div class="tab-content p-t-43 ml-5" style="margin-top: 3em; margin-bottom: 3em;">
+                    <div class="tab-content p-t-43 " style="margin-top: 3em; margin-bottom: 3em;">
                         <!-- - -->
-                        <div class="tab-pane fade show active" id="description" role="tabpanel">
-                            <div class="how-pos2 p-lr-15-md">
+                        <div class="tab-pane fade show active " id="description" role="tabpanel">
+                            <div class="how-pos2 p-lr-15-md  text-center">
                                 <p class=" col-lg-8 text-justify">
                                     Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
                                 </p>
@@ -461,7 +461,7 @@
                                 </div>
 
 
-                                <div class="col-sm-10 col-md-6 col-lg-6 " style="margin-top: -5em;">
+                                <div class="col-sm-12 col-md-6 col-lg-6  text-center" style="margin-top: -5em;">
                                     <!-- Add review -->
                                         <form action="{{ route('store.avis', $produits->id) }}" method="POST" class="w-full" style="margin-top: 7em;">
 
