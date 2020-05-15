@@ -11,6 +11,7 @@
                 <div class="row">
                     <main class="col-md-8 mb-4">
                         <div class="cardpanier card">
+                            <!--Panier Pour ordi-->
                             <table class="table table-borderless table-shopping-cart">
                                 <thead class="text-muted">
                                     <tr class="small text-uppercase">
@@ -123,9 +124,13 @@
                                     
                                 </tbody>
                             </table>
+                            <!--End Panier Pour ordi-->
 
 
-                              <!--  Pour mobile-->
+
+
+
+                              <!--Panier Pour mobile-->
                             <div class="row container" id="panierMobile">
                              @foreach (Cart::content() as $produit)
                                <aside class="col-md col-6 ">
@@ -208,8 +213,9 @@
                                 @endforeach
                                  <hr>
                             </div>
+                           <!--End Panier Pour mobile-->
 
-                           <!--End  Pour mobile-->
+                           
                             <div class="card-body border-top">
                                 @guest
                                     <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a>

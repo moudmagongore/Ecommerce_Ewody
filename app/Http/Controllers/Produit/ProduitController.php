@@ -37,7 +37,10 @@ class ProduitController extends Controller
     public function create()
     {
         $produits = Produit::all();
-        $categories = Categorie::all();
+
+        /*Pour ne pas charger la categorie produit phare*/
+        $categories = Categorie::where('statut','=', 1)->get();
+        
         return view('templateadmin.produit.add', compact('produits', 'categories'));
     }
 

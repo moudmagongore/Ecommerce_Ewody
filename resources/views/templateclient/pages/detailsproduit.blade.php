@@ -297,8 +297,48 @@
                             </main>
                         </div>
                     </div>
+                    
+
+               <!--  Produit similaire -->
+                    <section class="section-name padding-y-sm mt-5">
+                        <div class="container">
+
+                           <header class="section-heading heading-line">
+                                <h4 class="title-section text-uppercase">Produits similaire</h4>
+                            </header>
+
+
+                            <div class="row owl-carousel owl-theme">
+                               
+                               @foreach ($produitSimilaire as $prod)
+                                   <div class="">
+                                        <figure class="card card-product-grid rounded shadow-sm"
+                                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('uploads/' . $prod->photo) }}">
+                                                <span class="topbar">
+                                                    <a href="{{ route('favoris.store', $prod->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                                </span>
+                                                <a class="btn-overlay" href="{{route('details', $prod->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                            </div>
+                                                <figcaption class="info-wrap border-top">
+                                                    <a href="{{route('details', $prod->id)}}" class="title">{{$prod->nom}}</a>
+                                                    <div class="price mt-2">{{$prod->getprixminimum()}}</div>
+                                                </figcaption>
+                                        </figure>
+                                    </div>
+                               @endforeach   
+                            </div>  
+                        </div>
+                    </section>
+               <!-- End produit similaire -->
+
+
+
+
+
                 </section>
-               
+
             </div>
         </section>
 

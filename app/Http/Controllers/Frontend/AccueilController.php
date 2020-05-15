@@ -124,6 +124,19 @@ class AccueilController extends Controller
         $produits = Produit::find($id);
 
 
+        /*Pour recuperer les produits similaires*/
+           /*on recupere la categorie du produit ou on se trouve
+           pluck('valeur'): pour specifier la valeur qu'on veut recuperer dans la collections*/
+        $produitCategory = $produits->categories->pluck('designation_categorie');
+
+        /*dans categories On recupere la categorie ou designation_categorie = a la categorie du produit ou on se trouve */
+        $categoriesRecuperere = Categorie::where('designation_categorie', $produitCategory)->firstOrFail();
+       
+        /*maintenant on affiche les produits qui ont la même categorie avec le produit ou on se trouve*/
+        $produitSimilaire = $categoriesRecuperere->produits; 
+        /*End Pour recuperer les produits similaires*/
+
+
         //Pour recuperer la couleur concernants un produit
         $couleurs = $produits->couleurs;
 
@@ -145,11 +158,10 @@ class AccueilController extends Controller
         $caracteristiques = $produits->caracteristiques;
     
 
-        //$prix = $produits->prix_unitaire;
+
+
         
-        //dd($caracteristiques);
-        
-        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles'/*, 'quantiteTaille'*/));
+        return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles', 'produitSimilaire'));
     }
 
     public function get_mescommandes_page(){

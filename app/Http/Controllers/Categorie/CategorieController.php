@@ -66,6 +66,7 @@ class CategorieController extends Controller
          //
 
         Categorie::create([
+            'statut' => 1,
             'industrie_id' => $request->industrie,
             'designation_categorie' => $request->designation_categorie,
             'image' => $path

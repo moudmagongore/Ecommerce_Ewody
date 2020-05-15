@@ -80,6 +80,9 @@
         left: 50%;
         width: 300px;
         margin-left: -150px;
+
+        margin-bottom: -19px !important;
+        z-index: 99999;
     }
 }
 </style>
@@ -89,7 +92,7 @@
         var template = $($("#flashy-template").html());
         $(".flashy").remove();
         template.find(".flashy__body").html(message).attr("href", link || "#").end()
-         .appendTo("body").hide().fadeIn(300).delay(5000).animate({
+         .appendTo("body").hide().fadeIn(300).delay(7000).animate({
             marginRight: "-100%"
         }, 300, "swing", function() {
             $(this).remove();

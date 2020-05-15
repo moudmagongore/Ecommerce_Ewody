@@ -9,7 +9,7 @@ use App\models\Industrie;
 
 class Categorie extends Model
 {
-   protected $fillable = ['designation_categorie', 'industrie_id', 'image'];
+   protected $fillable = ['statut', 'designation_categorie', 'industrie_id', 'image'];
 
    public function produits(){
       return $this->belongsToMany(Produit::class);

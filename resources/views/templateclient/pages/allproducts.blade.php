@@ -125,7 +125,7 @@
                                             <!-- End Favoris -->
 
 
-                                            <a class="btn-overlay" href="{{route('details', $produit->id)}}"><i class="fa fa-search-plus"></i>&nbsp;Détails</a>
+                                            <a class="btn-overlay" href="{{route('details', $produit)}}"><i class="fa fa-search-plus"></i>&nbsp;Détails</a>
                                         </div>
                                         <figcaption class="info-wrap border-top">
                                         <a href="{{route('details', $produit->id)}}" class="title mb-2">{{$produit->nom}}</a>
