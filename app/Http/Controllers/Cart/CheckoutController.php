@@ -135,7 +135,7 @@ class CheckoutController extends Controller
                 }
                 else
                 {
-                     $produits['produit_' . $i][] = 'http://nowody.com/uploads/'.$produit->model->photo;
+                     $produits['produit_' . $i][] = 'http://localhost:8000/uploads/'.$produit->model->photo;
                 }
 
                 $produits['produit_' . $i][] = $produit->options->taille;
@@ -187,7 +187,7 @@ class CheckoutController extends Controller
                 }
                 else
                 {
-                  $produit['produit_' . $i][] = 'http://nowody.com/uploads/'.$details['photo'];
+                  $produit['produit_' . $i][] = 'http://localhost:8000/uploads/'.$details['photo'];
                 }
                 
                 

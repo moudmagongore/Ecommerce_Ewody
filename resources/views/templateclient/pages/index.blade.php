@@ -153,7 +153,7 @@
             <div class="container">
 
                 <header class="section-heading clearfix">
-                    <a href="#" class="btn btn-outline-primary float-right">Voir tous</a>
+                    <a href="{{route('detailcategorie', ['category' => $categori->designation_categorie])}}" class="btn btn-outline-primary float-right">Voir tous</a>
                     <h3 class="section-title text-uppercase" style="font-size: 22px;">Produits populaires</h3>
                 </header><!-- sect-heading -->
 
@@ -236,7 +236,7 @@
             <div class="container">
                 <header class="section-heading heading-line">
                     <h4 class="title-section text-uppercase">
-                        <a href="#" title="Voir plus" data-toggle="tooltip" data-placement="right">Sacs</a>
+                        <a href="{{route('detailcategorie', ['category' => $categorys->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Sacs</a>
                     </h4>
                 </header>
 
@@ -247,7 +247,7 @@
                                 <article class="caption bottom">
                                     <h5 class="card-title">Sacs à portée de main</h5>
                                     <p>
-                                        <a href="{{route('produits')}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                        <a href="{{route('detailcategorie', ['category' => $categorys->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
                                     </p>
                                 </article>
                             </div>
@@ -287,7 +287,7 @@
             <div class="container">
                 <header class="section-heading heading-line">
                     <h4 class="title-section text-uppercase">
-                        <a href="{{route('produits')}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Montres</a>
+                        <a href="{{route('detailcategorie', ['category' => $category->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Montres</a>
                     </h4>
                 </header>
 
@@ -298,7 +298,7 @@
                                 <article class="caption bottom">
                                     <h5 class="card-title">Montres de luxe</h5>
                                     <p>
-                                        <a href="{{route('produits')}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                        <a href="{{route('detailcategorie', ['category' => $category->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
                                     </p>
                                 </article>
                             </div>

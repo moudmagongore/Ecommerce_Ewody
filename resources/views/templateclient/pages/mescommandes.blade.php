@@ -74,7 +74,7 @@
                                         </div>
 
                                         <h6 class="text-center h6 mb-0 ml-4 mt-4 mb-4">Produits commandés</h6><hr>
-
+            
 
 
                         <table class="table table-borderless table-shopping-cart">
@@ -184,6 +184,138 @@
                              
                             </tbody>
                         </table>
+
+
+
+
+
+                              <!--Panier Pour mobile-->
+                            <div class="container" id="panierMobile">
+                                    <aside>
+                                        @if ($commande->produits)
+                                            @foreach (unserialize($commande->produits) as $produit)
+
+                                            <div class="row">
+                                                <aside class="col-6 ">
+                                                <h6 class="title">Produit</h6>
+                                                <h6 class="title mt-5">Nom</h6>
+                                                <h6 class="title mt-5">Taille</h6>
+                                                <h6 class="title mt-5">PrixUnitaire</h6>
+                                                <h6 class="title mt-5">Quantité</h6>
+                                                
+                                                <hr style="margin-top: 40px;">
+                                               
+                                                
+                                            </aside>
+
+
+                                                <aside class="col-6">
+                                                    <p class="title titleImg mt-5">
+                                                    <img src="{{ asset($produit[3]) }}">
+                                                     </p>
+
+
+
+                                                 <p class="title mt-3 ">
+                                                    {{$produit[0]}}
+                                                </p>
+
+
+
+                                                <p class="title mt-5">
+                                                        
+                                                    @if ($produit[4])
+                                                        <p>
+                                                           {{$produit[4]}} 
+                                                        </p>
+                                                    @else
+                                                        <p>Null</p>
+                                                    @endif
+                                                   
+                                                </p>
+
+
+
+                                                <p class="title mt-5">
+                                                    {{getprixminimumhelpers($produit[1])}}
+                                                </p>
+
+
+                                                <p class="title" style="margin-top: 35px;">
+                                                    {{$produit[2]}}
+                                                </p>
+                                                </aside>
+                                            </div>
+
+                                            @endforeach
+                                        @else
+                                            @foreach (unserialize($commande->produitsAchat) as $produit)
+
+                                                <div class="row">
+                                                <aside class="col-6 ">
+                                                <h6 class="title">Produit</h6>
+                                                <h6 class="title mt-5">Nom</h6>
+                                                <h6 class="title mt-5">Taille</h6>
+                                                <h6 class="title mt-5">PrixUnitaire</h6>
+                                                <h6 class="title mt-5">Quantité</h6>
+                                                
+                                                <hr style="margin-top: 60px;">
+                                               
+                                                
+                                            </aside>
+
+
+                                                <aside class="col-6">
+                                                    <p class="title titleImg mt-5">
+                                                    <img src="{{ asset($produit[3]) }}">
+                                                     </p>
+
+
+
+                                                 <p class="title mt-3 ">
+                                                    {{$produit[0]}}
+                                                </p>
+
+
+
+                                                <p class="title mt-5">
+                                                        
+                                                    @if ($produit[4])
+                                                        <p>
+                                                           {{$produit[4]}} 
+                                                        </p>
+                                                    @else
+                                                        <p>Null</p>
+                                                    @endif
+                                                   
+                                                </p>
+
+
+
+                                                <p class="title mt-5">
+                                                    {{getprixminimumhelpers($produit[1])}}
+                                                </p>
+
+
+                                                <p class="title" style="margin-top: 35px;">
+                                                    {{$produit[2]}}
+                                                </p>
+                                                </aside>
+                                            </div>
+
+                                            @endforeach
+                                        @endif
+                                       
+                                    </aside>
+                                
+                            </div>
+                           <!--End Panier Pour mobile-->
+
+
+
+
+
+
 
 
                                     </figure>

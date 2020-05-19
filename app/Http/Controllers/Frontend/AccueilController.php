@@ -49,6 +49,7 @@ class AccueilController extends Controller
       $produits_phare = $categori->produits;
       $produits_montre =  $category->produits;
       $produits_sacs =  $categorys->produits;
+     
 
         return view('templateclient.pages.index', compact('categories', 
         'sous_categories', 
@@ -57,7 +58,10 @@ class AccueilController extends Controller
         'produits_montre',
         /*'images',*/
         'produits_sacs',
-        'produits_phare'
+        'produits_phare',
+        'categorys',
+        'category',
+        'categori'
         ));
     }
 
