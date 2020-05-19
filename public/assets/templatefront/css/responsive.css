@@ -205,33 +205,87 @@
 
 /* Pour reduire la taille du logo */
 .brand-wrap .logo {
-    max-height: 40px !important;
+    max-height: 30px !important;
+    margin-top: 10px !important;
 }
 /*End Pour reduire la taille du logo */
 
 /* Pour deplacer le button panier en haut a droite*/
 #buttonPanierHaut
 {
-    margin-top: -110px !important;
+    margin-top: -63px !important;
     float: right;
 
+}
+
+/* reduire la taille */
+#buttonPanierHaut .icon-sm {
+    width: 40px;
+    height: 40px;
+    
 }
 /*End Pour deplacer le button panier en haut*/
 
 
-#logoresponsive
-{
+/* Pour la recherche en haut */
+  #rechercher
+  {
+   width: auto !important;
+   margin-left: 85px !important;
+  margin-top: -48px !important;
+
+
+  }
+
  
+
+  .header-main .btn-submit-search {
+    position: relative;
+    left: -35px !important;
+    /* bottom: 0px;
+    border-radius: 0 3px -5px 0;
+      
+    border: none;
+    background: #00abc5;
+    color: #fff;
+    outline: none; */
+    width: 64% !important;
+}
+
+.header-main form input[type="search"] {
+    /* position: relative;
+    background: #fff;
+    
+   
+    border: 2px solid #00abc5;
+    border-right: none;
+    padding: 0 25px;
+    border-radius: 25px 0 0 25px;
+    outline: none; */
+    width: 52% !important;
+     height: 37px !important;
+}
+
+.header-main form select {
+    position: relative;
+    left: -30px !important;
+    width: 19%;
+    height: 37px !important;
+    border: 2px solid #00abc5;
+    border-left: 1px solid lightgray;
+    outline: none;
+}
+
+/* Pour reduitre l'espacement entre l'image principale et la haut */
+.widgets-wrap
+{
+    margin-bottom: -22px !important;
 }
 
 
-  #rechercher
-  {
-   /* width: 200px !important;
-   margin-left: 120px !important;
-   margin-top: -60px !important; */
+/*End  Pour la recherche en haut */
 
-  }
+
 
 
 
@@ -260,6 +314,11 @@
  #tailles
  {
    width: 150px;
+ }
+
+ #myImg
+ {
+    
  }
 /* End Details produit */
 
@@ -296,5 +355,49 @@
     margin-top: -10px !important;
   }
 /* End panier */
+
+
+
+
+
+/* Pour cacher ce que j'aime en haut */
+.industrieResponsive
+{
+    display: none;
+}
+
+.navbar-toggler 
+{
+    display: none;
+}
+.navbar
+{
+    display: none;
+}
+
+#cardImagePrincipale
+{
+    /* margin-top: -18px; */
+    margin-top: -30px;
+    margin-bottom: -20px;
+}
+/*End Pour cacher ce que j'aime en haut */
+
+
+
+/* Pour le message info */
+ .sliderInfo
+{
+   margin-left: -90px;
+    margin-top: -55px
+} 
+.sliderInfo>strong
+{
+    display: none;
+}
+
+/* Pour le message info */
+
+
 
 }

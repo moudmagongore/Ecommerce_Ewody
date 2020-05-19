@@ -156,16 +156,16 @@ class RegisterController extends Controller
             return redirect()->route('listuser');
         }
 
-        /*$data = $this->validate($request, [
-            'name' => 'required|min:2',
+        $data = $this->validate($request, [
+            /*'name' => 'required|min:2',
             'nom' => 'required|min:2',
             'prenom' => 'required|min:2',
             'telephone' => 'required|min:2',
-            'email' => 'required|min:2',
-            'password' => 'required|min:2',
-            'adresse' => 'required|min:2'
+            'email' => 'required|min:2',*/
+            /*'password' => 'confirmed|nullable',*/
+            /*'adresse' => 'required|min:2'*/
             
-        ]);*/
+        ]);
 
         $users = User::findOrFail($id);
 
@@ -179,7 +179,7 @@ class RegisterController extends Controller
             'prenom' => $request->prenom,
             'telephone' => $request->telephone,
             'email' => $request->email,
-            'password' => Hash::make($request->motdepass),
+            /*'password' => Hash::make($request->password),*/
             'adresse' => $request->adresse
         ]);
 

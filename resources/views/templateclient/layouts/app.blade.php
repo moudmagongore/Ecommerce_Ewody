@@ -187,6 +187,10 @@
                 </div>
             </div>
         </section>
+
+        
+
+
         <nav class="navbar navbar-main navbar-expand-lg border-bottom">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav5" aria-expanded="false" aria-label="Toggle navigation">
@@ -260,9 +264,9 @@
         @yield('content')
     </div>
 
-    <footer class="section-footer border-top" style="background: #005d90; color: #ddd">
+    <footer class="section-footer border-top" style="background: #005d90; color: #ddd; ">
         <div class="container">
-            <section class="footer-top  padding-y">
+            <section class="footer-top  padding-y mt-4">
                 <div class="row">
                     <aside class="col-md-4 col-12">
                         <article class="mr-md-4">
@@ -337,7 +341,7 @@
 
 
      <div class="col-12 col-sm-3 scroll-to-top-button-en-bas" id="buttonEnBas" style=" z-index:100; position: fixed; bottom:-10px; ">
-        <div class="widgets-wrap float-md-right">
+        <div class=" float-md-right">
             
             
           
@@ -492,13 +496,13 @@
             margin: 10,
             navText: ['<i class="fa fa-chevron-left">','<i class="fa fa-chevron-right">'],
             nav: true,
-            dots: false,
-            center: true,
+            dots: true,
+            center: false,
             autoplay: true,
             autoplayHoverPause: true,
             responsive:{
                 0:{
-                    items: 1,
+                    items: 2,
                 },
                 600:{
                     items: 3

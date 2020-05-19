@@ -1,13 +1,32 @@
 @extends('templateclient.layouts.app', ['title' => 'Accueil'])
     @section('content')
+
+
+           <!--  Pour le slide info -->
+                <div class="sliderInfo">
+                    <strong>Info :</strong>
+                    <div class="slideInfo">
+                        <marquee class="info">
+                            <span class="info1"></span>Appelez pour passer votre commande <strong> +224 624 66 48 83</strong>.
+                            <em></em> Avec un prix raisonnable, une livraison rapide et fiable.
+                            
+                        </marquee>
+                    </div>
+                </div>
+            <!--End  Pour le slide info -->
+
+
+
+
+
         
     
-        <section class="section-main padding-y">
-            <main class="card">
+        <section class="section-main padding-y" id="cardImagePrincipale">
+            <main class="card" >
                 <div class="card-body rounded">
 
                     <div class="row">
-                        <aside class="col-md-3">
+                        <aside class="col-md-3 industrieResponsive">
                             <h6 class="text-uppercase">
                                 <i class="fa fa-list-alt"></i>
                                Industries
@@ -81,8 +100,8 @@
             </main>
             <!-- card.// -->
         </section>
-        <div class="row">
-            <div class="col-md-3 mt-4">
+        <div class="row" style="margin-bottom: 35px;">
+            <div class="col-md-3 col-sm-6 col-6 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="50">
                     <figure class="text-center">
@@ -93,7 +112,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 mt-4">
+            <div class="col-md-3 col-sm-6 col-6 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="250">
                     <figure class="text-center">
@@ -104,7 +123,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 mt-4">
+            <div class="col-md-3 col-sm-6 col-6 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="350">
                     <figure class="text-center">
@@ -115,7 +134,7 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 mt-4">
+            <div class="col-md-3 col-sm-6 col-6 mt-4">
                 <article class="card card-body shadow-sm rounded" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="450">
                     <figure class="text-center">
@@ -135,18 +154,20 @@
 
                 <header class="section-heading clearfix">
                     <a href="#" class="btn btn-outline-primary float-right">Voir tous</a>
-                    <h3 class="section-title text-uppercase" style="font-size: 22px;">Produits phares</h3>
+                    <h3 class="section-title text-uppercase" style="font-size: 22px;">Produits populaires</h3>
                 </header><!-- sect-heading -->
 
 
-                <div class="row owl-carousel owl-theme">
+                <div class=" owl-carousel owl-theme">
                    
                    @foreach ($produits_phare as $phare)
                        <div class="">
                         <figure class="card card-product-grid rounded shadow-sm"
                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                         <div class="img-wrap">
-                            <img src="{{ asset('uploads/' . $phare->photo) }}">
+                            <a href="{{route('details', $phare->id)}}">
+                                <img src="{{ asset('uploads/' . $phare->photo) }}">
+                            </a>
                             <span class="topbar">
                                 <a href="{{ route('favoris.store', $phare->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                             </span>
@@ -234,11 +255,13 @@
                         <div class="col-md-9">
                             <div class="row  pl-sm-4">
                                 @foreach ($produits_sacs as $sac)
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 col-6">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
-                                                <img src="{{ asset('uploads/' . $sac->photo) }}">
+                                                <a href="{{route('details', $sac->id)}}">
+                                                    <img src="{{ asset('uploads/' . $sac->photo) }}">
+                                                </a>
 
                                                 <span class="topbar">
                                                     <a href="{{ route('favoris.store', $sac->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
@@ -285,11 +308,14 @@
                                 @foreach ($produits_montre as $montre)
                                     
                                 
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 col-6">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
-                                                <img src="{{ asset('uploads/' . $montre->photo) }}">
+                                                <a href="{{route('details', $montre->id)}}">
+
+                                                    <img src="{{ asset('uploads/' . $montre->photo) }}">
+                                                </a>
 
                                                 <span class="topbar">
                                                     <a href="{{ route('favoris.store', $montre->id) }}" class="float-right"><i class="fa fa-heart"></i></a>

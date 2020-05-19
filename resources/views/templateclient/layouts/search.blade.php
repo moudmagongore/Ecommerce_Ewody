@@ -1,9 +1,9 @@
  <form action="{{ route('search') }}" class="search">
     <div class="input-group w-100" id="rechercher">
-        <input type="search" class="form-control" style="width:32%;" placeholder="Rechercher un produit" name="search" value="">
+        <input type="search" class="form-control" style="width:32%;" placeholder="Rechercher" name="search" value="">
 
         <select class="custom-select" name="categorie">
-            <option disabled="" selected >Catégorie</option>
+           <option disabled="" selected ></option>
             @foreach ($categories as $categorie)
                 <option value="{{$categorie->designation_categorie}}">{{$categorie->designation_categorie}}</option>
             @endforeach

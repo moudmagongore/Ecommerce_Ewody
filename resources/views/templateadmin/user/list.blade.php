@@ -164,7 +164,7 @@
                                                 <input name="nom" type="text" value="{{$user->nom}}" class="form-control" placeholder="Nom">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="prenom">Prénoms</label>
+                                                <label for="prenom">Prénom</label>
                                                 <input name="prenom" type="text" value="{{$user->prenom}}" class="form-control" placeholder="Prénoms">
                                             </div>
                                         </div>
@@ -192,17 +192,24 @@
                                             </div>
                                         </div>    
                                             
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="motdepass">Mot de passe</label>
-                                                    <input name="motdepass" type="password"  class="form-control" placeholder="Mot de passe">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="motdepassconfirm">Confirm</label>
-                                                    <input name="motdepassconfirm" type="password"  class="form-control" placeholder="Confirmation">
-                                                </div>
-                                            </div>
-
+                                           <!--  <div class="row">
+                                               <div class="form-group col-md-6 ">
+                                                   <label for="password">Mot de passe</label>
+                                                   <input name="password" type="password"  class="form-control" placeholder="Mot de passe" value="{{old('password')}}">
+                                           
+                                                  
+                                               </div>
+                                           
+                                           
+                                           
+                                               <div class="form-group col-md-6">
+                                                   <label for="password_confirmation">Confirmation</label>
+                                                   <input name="password_confirmation" type="password"  class="form-control" placeholder="Confirmation">
+                                           
+                                                   
+                                               </div>
+                                           </div>
+                                            -->
 
                                  <!-- Pour recuperer les privilleges -->
                     @foreach($privilleges as $privillege)

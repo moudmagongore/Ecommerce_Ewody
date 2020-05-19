@@ -7,8 +7,8 @@
 @section('content')
 
 
-        <section class="section-name padding-y-sm">
-            <div class="card mb-3">
+        <section class="section-name padding-y-sm mb-4">
+            <div class="card mb-5" style="margin-top: -15px;">
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
                         <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
@@ -39,7 +39,7 @@
 
                                             
                                      
-                                            <a><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('uploads/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}" width="300px;"></a>
+                                            <a class="zomImg"><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('uploads/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}"></a>
                                      
                                         </div>
                                     </div>
