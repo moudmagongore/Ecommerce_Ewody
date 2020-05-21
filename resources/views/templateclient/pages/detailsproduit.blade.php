@@ -315,7 +315,9 @@
                                         <figure class="card card-product-grid rounded shadow-sm"
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
-                                                <img src="{{ asset('uploads/' . $prod->photo) }}">
+                                               <a href="{{route('details', $prod->id)}}">
+                                                    <img src="{{ asset('uploads/' . $prod->photo) }}">
+                                               </a>
                                                 <span class="topbar">
                                                     <a href="{{ route('favoris.store', $prod->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
                                                 </span>

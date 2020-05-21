@@ -166,6 +166,7 @@
                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                         <div class="img-wrap">
                             <a href="{{route('details', $phare->id)}}">
+                                <span class="badge badge-success"> NEW </span>
                                 <img src="{{ asset('uploads/' . $phare->photo) }}">
                             </a>
                             <span class="topbar">
@@ -259,6 +260,7 @@
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
+                                                <span class="badge badge-success"> NEW </span>
                                                 <a href="{{route('details', $sac->id)}}">
                                                     <img src="{{ asset('uploads/' . $sac->photo) }}">
                                                 </a>
@@ -314,6 +316,8 @@
                                             <div class="img-wrap">
                                                 <a href="{{route('details', $montre->id)}}">
 
+                                                    <span class="badge badge-success"> NEW </span>
+
                                                     <img src="{{ asset('uploads/' . $montre->photo) }}">
                                                 </a>
 
@@ -350,6 +354,7 @@
                         <figure class="card card-product-grid rounded shadow-sm" 
                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                             <div class="img-wrap">
+                                <span class="badge badge-success"> NEW </span>
                                 <img src="{{ asset('assets/templatefront/images/items/1.jpg') }}">
                                 <span class="topbar">
                                     <a href="" class="float-right"><i class="fa fa-heart"></i></a>

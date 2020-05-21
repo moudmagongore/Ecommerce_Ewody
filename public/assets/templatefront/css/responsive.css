@@ -181,23 +181,39 @@
 
   #buttonCategorieEnBas
   {
-     margin-left: 25px;
+     margin-left: 27px;
   }
 
   #buttonMonCompteEnBas
   {
-    margin-left: 30px;
+    margin-left: 32px;
   }
   
   #buttonFavorisEnBas
   {
-    margin-left: 35px;
+    margin-left: 37px;
   }
   
   #buttonHomeEnBas
   {
-    margin-left: 10px;
+    margin-left: 12px;
   } 
+
+  /* reduire la taille des icon panier home ...*/
+  .icon-sm {
+    width: 35px;
+    height: 35px;
+    line-height: 36px !important;   
+  }
+  /*End reduire la taille des icon panier home ...*/
+
+  /* Pour reduire la notification panier et favoris */
+  .notify
+  {
+    padding: 2.25px 3.6px !important;
+  }
+  /*End Pour reduire la notification panier et favoris */
+
   /* End button en bas */
 
 
@@ -219,11 +235,11 @@
 }
 
 /* reduire la taille */
-#buttonPanierHaut .icon-sm {
+/* #buttonPanierHaut .icon-sm {
     width: 40px;
     height: 40px;
     
-}
+} */
 /*End Pour deplacer le button panier en haut*/
 
 
@@ -241,7 +257,7 @@
 
   .header-main .btn-submit-search {
     position: relative;
-    left: -35px !important;
+    left: -30px !important;
     /* bottom: 0px;
     border-radius: 0 3px -5px 0;
       
@@ -318,7 +334,7 @@
 
  #myImg
  {
-    
+
  }
 /* End Details produit */
 
@@ -355,6 +371,23 @@
     margin-top: -10px !important;
   }
 /* End panier */
+
+
+
+/* Pour la hauteur du produit */
+.card-product-grid
+{
+    height: 320px;
+    
+}
+/* End pour la hauteur du produit */
+
+
+/* icon facebook et autre nivo footer */
+.icon-responsives {
+  padding-bottom: 35px !important;
+}
+/*End icon facebook et autre nivo footer */
 
 
 
@@ -397,7 +430,5 @@
 }
 
 /* Pour le message info */
-
-
 
 }

@@ -10,6 +10,7 @@
     
 
      @yield('extra-meta')
+     @yield('css-register')
 
     <title>E-wody | {{ $title or ' '}}</title>
 
@@ -266,7 +267,7 @@
 
     <footer class="section-footer border-top" style="background: #005d90; color: #ddd; ">
         <div class="container">
-            <section class="footer-top  padding-y mt-4">
+            <section class="footer-top icon-responsives  padding-y mt-4">
                 <div class="row">
                     <aside class="col-md-4 col-12">
                         <article class="mr-md-4">
@@ -486,9 +487,13 @@
     <script src="{{asset('assets/templatefront/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
     <!-- custom javascript -->
     <script src="{{asset('assets/templatefront/js/script.js')}}" type="text/javascript"></script>
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery-sticky@1.0.4/jquery.sticky.min.js"></script>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+
         $("#sticker-header").sticky({topSpacing:0});
         AOS.init({once:true});
         $(".owl-carousel").owlCarousel({
@@ -534,7 +539,7 @@
     </script>
 
 
-
+<!-- Pour l'oeil coté mot de passe -->
 <script>
     $("#sticker-header").sticky({topSpacing:0});
     AOS.init({once:true});
@@ -548,6 +553,7 @@
         }
     });
 </script>
+<!-- End -->
 
 <script>
     $("#sticker-header").sticky({topSpacing:0});

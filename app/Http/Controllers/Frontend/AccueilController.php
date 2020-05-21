@@ -189,7 +189,7 @@ class AccueilController extends Controller
    
     //ajout user client
     public function inscription(){
-        return view('templateclient.pages.inscription');
+        return view('templateclient.pages.inscriptions');
     }
 
     public function storeInscription(Request $request)
@@ -197,13 +197,13 @@ class AccueilController extends Controller
         $this->validate($request, [
             'name' => 'required|min:2',
             'email' => 'required|min:2',
-            'motdepass' => 'required|min:2'
+            'password' => 'required|min:2|confirmed'
         ]);
 
         $users = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->motdepass),
+            'password' => Hash::make($request->password),
            
         ]);
 

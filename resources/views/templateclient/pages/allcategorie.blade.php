@@ -19,7 +19,9 @@
                     <div class="col-md-3">
                         <div class="card card-category"  data-aos="zoom-in"  data-aos-duration="700">
                             <div class="img-wrap">
-                                <img src="{{ asset('uploads/' .$categorie->image) }}">
+                               <a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">
+                                    <img src="{{ asset('uploads/' .$categorie->image) }}">
+                               </a>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title"><a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">{{$categorie->designation_categorie}}</a></h4>

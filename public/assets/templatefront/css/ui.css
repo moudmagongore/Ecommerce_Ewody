@@ -17,6 +17,8 @@ html {
 .btn-warning{
     background-color: #ec971f !important;
     border-color: #ec971f !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px;
 }
 
 .btn-primary{
@@ -1099,6 +1101,8 @@ a[class*='card']:hover .title {
 
 .card-product-grid {
     margin-bottom: 20px;
+    height: 370px;
+    
 }
 
 .card-product-grid .img-wrap {
@@ -2428,5 +2432,8 @@ em
     }
     /*End  Pour cacher le buttons  compte en bas de l'ordi */
 
-    
+    #bareResponsive
+    {
+        display: none;
+    }
 }

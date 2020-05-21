@@ -76,7 +76,7 @@
                                         <h6 class="text-center h6 mb-0 ml-4 mt-4 mb-4">Produits commandés</h6><hr>
             
 
-
+                         <!--commande Pour ordinateur-->
                         <table class="table table-borderless table-shopping-cart">
                             <thead class="text-muted">
                                 <tr class="small text-uppercase">
@@ -184,12 +184,13 @@
                              
                             </tbody>
                         </table>
+                         <!--End commande Pour ordinateur-->
 
 
 
 
 
-                              <!--Panier Pour mobile-->
+                              <!--commande Pour mobile-->
                             <div class="container" id="panierMobile">
                                     <aside>
                                         @if ($commande->produits)
@@ -309,7 +310,7 @@
                                     </aside>
                                 
                             </div>
-                           <!--End Panier Pour mobile-->
+                           <!--End commande Pour mobile-->
 
 
 

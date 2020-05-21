@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <ol class="breadcrumb float-left">
                             <li class="breadcrumb-item"><a href="{{route('acceuil')}}">Accueil</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('produits')}}">Tous nos produits</a></li>                            
+                            <li class="breadcrumb-item"><a>Tous nos produits</a></li>                            
                         </ol>
                     </div>
                 </div>
@@ -114,7 +114,9 @@
                                         <div class="img-wrap">
                                             <span class="badge badge-success"> NEW </span>
                                             
-                                                <img src="{{ asset('uploads/' . $produit->photo) }}">
+                                                <a href="{{route('details', $produit)}}">
+                                                    <img src="{{ asset('uploads/' . $produit->photo) }}">
+                                                </a>
                                             
                                            <!-- Favoris -->
                                             <span class="topbar">
@@ -151,12 +153,12 @@
                             @endforeach
                             
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-12 d-flex justify-content-center">
                                 <a href="" class="btn btn-outline-primary rounded-pill text-blue">Plus de produits</a>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div> -->
+                        <!-- <div class="row">
                             <div class="col mt-4">
                                 <div class="box text-center">
                                     <p>Did you find what you were looking for ?</p>
@@ -164,7 +166,7 @@
                                     <a href="#" class="btn btn-light">No</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </main>
                 </div>
             </div>

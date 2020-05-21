@@ -3,11 +3,23 @@
 @section('content')
 
     <section class="section-main padding-y">
+
+            <div class="card mb-3" id="bareResponsive">
+                <div class="card-body">
+                    <ol class="breadcrumb float-left">
+                        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="all-categories.html">categorie</a></li>
+                         <li class="breadcrumb-item"><a href="all-categories.html"></a></li>
+                    </ol>
+                </div>
+            </div>
+
+
             <main class="card">
                 <div class="card-body rounded">
 
                     <div class="row">
-                        <aside class="col-md-3">
+                        <aside class="col-md-3 industrieResponsive">
                             <h6 class="text-uppercase">
                                 <i class="fa fa-list-alt"></i>
                                 Industries
@@ -30,12 +42,14 @@
                         <div class="col-md-9 row">
                             
                             @foreach ($produits as $produit)
-                                <div class="col-md-3">
+                                <div class="col-md-3 ">
                                     <figure class="card card-product-grid"  data-aos="zoom-in"  data-aos-duration="700">
                                         <div class="img-wrap">
                                             <span class="badge badge-success"> NEW </span>
                                             
-                                                <img src="{{ asset('uploads/' . $produit->photo)}}">
+                                               <a href="{{route('details', $produit->id)}}">
+                                                    <img src="{{ asset('uploads/' . $produit->photo)}}">
+                                               </a>
                                             
                                            <!-- favoris -->
                                             <span class="topbar">

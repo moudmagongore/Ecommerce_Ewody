@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     public function getLogin()
     {
-         return view('templateclient.pages.login');
+         return view('templateclient.pages.logins');
     }
 
     public function postLogin()
