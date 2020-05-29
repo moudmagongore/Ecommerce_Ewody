@@ -539,7 +539,7 @@
     </script>
 
 
-<!-- Pour l'oeil coté mot de passe -->
+<!-- Pour l'oeil coté mot de passe y'a importation de la librairy tout en haut -->
 <script>
     $("#sticker-header").sticky({topSpacing:0});
     AOS.init({once:true});

@@ -64,7 +64,7 @@
                                             {{$produit->options->has('taille') ? $produit->options->taille : ''}}
                                             </td>
                                         @else
-                                            <td>Null</td>
+                                            <td>Vide</td>
                                         @endif
                                         
 

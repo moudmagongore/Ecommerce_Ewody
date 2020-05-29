@@ -110,6 +110,7 @@ class CartController extends Controller
 
             $cart = [
                    $request->produits_id => [
+                        "id" => $produit->id,
                         "nom" => $produit->nom,
                         "quantite" => $quantites,
                         "prix_unitaire" => $produit->prix_unitaire,

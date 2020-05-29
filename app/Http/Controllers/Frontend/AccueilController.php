@@ -155,7 +155,7 @@ class AccueilController extends Controller
 
 
         //Rendre la quantite disponible
-        $quantites = $produits->quantite === 0 ? 'Indisponible' : 'Disponible';
+        $quantites = $produits->quantite === 0 ? 'Rupture En stock' : 'Disponible';
 
         $images = Image::where('produit_id', $id)->get();
 

@@ -13,6 +13,7 @@ class CouleursController extends Controller
     	 request()->validate([
 
             'designation' => ['required'],
+            'quantites' => ['required'],
             
         ]);
 
@@ -33,9 +34,11 @@ class CouleursController extends Controller
 
             $path = $image->storeAs('avatars_couleur', $filename, 'public_uploads');
          //
+
+         
         
 
-        $couleurs->produits()->attach(request('produit'), ['images' => $path]);
+        $couleurs->produits()->attach(request('produit'), ['images' => 'http://localhost:8000/uploads/' .$path, 'quantite' => $request->quantites]);
 
         flashy('La couleur a bien été ajouté.');
         return back();

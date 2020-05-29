@@ -13,17 +13,25 @@ class TaillesController extends Controller
     	request()->validate([
 
     		'designation' => ['required'],
+             'quantites' => ['required']
     	]);
 
-    	$data = $request->all();
+    	/*$data = $request->all();
 
-    	$tailles = Taille::create($data);
+        $tailles = Taille::create($data);*/
 
-    	$tailles->produits()->attach(request('produit'));
+    	$tailles = Taille::create([
+            'designation' => $request->designation,
+            
+        ]);
+
+    	$tailles->produits()->attach(request('produit'), ['quantite' => $request->quantites, 'designation' => $request->designation]);
 
     	flashy('La taille a bien été ajouté.');
         return back();
     }
+
+
 
     public function postTailles(Request $request, $id)
     {

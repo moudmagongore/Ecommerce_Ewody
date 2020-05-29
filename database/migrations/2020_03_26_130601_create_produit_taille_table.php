@@ -17,7 +17,8 @@ class CreateProduitTailleTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('produit_id');
             $table->unsignedBigInteger('taille_id');
-            /* $table->integer('quantite');*/
+            $table->integer('quantite');
+            $table->integer('designation');
             $table->timestamps();
         });
     }

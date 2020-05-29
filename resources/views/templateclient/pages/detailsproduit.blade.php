@@ -155,7 +155,11 @@
                                                        
                                                         @foreach ($tailles as $taille)
                                                         
-                                                           <option >{{$taille->designation}}</option>
+                                                        @if ($taille->pivot->quantite > 0)
+                                                             <option >{{$taille->designation}}</option>
+                                                        @endif
+                                                        
+                                                          
                                                         @endforeach
                                                     </select>
                                                 
@@ -172,13 +176,16 @@
                                                
                                                 @foreach ($couleurs as $couleur)
 
-                                                    
+                                                    @if ($couleur->pivot->quantite > 0)
+                                                      <label for="couleurs">
+                                                        <a class="item-thumb"><img src="{{ asset('uploads/' . $couleur->pivot->images ? $couleur->pivot->images : '') }}" height="60px" width="45px;" class="sousImage sousImageCouleur img-thumbnail" title="Clique" alt="Une couleur" ></a>
+                                                        </label>
+                                                 
+                                                  @endif
 
-                                                    <label for="couleurs">
-                                                        <a class="item-thumb"><img src="{{ asset('uploads/' . $couleur->pivot->images) }}" height="60px" width="45px;" class="sousImage sousImageCouleur img-thumbnail" title="Clique" alt="Une couleur" ></a>
-                                                    </label>
                                                 @endforeach
-
+                                                
+                                            <!-- input en dehors du boucle -->
                                                 <input type="hidden" name="couleurs" id="couleurs">
 
                                                 <!-- select -->
@@ -194,7 +201,7 @@
 
 
 
-                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" >
+                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" title="Selectionnez une taille">
                                                 <i class="fas fa-shopping-cart"></i>
                                                 <span class="text">Ajouter au panier</span>
                                             </button>
@@ -214,6 +221,8 @@
                                                <span class="text">Ajouter aux favoris</span>
                                            </a> -->
 
+                                        @if ($quantites === 'Disponible')
+
                                            <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
 
                                                 @csrf
@@ -232,12 +241,12 @@
 
 
                                                @guest
-                                                    <button type ="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal" id="buttonAchat">
+                                                    <button type ="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal" id="buttonAchat" title="Selectionnez une taille">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
                                                     </button>
                                                @else
-                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat">
+                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat" title="Selectionnez une taille">
                                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
                                                     </button>
@@ -281,6 +290,7 @@
 
            
                                            </form>
+                                        @endif
                                         </div>
                                     </div>
                                     
@@ -599,7 +609,9 @@
 
                                             <span class="stext-102 cl6 size-206">
                                                 @foreach ($couleurs as $couleur)
+                                                
                                                     {{$couleur->designation}}{{$loop->last ? '' : ', '}}
+                                                
                                                 @endforeach
                                                 
                                             </span>

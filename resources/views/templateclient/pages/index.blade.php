@@ -42,7 +42,7 @@
                                 </li>
                                     @endforeach
 
-                                        <li class="nav-item dropdown">
+                                        <!-- <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plus</a>
                                             <div class="dropdown-menu">
                                                 
@@ -55,7 +55,7 @@
                                                 <a class="dropdown-item" href="#">Categorie 2</a>
                                                 <a class="dropdown-item" href="#">Categorie 3</a>
                                             </div>    
-                                        </li>
+                                        </li> -->
                                                 
                                     </ul>
                             </nav>
@@ -118,7 +118,7 @@
                     <figure class="text-center">
                         <span class="rounded-circle icon-md bg-primary"><i class="fa fa-coins white"></i></span>
                         <figcaption class="pt-4">
-                            <h5 class="title">Prix raisonables</h5>
+                            <h5 class="title">Prix raisonable</h5>
                         </figcaption>
                     </figure>
                 </article>
@@ -348,27 +348,110 @@
                     <h4 class="title-section text-uppercase">Recommandé pour vous</h4>
                 </header>
 
-                <div class="row row-sm">
-                  {{--   @foreach ($produits as $prod) --}}
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-                        <figure class="card card-product-grid rounded shadow-sm" 
-                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
-                            <div class="img-wrap">
-                                <span class="badge badge-success"> NEW </span>
-                                <img src="{{ asset('assets/templatefront/images/items/1.jpg') }}">
-                                <span class="topbar">
-                                    <a href="" class="float-right"><i class="fa fa-heart"></i></a>
-                                </span>
-                                <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i>  Aperçu</a>
+
+                <div class=" owl-carousel owl-theme">
+                   <!--  Pour l'affichage de la RechercheInput -->
+                    @if (request()->session()->has('rechercheInput'))
+                         @foreach (session('rechercheInput') as $id => $details) 
+                               <div class="">
+                                <figure class="card card-product-grid rounded shadow-sm"
+                                data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                    <div class="img-wrap">
+                                        <a href="{{route('details', $details['id'])}}">
+                                            <span class="badge badge-success"> NEW </span>
+                                            <img src="{{ asset('uploads/' . $details['photo']) }}">
+                                        </a>
+                                        <span class="topbar">
+                                            <a href="{{ route('favoris.store', $details['id']) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                        </span>
+                                        <a class="btn-overlay" href="{{route('details', $details['id'])}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                    </div>
+                                    <figcaption class="info-wrap border-top">
+                                        <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
+                                        <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
+                                    </figcaption>
+                                </figure>
                             </div>
-                            <figcaption class="info-wrap border-top">
-                                {{-- <a href="#" class="title">{{$prod->nom}}</a>
-                                <div class="price mt-2">{{$prod->getprixminimum()}}</div> --}}
-                            </figcaption>
-                        </figure>
-                    </div>
-                   {{--  @endforeach --}} 
+                        @endforeach
+                    @endif
+                        
+                       <!--  Pour l'affichage de la RechercheCategorie -->
+                     @if(request()->session()->has('rechercheCategorie'))
+                        @foreach (session('rechercheCategorie') as $id => $details)
+                            <div class="">
+                                <figure class="card card-product-grid rounded shadow-sm"
+                                data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                    <div class="img-wrap">
+                                        <a href="{{route('details', $details['id'])}}">
+                                            <span class="badge badge-success"> NEW </span>
+                                            <img src="{{ asset('uploads/' . $details['photo']) }}">
+                                        </a>
+                                        <span class="topbar">
+                                            <a href="{{ route('favoris.store', $details['id']) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                        </span>
+                                        <a class="btn-overlay" href="{{route('details', $details['id'])}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                    </div>
+                                    <figcaption class="info-wrap border-top">
+                                        <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
+                                        <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
+                
+
+
+
+
+                <!--<div class="row row-sm">
+                     @if (request()->session()->has('rechercheInput')) 
+                        @foreach (session('rechercheInput') as $id => $details)
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                                <figure class="card card-product-grid rounded shadow-sm" 
+                                data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                    <div class="img-wrap">
+                                        <span class="badge badge-success"> NEW </span>
+                                        <img src="{{ asset('uploads/' . $details['photo']) }}">
+                                        <span class="topbar">
+                                            <a href="" class="float-right"><i class="fa fa-heart"></i></a>
+                                        </span>
+                                        <a class="btn-overlay" href="{{route('details', $details['id'])}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                    </div>
+
+                                   <figcaption class="info-wrap border-top">
+                                    <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
+                                        <div class="price mt-2 text-right">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if(request()->session()->has('rechercheCategorie'))
+                        @foreach (session('rechercheCategorie') as $id => $details)
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                                <figure class="card card-product-grid rounded shadow-sm" 
+                                data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                    <div class="img-wrap">
+                                        <span class="badge badge-success"> NEW </span>
+                                        <img src="{{ asset('uploads/' . $details['photo']) }}">
+                                        <span class="topbar">
+                                            <a href="" class="float-right"><i class="fa fa-heart"></i></a>
+                                        </span>
+                                        <a class="btn-overlay" href="{{route('details', $details['id'])}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                    </div>
+
+                                   <figcaption class="info-wrap border-top">
+                                    <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
+                                        <div class="price mt-2 text-right">{{$details['prix_unitaire']}}</div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        @endforeach
+                    @endif
+                </div> -->
             </div>
         </section>
     

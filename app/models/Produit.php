@@ -80,12 +80,12 @@ class Produit extends Model
 
     public function couleurs()
     {
-        return $this->belongsToMany(Couleur::class)->withPivot('images');
+        return $this->belongsToMany(Couleur::class)->using(CouleurProduit::class)->withPivot('images', 'quantite');
     }
 
      public function tailles()
     {
-        return $this->belongsToMany(Taille::class)/*->withPivot('quantite')*/;
+        return $this->belongsToMany(Taille::class)->using(ProduitTaille::class)->withPivot('quantite', 'designation');
     }
 
 

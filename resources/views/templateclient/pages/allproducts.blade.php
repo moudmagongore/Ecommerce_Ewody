@@ -131,10 +131,19 @@
                                         </div>
                                         <figcaption class="info-wrap border-top">
                                         <a href="{{route('details', $produit->id)}}" class="title mb-2">{{$produit->nom}}</a>
+
+
                                        
                                             <div class="price-wrap">
                                                 <span class="price d-block text-right">{{$produit->getprixminimum()}}</span>
                                             </div>
+
+                                            @if ($produit->quantite == 0 )
+                                                <div>
+                                                    <span class="badge badge-pill badge-danger">
+                                                <p>Rupture en stock</p>
+                                                </div>
+                                            @endif
                                             
 
                                            <!--  <form action="{{ route('cart.store') }}" method="post">

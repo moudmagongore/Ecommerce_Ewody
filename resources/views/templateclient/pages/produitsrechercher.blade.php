@@ -1,7 +1,7 @@
 @extends('templateclient.layouts.app', ['title' => 'Tous les produits'])
     @section('content')
         
-
+ 
     <div class="container">
         <section class="section-content padding-y">
             <div class="container">

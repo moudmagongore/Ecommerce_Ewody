@@ -83,7 +83,7 @@
                                     <th scope="col">Produit</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Taille</th>
-                                    <th scope="col">Prix unitaire</th>
+                                    <th scope="col">Total</th>
                                     <th scope="col-fluid">Quantié</th>
                                    
                                 </tr>
@@ -109,20 +109,30 @@
                                                     </div>
                                                 </div>
                                             </td>
-
-                                             <td class="prices">
-                                                <div>
-                                                    <div class="price-wrap">
-                                                        <var class="price">{{$produit[4]}}</var>
+                                            @if ($produit[4])
+                                                <td class="prices">
+                                                    <div>
+                                                        <div class="price-wrap">
+                                                            <var class="price">{{$produit[4]}}</var>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                 </td>
+                                            @else
+                                                <td class="prices">
+                                                    <div>
+                                                        <div class="price-wrap">
+                                                            <var class="price">Vide</var>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            @endif
+                                             
 
                                             <td class="prices">
                                                 <div>
                                                     <div class="price-wrap">
-                                                        <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                                        <small class="text-muted">148 000 / unité</small>
+                                                        <var class="price">{{getprixminimumhelpers($commande->montant)}}</var>
+                                                        <small class="text-muted">{{getprixminimumhelpers($produit[1])}} / unité</small>
                                                     </div>
                                                 </div>
                                             </td>
@@ -155,19 +165,29 @@
                                                 </div>
                                             </td>
 
-                                             <td class="prices">
-                                                <div>
-                                                    <div class="price-wrap">
-                                                        <var class="price">{{$produit[4]}}</var>
+                                              @if ($produit[4])
+                                                <td class="prices">
+                                                    <div>
+                                                        <div class="price-wrap">
+                                                            <var class="price">{{$produit[4]}}</var>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                 </td>
+                                            @else
+                                                <td class="prices">
+                                                    <div>
+                                                        <div class="price-wrap">
+                                                            <var class="price">Vide</var>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            @endif
 
                                             <td class="prices">
                                                 <div>
                                                     <div class="price-wrap">
-                                                        <var class="price">{{getprixminimumhelpers($produit[1])}}</var>
-                                                        <small class="text-muted">148 000 / unité</small>
+                                                        <var class="price">{{getprixminimumhelpers($commande->montant)}}</var>
+                                                        <small class="text-muted">{{getprixminimumhelpers($produit[1])}} / unité</small>
                                                     </div>
                                                 </div>
                                             </td>
@@ -201,8 +221,9 @@
                                                 <h6 class="title">Produit</h6>
                                                 <h6 class="title mt-5">Nom</h6>
                                                 <h6 class="title mt-5">Taille</h6>
-                                                <h6 class="title mt-5">PrixUnitaire</h6>
+                                                <h6 class="title mt-5">Prix</h6>
                                                 <h6 class="title mt-5">Quantité</h6>
+                                                 <h6 class="title mt-5">Total</h6>
                                                 
                                                 <hr style="margin-top: 40px;">
                                                
@@ -230,7 +251,7 @@
                                                            {{$produit[4]}} 
                                                         </p>
                                                     @else
-                                                        <p>Null</p>
+                                                        <p>Vide</p>
                                                     @endif
                                                    
                                                 </p>
@@ -245,6 +266,11 @@
                                                 <p class="title" style="margin-top: 35px;">
                                                     {{$produit[2]}}
                                                 </p>
+
+
+                                                 <p class="title" style="margin-top: 35px;">
+                                                    {{getprixminimumhelpers($commande->montant)}}
+                                                </p>
                                                 </aside>
                                             </div>
 
@@ -257,8 +283,9 @@
                                                 <h6 class="title">Produit</h6>
                                                 <h6 class="title mt-5">Nom</h6>
                                                 <h6 class="title mt-5">Taille</h6>
-                                                <h6 class="title mt-5">PrixUnitaire</h6>
+                                                <h6 class="title mt-5">Prix</h6>
                                                 <h6 class="title mt-5">Quantité</h6>
+                                                 <h6 class="title mt-5">Total</h6>
                                                 
                                                 <hr style="margin-top: 60px;">
                                                
@@ -286,7 +313,7 @@
                                                            {{$produit[4]}} 
                                                         </p>
                                                     @else
-                                                        <p>Null</p>
+                                                        <p>Vide</p>
                                                     @endif
                                                    
                                                 </p>
@@ -300,6 +327,10 @@
 
                                                 <p class="title" style="margin-top: 35px;">
                                                     {{$produit[2]}}
+                                                </p>
+
+                                                 <p class="title" style="margin-top: 35px;">
+                                                    {{getprixminimumhelpers($commande->montant)}}
                                                 </p>
                                                 </aside>
                                             </div>

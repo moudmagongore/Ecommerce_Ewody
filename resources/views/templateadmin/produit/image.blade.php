@@ -52,7 +52,7 @@
                                 <td>
 
                                     @foreach ($couleur->produits as $produit)
-                                         <img src="{{ asset('uploads/' . $produit->pivot->images) }}" class="img-thumbnail">
+                                         <img src="{{ asset('uploads/' . $produit->pivot->images ? $produit->pivot->images : '') }}" class="img-thumbnail">
                                     @endforeach
                                
                                 </td>
@@ -268,6 +268,8 @@
                             @csrf
                             <div class="row">                                        
                                 <div class="input-group mg-b-pro-edt ">
+
+
                                     <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 
                                     <select class="js-example-basic-multiple" id="produit" type="text" name="produit[]"  autofocus multiple="multiple" style="width: 527px">
@@ -288,6 +290,14 @@
 
                                      {!! $errors->first('designation', '<p id="error">:message</p>')!!}
                                </div>
+
+
+                                <div class="input-group mg-b-pro-edt {{$errors->has('quantites') ? 'has-error' : '' }}">
+                                    <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>                                                
+                                    <input name="quantites" type="number"  class="form-control" placeholder="Entrez la quantité">
+
+                                     {!! $errors->first('quantites', '<p id="error">:message</p>')!!}
+                                </div>
 
 
                                  <div class="form-group">
@@ -353,6 +363,15 @@
                                     <input name="designation" type="text"  class="form-control" placeholder="Entrez la Taille">
 
                                      {!! $errors->first('designation', '<p id="error">:message</p>')!!}
+                                </div>
+
+
+
+                                <div class="input-group mg-b-pro-edt {{$errors->has('quantites') ? 'has-error' : '' }}">
+                                    <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>                                                
+                                    <input name="quantites" type="number"  class="form-control" placeholder="Entrez la quantité">
+
+                                     {!! $errors->first('quantites', '<p id="error">:message</p>')!!}
                                 </div>
 
                                 

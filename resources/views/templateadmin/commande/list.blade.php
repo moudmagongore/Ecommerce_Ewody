@@ -268,10 +268,16 @@
                                             </td>
                                             
                                             <!-- taille -->
-                                            <td>
-                                               
+                                            @if ($produit[4])
+                                                 <td>
                                                     {{$produit[4]}}
-                                            </td>
+                                                 </td>
+                                            @else
+                                                <td>
+                                                    Vide
+                                                 </td>
+                                            @endif
+
 
                                             <!-- prixUnitaire -->
                                             <td>
@@ -302,10 +308,15 @@
                                             </td>
                                             
                                             <!-- taille -->
-                                            <td>
-                                               
-                                                {{$produit[4]}}
-                                            </td>
+                                             @if ($produit[4])
+                                                 <td>
+                                                    {{$produit[4]}}
+                                                 </td>
+                                            @else
+                                                <td>
+                                                    Vide
+                                                 </td>
+                                            @endif
                                             
                                             <!-- prixUnitaire -->
                                             <td>

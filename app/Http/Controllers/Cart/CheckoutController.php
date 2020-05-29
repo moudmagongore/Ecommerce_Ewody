@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\models\Commande;
 use App\models\Produit;
 use App\models\Taille;
-
+use App\models\Couleur;
+use App\models\CouleurProduit;
+use App\models\ProduitTaille;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 
@@ -52,16 +54,7 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
-    	//Eviter d'acheter un produit qui n'existe plus
-        //si le produit n'est plus disponible est qu'il est déjà ajouté au panier 
-          if ($this->checkIfNotAvailable()) {
-              //On renvoie une erreur on return true
-            Session::flash('danger', 'Un produit dans votre panier n\'est plus disponible.');
-            return redirect()->route('acceuil');
-          }
-
-
-
+          
     	$this->validate($request, [
 
     		'name' => 'required|min:2',    
@@ -121,6 +114,33 @@ class CheckoutController extends Controller
     	//On vas serializer notre panier
          //Pour le panier
         if (Cart::content()->count() > 0) {
+
+          //Eviter d'acheter un produit qui n'existe plus
+          //si le produit n'est plus disponible est qu'il est déjà ajouté au panier 
+          if ($this->checkIfNotAvailable()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Un produit dans votre panier n\'est plus disponible.');
+            return redirect()->route('acceuil');
+          }
+
+          //Eviter d'acheter un produit dont la couleur n'existe plus
+          //si la couleur n'est plus disponible est qu'il est déjà ajouté au panier 
+          elseif ($this->checkIfNotAvailableCouleur()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une couleur pour un produit dans votre panier n\'est plus disponible.');
+            return redirect()->route('acceuil');
+          }
+
+          //Eviter d'acheter un produit dont la taille n'existe plus
+          //si la taille n'est plus disponible est qu'il est déjà ajouté au panier 
+          elseif ($this->checkIfNotAvailableTaille()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une taille pour un produit dans votre panier n\'est plus disponible.');
+            return redirect()->route('acceuil');
+          }
+          /*End*/
+
+
            $produits = [];
 
            $i = 0;
@@ -155,8 +175,14 @@ class CheckoutController extends Controller
            /*$commande->user_id = Auth()->user()->id;*/
            $commande->save();
 
-          /*On fait appel a une function pour decrementer le stock*/
+          /*On fait appel a une function pour decrementer le stock du produit pour le panier*/
                 $this->updateStock();
+
+          /*On fait appel a une function pour decrementer la couleur pour le panier*/
+                $this->updateStockCouleur();
+
+          /*On fait appel a une function pour decrementer la taille pour le panier*/
+                $this->updateStockTaille();
 
          /* Pour vider le panier aprés achat*/
            Cart::destroy();
@@ -171,6 +197,33 @@ class CheckoutController extends Controller
         }
         elseif(request()->session()->has('cart'))
         {
+
+          //Eviter d'acheter un produit qui n'existe plus
+          //si le produit n'est plus disponible est que nous sommes dejà au checkout c a d un user à dejà achété le produit que nous voulons.
+           if ($this->checkIfNotAvailableByNow()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Le produit selectionné n\'est plus disponible en stock.');
+            return redirect()->route('acceuil');
+          }
+
+          //Eviter d'acheter un produit dont la couleur n'existe plus
+          //si la couleur du produit n'est plus disponible est que nous sommes dejà au checkout c a d un user à dejà achété la couleur du produit que nous voulons.
+           elseif($this->checkIfNotAvailableCouleurByNow()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une couleur pour un produit selectionné n\'est plus disponible en stock.');
+            return redirect()->route('acceuil');
+          }
+
+         //Eviter d'acheter un produit dont la taille n'existe plus
+          //si la taille du produit n'est plus disponible est que nous sommes dejà au checkout c a d un user à dejà achété la taille du produit que nous voulons.
+           elseif($this->checkIfNotAvailableTailleByNow()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une taille pour un produit selectionné n\'est plus disponible en stock.');
+            return redirect()->route('acceuil');
+          }
+          /*End*/
+          
+
             //On vas serialiser notre achat direct
              //Pour l'achat directe
             $produit = [];
@@ -208,8 +261,15 @@ class CheckoutController extends Controller
            /*$commande->user_id = Auth()->user()->id;*/
            $commande->save();
 
-          /*On fait appel a une function pour decrementer le stock*/
-                $this->updateStock();
+          /*On fait appel a une function pour decrementer le stock du produit pour le button acheter maintenat*/
+            $this->updateStockByNow();
+
+          /*On fait appel a une function pour decrementer la couleur pour le button acheter maintenat*/
+            $this->updateStockCouleurByNow();
+
+
+           /*On fait appel a une function pour decrementer la taille pour le button acheter maintenant*/
+            $this->updateStockTailleByNow();
 
           /* Pour vider le panier aprés achat*/
            Cart::destroy();
@@ -229,20 +289,132 @@ class CheckoutController extends Controller
 
 
 
-     //Eviter d'acheter un produit qui n'existe plus
+
+
+
+
+
+
+
+
+            /*checkIfNotAvailable Pour button panier*/
+
+     //Eviter d'acheter un produit qui n'existe plus après ajout dans le panier
     private function checkIfNotAvailable()
     {
         foreach (Cart::content() as $item) {
             
             //On recupere l'id du produit dans le panier
             $produit = Produit::find($item->model->id);
+           
 
-            //si ce qui es en bd est inferieur ace que l'user a selectioner
+            //si ce qui es en bd est inferieur ace que l'user a selectioner on return true
             if ($produit->quantite < $item->qty) {
                 return true;
             }
         }
+        /*si non si cest ok on return false*/
+        return false;
 
+    }
+
+
+
+     //Eviter d'acheter un produit dont la couleur n'existe plus après ajout dans le panier
+    private function checkIfNotAvailableCouleur()
+    {
+        foreach (Cart::content() as $item) {
+            
+            /*Pour recuperer la couleur de l'image au niveau panier*/
+            $couleurCliquerNotExist = $item->options->couleur;
+
+
+            /*On appel le model de la relation qui est :  CouleurProduit*/
+            /*Dans CouleurProduit on recupere l'image ou l'image est egal à l'image qui se trouve au niveau panier c a d l'image de la couleur selectionner par le user*/
+            $coulProdNotExist = CouleurProduit::where('images', $couleurCliquerNotExist)->
+              first();
+
+
+             /*Pourquoi la condition car si le produit dans le panier n'as pas de couleur il renveras null et si $coulProd est null il nous renveras une erreur.*/
+              if ($coulProdNotExist)
+              {
+                 //si ce qui es en bd est inferieur ace que l'user a selectioner on return true
+                if ($coulProdNotExist->quantite < $item->qty) {
+                      return true;
+                }
+              }
+        }
+        /*si non si cest ok on return false*/
+        return false;
+    }
+
+
+
+     //Eviter d'acheter un produit dont la taille n'existe plus après ajout dans le panier
+    private function checkIfNotAvailableTaille()
+    {
+        foreach (Cart::content() as $item)
+        {
+
+          //On recupere seulement l'id du produit dans le panier
+              $idProduit = $item->id;
+
+            
+            /*Pour recuperer la taille du produit au niveau panier*/
+            $tailleCliquerNotExist = $item->options->taille;
+
+
+            
+            
+           /*On appel le model de la relation qui est :  ProduitTaille*/
+          /*Dans ProduitTaille on recupere la designaion ou taille. ou taille est egal a la tailleCliquerNotExist qui se trouve au niveau  panier c a d la taille selectionner par le user. En meme temps on recupere aussi le produit qui est egal au produit se trouvant dans le panier*/
+          $tailleProdNotExist = ProduitTaille::where('designation', $tailleCliquerNotExist)->where('produit_id', $idProduit)->
+            first();
+
+
+
+             /*Pourquoi la condition car si le produit dans le panier n'as pas de taille il renveras null et si $tailleProdNotExist est null il nous renveras une erreur.*/
+              if ($tailleProdNotExist)
+              {
+                 //si ce qui es en bd est inferieur ace que l'user a selectioner on return true
+                if ($tailleProdNotExist->quantite < $item->qty) {
+                      return true;
+                }
+              }
+        }
+        /*si non si cest ok on return false*/
+        return false;
+    }
+
+
+                  /*End checkIfNotAvailable Pour button panier*/
+
+
+
+
+
+
+
+
+
+            /*checkIfNotAvailable Pour button acheter maintentant*/
+
+     //Eviter d'acheter un produit qui n'existe plus après arriver au nivo checkout par le button acheter maintenant
+    private function checkIfNotAvailableByNow()
+    {
+        foreach(session('cart') as $id => $details)
+        {
+            
+            //On recupere l'id du produit dans la session
+            $produit = Produit::find($details['id']);
+
+            //si ce qui es en bd est inferieur ace que l'user a selectioner c a d la quantité dans la session on return true
+            if ($produit->quantite < $details['quantite']) {
+                return true;
+            }
+        }
+
+         /*si non si cest ok on return false*/
         return false;
 
     }
@@ -250,11 +422,90 @@ class CheckoutController extends Controller
 
 
 
+     //Eviter d'acheter un produit dont la couleur n'existe plus après arriver au nivo checkout par le button acheter maintenant
+    private function checkIfNotAvailableCouleurByNow()
+    {
+        foreach(session('cart') as $id => $details)
+        {
+            
+            /*Pour recuperer la couleur de l'image au niveau panier*/
+            $couleurCliquerNotExistByNow = $details['couleurs'];
+
+
+            /*On appel le model de la relation qui est :  CouleurProduit*/
+            /*Dans CouleurProduit on recupere l'image ou l'image est egal à l'image qui se trouve au niveau session c a d l'image de la couleur selectionner par le user*/
+            $coulProdNotExistByNow = CouleurProduit::where('images', $couleurCliquerNotExistByNow)->
+              first();
+
+
+
+             /*Pourquoi la condition car si le produit dans la session n'as pas de couleur il renveras null et si $coulProdNotExistByNow est null il nous renveras une erreur.*/
+              if ($coulProdNotExistByNow)
+              {
+                 //si ce qui es en bd est inferieur ace que l'user a selectioner c a d la quantité dans la session on return true
+                if ($coulProdNotExistByNow->quantite < $details['quantite']) {
+                      return true;
+                }
+              }
+        }
+        /*si non si cest ok on return false*/
+        return false;
+    }
 
 
 
 
-     //Une function pour decrementer le stock
+    //Eviter d'acheter un produit dont la taille n'existe plus après arriver au nivo checkout par le button acheter maintenant
+    private function checkIfNotAvailableTailleByNow()
+    {
+        foreach(session('cart') as $id => $details)
+        {
+           
+          //On recupere seulement l'id du produit dans la session
+              $idProduit = $details['id'];
+
+            
+            /*Pour recuperer la taille du produit dans la session*/
+            $tailleCliquerNotExistByNow = $details['tailles'];
+
+            
+            
+           /*On appel le model de la relation qui est :  ProduitTaille*/
+          /*Dans ProduitTaille on recupere la designaion ou taille. ou taille est egal a la tailleCliquerNotExistByNow qui se trouve dans la session c a d la taille selectionner par le user. En meme temps on recupere aussi le produit qui est egal au produit se trouvant dans la session*/
+          $tailleProdNotExistByNow = ProduitTaille::where('designation', $tailleCliquerNotExistByNow)->where('produit_id', $idProduit)->
+            first();
+
+
+
+             /*Pourquoi la condition car si le produit dans la session n'as pas de taille il renveras null et si $tailleProdNotExistByNow est null il nous renveras une erreur.*/
+              if ($tailleProdNotExistByNow)
+              {
+                 //si ce qui es en bd est inferieur ace que l'user a selectioner on return true
+                if ($tailleProdNotExistByNow->quantite < $details['quantite']) {
+                      return true;
+                }
+              }
+        }
+        /*si non si cest ok on return false*/
+        return false;
+    }
+
+
+            /*checkIfNotAvailable Pour button acheter maintentant*/
+
+
+
+
+
+
+
+
+
+
+
+            /*updateStock pour le button panier*/
+
+     //Une function pour decrementer le stock du produit au niveau panier
     private function updateStock()
     {
         //On boucle dans le panier pour recuperer le produit qui est dans le panier
@@ -266,10 +517,188 @@ class CheckoutController extends Controller
             //On retire le nombre de la quantité qu'on as selectionner
             $produit->update([
 
-                //on prend le stock en BD on le soustrais par la qtité selectionné
+                //on prend la qtité en BD on le soustrais par la qtité selectionné dans le panier
                 'quantite' => $produit->quantite - $item->qty
 
             ]);
         }
     }
+
+
+
+     //Une function pour decrementer la couleur au niveau panier
+    private function updateStockCouleur()
+    {
+        //On boucle dans le panier pour recuperer le produit qui est dans le panier
+        foreach (Cart::content() as  $item)
+        {
+         /* dd($item);*/
+
+        //On recupere l'id du produit dans le panier et les autres colone
+          /*$produit = Produit::find($item->model->id);*/
+
+          /*Pour recuperer la couleur de l'image au niveau panier*/
+            $couleurCliquer = $item->options->couleur;
+
+          /*On appel le model de la relation qui est :  CouleurProduit*/
+          /*Dans CouleurProduit on recupere l'image ou l'image est egal à l'image qui se trouve au niveau panier c a d l'image de la couleur selectionner par le user*/
+          $coulProd = CouleurProduit::where('images', $couleurCliquer)->
+            first();
+
+           /*Pourquoi la condition car si le produit dans le panier n'as pas de couleur il renveras null et si $coulProd est null il nous renveras une erreur.*/
+            if ($coulProd)
+            {
+              /*On decremente la quantité*/
+                $coulProd->update([
+                    /*'quantite' => $coulProd->quantite - 1,*/
+                     'quantite' => $coulProd->quantite - $item->qty
+                ]);
+            }
+        }
+    }
+
+
+
+
+
+         //Une function pour decrementer la taille au niveau panier
+    private function updateStockTaille()
+    {
+        //On boucle dans le panier pour recuperer le produit qui est dans le panier
+        foreach (Cart::content() as  $item)
+        {
+           //On recupere seulement l'id du produit dans le panier
+              $idProduit = $item->id;
+         
+
+          /*Pour recuperer la taille du produit au niveau panier*/
+            $tailleCliquer = $item->options->taille;
+            
+
+          /*On appel le model de la relation qui est :  CouleurProduit*/
+          /*Dans CouleurProduit on recupere la designaion ou taille. ou taille est egal a la taille cliquer qui se trouve au niveau panier c a d la taille selectionner par le user. En meme temps on recupere aussi le produit qui est egal au produit se trouvant dans le panier*/
+          $tailleProd = ProduitTaille::where('designation', $tailleCliquer)->where('produit_id', $idProduit)->
+            first();
+
+
+           /*Pourquoi la condition car si le produit dans le panier n'as pas de couleur il renveras null et si $coulProd est null il nous renveras une erreur.*/
+            if ($tailleProd)
+            {
+              /*On decremente la quantité*/
+                $tailleProd->update([
+                    /*'quantite' => $coulProd->quantite - 1,*/
+                     'quantite' => $tailleProd->quantite - $item->qty
+                ]);
+            }
+        }
+    }
+
+            /*End updateStock pour le button panier*/
+
+
+
+
+
+
+
+
+
+              /*updateStock pour le button acheter maintenant*/
+
+     //Une function pour decrementer le stock du produit pour le bouton acheter maintenant
+    private function updateStockByNoW()
+    {
+        //On boucle dans la session pour recuperer le produit qui est dans la session
+        foreach(session('cart') as $id => $details)
+        {
+
+            //On recupere l'id du produit dans la session
+            $produit = Produit::find($details['id']);
+
+            //On retire le nombre de la quantité qu'on as selectionner
+            $produit->update([
+
+                //on prend la quantité en BD on le soustrais par la qtité selectionné dans la session
+                'quantite' => $produit->quantite - $details['quantite']
+
+            ]);
+        }
+    }
+
+
+    
+
+     //Une function pour decrementer la couleur pour le bouton acheter maintenant
+    private function updateStockCouleurByNow()
+    {
+        //On boucle dans la session pour recuperer le produit qui est dans la session
+        foreach(session('cart') as $id => $details)
+        {
+         /* dd($details);*/
+
+          /*Pour recuperer la couleur de l'image au niveau session*/
+            $couleurCliquerByNow = $details['couleurs'];
+
+
+          /*On appel le model de la relation qui est :  CouleurProduit*/
+          /*Dans CouleurProduit on recupere l'image ou l'image est egal à l'image qui se trouve au niveau session c a d l'image de la couleur selectionner par le user*/
+          $coulProdByNow = CouleurProduit::where('images', $couleurCliquerByNow)->
+            first();
+
+           /*Pourquoi la condition car si le produit dans la session n'as pas de couleur il renveras null et si $coulProdByNow est null il nous renveras une erreur.*/
+            if ($coulProdByNow)
+            {
+              /*On decremente la quantité*/
+                $coulProdByNow->update([
+                    /*'quantite' => $coulProd->quantite - 1,*/
+                     'quantite' => $coulProdByNow->quantite - $details['quantite']
+                ]);
+            }
+        }
+    }
+
+
+
+     //Une function pour decrementer la taille au niveau de la session
+    private function updateStockTailleByNow()
+    {
+        //On boucle dans la session pour recuperer le produit qui est dans la session
+        foreach(session('cart') as $id => $details)
+        {
+
+           //On recupere seulement l'id du produit dans le panier
+              $idProduit = $details['id'];
+         
+
+          /*Pour recuperer la taille du produit au niveau de la session*/
+            $tailleCliquerByNow = $details['tailles'];
+            
+
+          /*On appel le model de la relation qui est :  CouleurProduit*/
+          /*Dans CouleurProduit on recupere la designaion ou taille. ou taille est egal a la tailleCliquerByNow qui se trouve au niveau de la session c a d la taille selectionner par le user. En meme temps on recupere aussi le produit qui est egal au produit se trouvant dans la session*/
+          $tailleProd = ProduitTaille::where('designation', $tailleCliquerByNow)->where('produit_id', $idProduit)->
+            first();
+
+
+           /*Pourquoi la condition car si le produit dans la session n'as pas de taille il renveras null et si $coulProd est null il nous renveras une erreur.*/
+            if ($tailleProd)
+            {
+              /*On decremente la quantité*/
+                $tailleProd->update([
+                    /*'quantite' => $coulProd->quantite - 1,*/
+                     'quantite' => $tailleProd->quantite - $details['quantite']
+                ]);
+            }
+        }
+    }
+
+
+          /*End updateStock pour le button acheter maintenant*/
+
+
+
+
+
+
+
 }

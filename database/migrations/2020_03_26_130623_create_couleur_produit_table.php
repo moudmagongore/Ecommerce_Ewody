@@ -18,6 +18,7 @@ class CreateCouleurProduitTable extends Migration
             $table->unsignedBigInteger('produit_id');
             $table->unsignedBigInteger('couleur_id');
             $table->string('images');
+            $table->integer('quantite');
              /*$table->integer('quantite');*/
             $table->timestamps();
         });

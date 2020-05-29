@@ -12,6 +12,6 @@ class Taille extends Model
 
     public function produits()
     {
-        return $this->belongsToMany(Produit::class)/*->withPivot('quantite')*/->withTimestamps();
+        return $this->belongsToMany(Produit::class)->using(ProduitTaille::class)->withPivot('quantite', 'designation')->withTimestamps();
     }
 }
