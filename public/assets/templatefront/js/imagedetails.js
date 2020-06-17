@@ -45,9 +45,9 @@
         sliderPos();
       });
 
-      let goSlider = setInterval(() => {
+     /* let goSlider = setInterval(() => {
         $(".arrow-right").click();
-      }, 1000000);
+      }, 3000);
 
       $("#slider").on({
         mouseenter: () => {
@@ -58,7 +58,7 @@
             $(".arrow-right").click();
           }, 3000);
         }
-      });
+      });*/
    
 try {
   fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {

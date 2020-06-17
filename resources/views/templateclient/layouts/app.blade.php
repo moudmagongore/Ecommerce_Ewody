@@ -331,6 +331,7 @@
         </div>
     </footer>
 
+     <!-- Pour la fleche de redirection en haut -->
     <div class="topNon">
         <a href="#top-page" class="btn btn-dark rounded-pill scroll-to-top" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px; display: none;">
         <i class="fa fa-arrow-up"></i>
@@ -340,13 +341,11 @@
 
 
 
-
+    <!-- Pour les buttons en bas -->
      <div class="col-12 col-sm-3 scroll-to-top-button-en-bas" id="buttonEnBas" style=" z-index:100; position: fixed; bottom:-10px; ">
         <div class=" float-md-right">
             
             
-          
-
            <a href="{{ route('acceuil') }}" class="widget-header mr-2" id="buttonHomeEnBas">
                 <div class="icon">
                     <i class="icon-sm rounded-circle border fa fa-home" data-toggle="tooltip" data-placement="bottom"></i>

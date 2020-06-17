@@ -70,7 +70,7 @@
                                                   <div>
                                                     <!-- image principale -->
                                                     <a class="reduireImage">
-                                                        <img class="myImg" src="{{ asset('uploads/' . $produits->photo) }}" alt="" class="imagePricipaletelephonemodal" title="voir plus">
+                                                        <img class="myImg imagePricipaletelephonemodal" src="{{ asset('uploads/' . $produits->photo) }}" alt="" title="voir plus">
                                                     </a>
                                                   </div>
                                                

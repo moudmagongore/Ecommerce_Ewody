@@ -8,9 +8,9 @@ var img = document.querySelectorAll(".myImg");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
-img.forEach((element) => element.addEventListener('click', changeImage));
+img.forEach((element) => element.addEventListener('click', afficheImage));
 
-function changeImage(e)
+function afficheImage(e)
 {
   modal.style.display = "block";
   modalImg.src = this.src;
