@@ -1,7 +1,7 @@
 @extends('templateclient.layouts.app', ['title' => 'Chekout'])
 @section('content')
 
-	@if (count(session('cart')) > 0 )
+	@if (session('cart') > 0 )
         <section class="checkout container">
 
             <div class="row mt-4 justify-content-center">
@@ -18,7 +18,7 @@
 
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : '' }}" value="{{old('name')}}" name="name" placeholder="Prenom && nom">
+                                            <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : '' }}" value="{{Auth()->user()->name}}" name="name" placeholder="Prenom && nom">
 
                                             {!!$errors->first('name', '<div class="invalid-feedback">:message</div>')!!}
 
@@ -29,7 +29,7 @@
 
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control {{$errors->has('telephone') ? 'is-invalid' : '' }}" value="{{old('telephone')}}" name="telephone" placeholder="Telephone">
+                                            <input type="text" class="form-control {{$errors->has('telephone') ? 'is-invalid' : '' }}" value="{{Auth()->user()->telephone}}" name="telephone" placeholder="Telephone">
 
                                             {!!$errors->first('telephone', '<div class="invalid-feedback">:message</div>')!!}
                                         </div>
@@ -49,7 +49,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="input-group">
-                                                    <input id="myinputQuartier" type="text" class="form-control {{$errors->has('quartier') ? 'is-invalid' : '' }}" value="{{old('quartier')}}" name="quartier" placeholder="quartier">
+                                                    <input id="myinputQuartier" type="text" class="form-control {{$errors->has('quartier') ? 'is-invalid' : '' }}" value="{{Auth()->user()->adresse}}" name="quartier" placeholder="quartier">
 
                                                     {!!$errors->first('quartier', '<div class="invalid-feedback">:message</div>')!!}
                                                 </div>

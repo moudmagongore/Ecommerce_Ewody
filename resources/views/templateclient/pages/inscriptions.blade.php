@@ -36,6 +36,15 @@
                         {!!$errors->first('email', '<div class="invalid-feedback">:message</div>')!!}
                     </div>
 
+
+                     <div class="form-group">
+                      <input type="text" name="telephone" class="form-control form-control-user {{$errors->has('telephone') ? 'is-invalid' : '' }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Telephone" value="{{old('telephone')}}">
+
+                        {!!$errors->first('telephone', '<div class="invalid-feedback">:message</div>')!!}
+                    </div>
+
+
+
                     <div class="form-group">
                       <input type="text" name="email" class="form-control form-control-user {{$errors->has('email') ? 'is-invalid' : '' }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entrez votre email" value="{{old('email')}}">
 
@@ -53,13 +62,13 @@
 
 
                    
-                    <div class="form-group with-float-icon">
-                           <input class="form-control form-control-user {{$errors->has('password') ? 'is-invalid' : '' }}" name="password_confirmation" placeholder="Mot de passe de confirmation" type="password" value="{{old('password_confirmation')}}">
-                              <i class="icon fa fa-eye"></i>
-                                        
-                              {!!$errors->first('password_confirmation', '<div class="invalid-feedback">:message</div>')!!}
-                    </div>
-
+                   <!--  <div class="form-group with-float-icon">
+                          <input class="form-control form-control-user {{$errors->has('password') ? 'is-invalid' : '' }}" name="password_confirmation" placeholder="Mot de passe de confirmation" type="password" value="{{old('password_confirmation')}}">
+                             <i class="icon fa fa-eye"></i>
+                                       
+                             {!!$errors->first('password_confirmation', '<div class="invalid-feedback">:message</div>')!!}
+                   </div>
+                    -->
 
                   
                     <input type="submit" value="connexion" class="btn btn-primary btn-user btn-block" style="background: #00abc5 !important;">

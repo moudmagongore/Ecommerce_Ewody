@@ -167,4 +167,21 @@ class CommandeController extends Controller
         }
         
     }
+
+
+
+
+
+   /* public function produitNonExiste()
+    {
+         //Eviter d'acheter un produit qui n'existe plus
+          //si le produit n'est plus disponible est qu'il est déjà ajouté au panier 
+         
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Un produit dans votre panier n\'est plus disponible.');
+            return back();
+          
+        
+         
+    }*/
 }

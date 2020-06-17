@@ -493,9 +493,11 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-
+        /*pour avoir la connexion*/
         $("#sticker-header").sticky({topSpacing:0});
         AOS.init({once:true});
+        /*End pour avoir la connexion*/
+
         $(".owl-carousel").owlCarousel({
             loop: true,
             margin: 10,
@@ -517,6 +519,13 @@
                 }
             }
         });
+
+
+
+
+
+
+
 
         
         /*new Drift(document.querySelector(".img-big-wrap img"), {

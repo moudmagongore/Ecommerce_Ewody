@@ -23,6 +23,8 @@ use App\models\Avis;
 use App\User;
 use App\models\Favori;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 
 class AccueilController extends Controller
@@ -163,9 +165,11 @@ class AccueilController extends Controller
     
 
 
-
+    
         
         return view('templateclient.pages.detailsproduit', compact('produits', 'images', 'caracteristiques', 'quantites', 'avis', 'couleurs', 'tailles', 'produitSimilaire'));
+
+
     }
 
     public function get_mescommandes_page(){
@@ -196,12 +200,14 @@ class AccueilController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:2',
-            'email' => 'required|min:2',
-            'password' => 'required|min:2|confirmed'
+            'telephone' => 'required|min:2',
+            'email' => 'nullable',
+            'password' => 'required|min:2'/*|confirmed*/
         ]);
 
         $users = User::create([
             'name' => $request->name,
+            'telephone' => $request->telephone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
            

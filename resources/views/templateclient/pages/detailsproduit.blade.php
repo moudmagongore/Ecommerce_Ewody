@@ -2,6 +2,7 @@
 
 @section('extra-meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{asset('assets/templatefront/css/imagedetails.css')}}" rel="stylesheet" type="text/css" />
 @stop
 
 @section('content')
@@ -11,8 +12,8 @@
             <div class="card mb-5" style="margin-top: -15px;">
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
-                        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item"><a >Tous nos produits</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('acceuil') }}">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('produits') }}" >Tous nos produits</a></li>
                         <li class="breadcrumb-item">Catégorie</li>
                         @foreach ($produits->categories as $categorie)
                            <li class="breadcrumb-item">{{$categorie->designation_categorie}}</li>
@@ -30,51 +31,71 @@
 
                                     
 
-                                   
+                                   <!-- Debut de l'affichage du produit -->
                                     <article class="gallery-wrap ">
-
+                                     <!-- Pour Ordi -->
                                         <!-- img-big-wrap -->
-                                    <div class=" wm-zoom-container my-zoom-1">
-                                        <div class="wm-zoom-box">
-
-                                            
-                                     
-                                            <a class="zomImg"><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('uploads/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}"></a>
-                                     
-                                        </div>
-                                    </div>
-
-                                       <!--  <div class="img-big-wrap">
-                                           <div><a ><img id="myImg" src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale" title="voir plus"></a>
-                                           
-                                       
-                                           </div>
-                                       
-                                       </div> -->
+                                    <div class=" wm-zoom-container my-zoom-1" id="pourordi">
+                                         <!-- image principale -->
+                                       <div class="wm-zoom-box">
+                                           <a class="zomImg"><img src="{{ asset('uploads/' . $produits->photo) }}" class="imagePricipale wm-zoom-default-img" alt="alternative text" data-hight-src="{{ asset('uploads/' . $produits->photo) }}" data-loader-src="{{ asset('assets/templatefront/images/loader.gif') }}"></a>
+                                       </div>
 
 
+                                       <!--  SousImage -->
                                         <div class="thumbs-wrap mt-4">
-                                            
                                                 <!-- pour recuperer l'image principale -->
                                                 <a class="item-thumb"><img src="{{ asset('uploads/' . $produits->photo) }}" height="60px" width="60px;" class="sousImage"></a>
 
 
                                                 @foreach ($images as $image)
                                                     <a  class="item-thumb"><img src="{{ asset('uploads/' . $image->images) }}" height="60px" width="60px;" class="sousImage" ></a>
-                                                @endforeach
-                                            
-                                            
+                                                @endforeach   
                                         </div>
+                                        <!--End  SousImage -->
+                                   </div>
+                                    <!-- Pour Ordi -->
 
-                                       
+
+
+
+
+                                        <!-- Pour telephone -->
+                                      <div class="" id="pourtelephone">
+                                        <!--Librairy defiler image-->
+                                            <div class="slider-wrapper" id="slider">
+                                                <ul class="slider-img">
+                                                  <li>
+                                                   
+                                                  <div>
+                                                    <!-- image principale -->
+                                                    <a class="reduireImage">
+                                                        <img class="myImg" src="{{ asset('uploads/' . $produits->photo) }}" alt="" class="imagePricipaletelephonemodal" title="voir plus">
+                                                    </a>
+                                                  </div>
+                                               
+                                                  </li>
+
+                                                    <!-- sous image qui s'affiche au meme nivo que l'image principale -->
+                                                    @foreach ($images as $image)
+                                                    <li>
+                                                        <img class="myImg" src="{{ asset('uploads/' . $image->images) }}"class="" alt="">
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                              </div>
+                                        <!-- End Librairy defiler image -->
+                                      </div>
+                                       <!-- Pour telephone -->
 
                                     </article>
+                                     <!-- Debut de l'affichage du produit -->
                                 </div>
                             </aside>
                             <main class="col-md-8">
                                 <article class="product-info-aside">
-                                    <h2 class="title mt-3">{{$produits->nom}}
-                                    </h2>
+                                    <h3 class="title mt-3" id="titleResponsive">{{$produits->nom}}
+                                    </h3>
 
                                     <p class="text-left mr-4">
 
@@ -128,7 +149,7 @@
 
                                         </div>
                                         <div class="form-group col-md">
-                                            @if ($quantites === 'Disponible')
+                                           
                                                 <form action="{{ route('cart.store') }}" method="POST" class="d-inline" enctype="multipart/form-data">
     
                                                 @csrf
@@ -144,6 +165,7 @@
 
 
                                             <div class="col-md-3" id="tailleResponsive">
+                                                
                                                     @if ($tailles->count() > 0)
                                                 <div>
                                                     <label><strong>Tailles : </strong></label>
@@ -164,10 +186,12 @@
                                                     </select>
                                                 
                                             @endif
+                                           
                                             </div> 
                                             
                                             
                                             <div class="col-md-4" id="couleurResponsive">
+                                           
                                                 @if ($couleurs->count() > 0)
                                                 <div id="couleurResponsive">
                                                     <h6>Couleur : </h6>
@@ -191,6 +215,7 @@
                                                 <!-- select -->
                                             </div>
                                             @endif
+                                           
                                             </div>
 
 
@@ -200,11 +225,12 @@
                                            
 
 
-
-                                            <button type="submit" class="btn  btn-primary mt-4" id="buttonPanier" title="Selectionnez une taille">
+                                        
+                                            <button type="submit" class="btn  btn-primary mt-4 buttonPanierResponsive" id="buttonPanier">
                                                 <i class="fas fa-shopping-cart"></i>
-                                                <span class="text">Ajouter au panier</span>
+                                                <span class="text">Ajouter  panier</span>
                                             </button>
+                                        
 
                                            
 
@@ -214,14 +240,14 @@
                                                 <span class="text">Achêter maintenant</span>
                                             </button> -->
                                             </form>
-                                            @endif
+                                           
                                             
                                            <!-- <a href="{{ route('favoris.store', $produits->id) }}" class="btn btn-light mt-4">
                                                <i class="fas fa-heart"></i>
                                                <span class="text">Ajouter aux favoris</span>
                                            </a> -->
 
-                                        @if ($quantites === 'Disponible')
+                                       
 
                                            <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
 
@@ -239,18 +265,20 @@
                                                 <input type="hidden" name="tailleAchat" class="tailleAchat">
 
 
-
+                                            @if ($quantites === 'Disponible')
                                                @guest
-                                                    <button type ="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#addAchatModal" id="buttonAchat" title="Selectionnez une taille">
-                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                                    <span class="text">Achêter maintenant</span>
+
+                                                    <button type ="button" class="btn btn-success buttonAchatResponsive mt-4" data-toggle="modal" data-target="#addAchatModal" id="buttonAchat">
+                                                    <i class="achatResp fa  fa-play-circle" aria-hidden="true"></i>
+                                                    <span class="text ">Achêter maintenant</span>
                                                     </button>
                                                @else
-                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat" title="Selectionnez une taille">
-                                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat">
+                                                    <i class="achatResp fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
                                                     </button>
                                                @endguest
+                                            @endif
 
             <!--  Modal pour inviter -->
            <div class="modal fade" id="addAchatModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -290,7 +318,7 @@
 
            
                                            </form>
-                                        @endif
+                                       
                                         </div>
                                     </div>
                                     
@@ -720,19 +748,18 @@
 
 
 
-    <!-- The Modal -->
-    <!-- <div id="myModal" class="modal">
+  <!-- The Modal -->
+<div id="myModal" class="modal modarestelephone">
 
-          The Close Button
-          <span class="close">&times;</span>
+  <!-- The Close Button -->
+  <span id="close">&times;</span>
 
-          Modal Content (The Image)
-          <img class="modal-content" id="img01">
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
 
-          Modal Caption (Image Text)
-          <div id="caption"></div>
-    </div> -->
-    <!--End The Modal -->
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
 
         
 
@@ -742,6 +769,7 @@
 @section('sousImage')
     <script>
         var imagePrincipale = document.querySelector('.imagePricipale');
+        var imagePricipaletelephonemodal = document.querySelector('.imagePricipaletelephonemodal');
         var sousImage = document.querySelectorAll('.sousImage');
         var sousImageCouleur = document.querySelectorAll('.sousImageCouleur');
 
@@ -810,8 +838,11 @@
 
         function changeImage(e)
         {
-            //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué
+            //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué nivo ordi
             imagePrincipale.src = this.src;
+
+             //Tu charge  la source de l'image principale par la source de l'image qu'on as cliqué nivo telephone
+            imagePricipaletelephonemodal.src = this.src;
 
            /* Pour changez l'image hover*/
             imagePrincipale.dataset.hightSrc = this.src; 
@@ -855,6 +886,8 @@
     <script src="{{asset('assets/templatefront/js/jquery-1.11.1.js')}}"></script>
     <script src="{{asset('assets/templatefront/js/jquery.wm-zoom-1.0.min.js')}}"></script>
     <!--  End Pour le chargement du zoom -->
+
+     <script src="{{asset('assets/templatefront/js/imagedetails.js')}}"></script>
 
 
     <script type="text/javascript">

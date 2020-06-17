@@ -329,7 +329,7 @@
 
  #tailles
  {
-   width: 150px;
+   width: 128px;
  }
 
  #myImg
@@ -430,5 +430,48 @@
 }
 
 /* Pour le message info */
+
+
+
+/* Pour cacher l'image principale de l'ordi dans telephone */
+#pourordi
+{
+  display: none;
+}
+/* Pour cacher l'image principale de l'ordi dans telephone */
+
+#titleResponsive
+{
+ font-size: 22px;
+ margin-top: 20px !important
+}
+
+
+/* Pour reduire le button acheter maintenant */
+.buttonAchatResponsive
+{
+  
+}
+
+}
+
+.buttonPanierResponsive
+{
+  
+}
+
+.achatResp
+{
+   display: none;
+}
+
+
+/* #sousImageOrd
+{
+    display: none;
+}
+ */
+
+
 
 }

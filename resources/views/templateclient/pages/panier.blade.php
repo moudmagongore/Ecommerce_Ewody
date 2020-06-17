@@ -117,6 +117,8 @@
                                                     <button type="submit" class="btn btn-light"> <i class="fa fa-trash"></i></button>
                                                     
                                                 </form>
+
+                                                <a href="{{ route('details', $produit->id) }}" class="btn btn-light ml-2"> <i class="fa fa-edit"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -205,6 +207,8 @@
                                                     <button type="submit" class="btn btn-light"> <i class="fa fa-trash"></i></button>
                                                     
                                                 </form>
+
+                                                <a href="{{ route('details', $produit->id) }}" class="btn btn-light ml-2" style="margin-left: 50px !important; margin-top:-60px;"> <i class="fa fa-edit"></i></a>
                                                  
 
                                         </p>
@@ -218,9 +222,44 @@
                            
                             <div class="card-body border-top">
                                 @guest
-                                    <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                               
+                                    @if ($produit->model->quantite == 0)
+
+                                        <a href="{{ route('produit-non-existe') }}" class="btn btn-danger float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                    <!--Pour la couleur et taille -->  
+                                    @elseif($coulProdNotExist || $tailleProdNotExist)
+
+                                        @if ($coulProdNotExist->quantite == 0 || $tailleProdNotExist->quantite == 0)
+                                            <a href="{{ route('produit-non-existe') }}" class="btn btn-danger float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                        @else
+                                            <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a> 
+                                        @endif
+                                        <!--Pour la couleur et taille --> 
+                                    @else
+                                        <a href="" class="btn btn-primary float-md-right" data-toggle="modal" data-target="#addcouponmodal"> Valider la commande <i class="fa fa-chevron-right"></i> </a>   
+                                    @endif
+
                                 @else
-                                    <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+
+
+
+                                   @if ($produit->model->quantite == 0)
+
+                                        <a href="{{ route('produit-non-existe') }}" class="btn btn-danger float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+
+                                    <!--Pour la couleur et taille -->
+                                    @elseif($coulProdNotExist || $tailleProdNotExist)
+
+                                        @if ($coulProdNotExist->quantite == 0 || $tailleProdNotExist->quantite == 0)
+                                            <a href="{{ route('produit-non-existe') }}" class="btn btn-danger float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                        @else
+                                            <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a>
+                                        @endif
+                                        <!--End Pour la couleur et taille -->
+                                    @else
+                                        <a href="{{route('checkout')}}" class="btn btn-primary float-md-right"> Valider la commande <i class="fa fa-chevron-right"></i> </a> 
+                                    @endif
+
                                 @endguest
                                 <a href="{{route('acceuil')}}" id="buttonContinuerAchat" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continuer mes achats </a>
 

@@ -90,7 +90,7 @@
                                     <div class="form-group col-md-6 with-float-icon">
                                         <label>Nouveau mot de passe</label>
                                         <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' : '' }}" placeholder="Nouveau mot de passe" name="password">
-                                         <i class="icon fa fa-eye"></i>
+                                        <!--  <i class="icon fa fa-eye"></i> -->
 
                                         {!!$errors->first('password', '<div class="invalid-feedback">:message</div>')!!}
 
@@ -98,7 +98,7 @@
                                     <div class="form-group col-md-6 with-float-icon">
                                         <label>Répéter mot de passe</label>
                                         <input type="password" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' : '' }}" placeholder="Répéter le nouveau mot de passe" name="password_confirmation">
-                                         <i class="icon fa fa-eye"></i>
+                                        <!--  <i class="icon fa fa-eye"></i> -->
 
                                         {!!$errors->first('password_confirmation', '<div class="invalid-feedback">:message</div>')!!}
 

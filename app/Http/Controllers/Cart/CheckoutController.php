@@ -276,6 +276,10 @@ class CheckoutController extends Controller
           /* Pour vider le coupon aprés achat*/
           request()->session()->forget('coupon');
 
+          /* Pour vider la session cart aprés achat*/
+          request()->session()->forget('cart');
+          /*session()->forget('cart');*/
+
           
            Session::flash('success', 'Votre commande à été traitée avec succès.');
 
@@ -285,6 +289,48 @@ class CheckoutController extends Controller
 
        
     }
+
+
+
+
+    public function produitNonExiste()
+    {
+          //Eviter d'acheter un produit qui n'existe plus
+          //si le produit n'est plus disponible est qu'il est déjà ajouté au panier 
+          if ($this->checkIfNotAvailable()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Un produit dans votre panier n\'est plus disponible.');
+            return back();
+          }
+
+          //Eviter d'acheter un produit dont la couleur n'existe plus
+          //si la couleur n'est plus disponible est qu'il est déjà ajouté au panier 
+          elseif ($this->checkIfNotAvailableCouleur()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une couleur pour un produit dans votre panier n\'est plus disponible.');
+            return back();
+          }
+
+          //Eviter d'acheter un produit dont la taille n'existe plus
+          //si la taille n'est plus disponible est qu'il est déjà ajouté au panier 
+          elseif ($this->checkIfNotAvailableTaille()) {
+            //On renvoie une erreur on return true c a d ce qui es en bd est inferieur ace que l'user a selectioner
+            flashy()->error('Une taille pour un produit dans votre panier n\'est plus disponible.');
+            return back();
+          }
+          /*End*/    
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -694,11 +740,6 @@ class CheckoutController extends Controller
 
 
           /*End updateStock pour le button acheter maintenant*/
-
-
-
-
-
 
 
 }

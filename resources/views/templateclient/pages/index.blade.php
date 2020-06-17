@@ -72,13 +72,14 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active img-fluid" >
-                                        <img src="{{asset('assets/templatefront/images/banners/flyers-with-all-products-gif.gif')}}" alt="First slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/ewody3.gif')}}" alt="First slide">
                                     </div>
                                     <div class="carousel-item img-fluid">
-                                        <img src="{{asset('assets/templatefront/images/banners/electronics-F.gif')}}" alt="Second slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/flyers-with-all-products-gif.gif')}}" alt="Second slide">
+
                                     </div>
                                     <div class="carousel-item img-fluid">
-                                        <img src="{{asset('assets/templatefront/images/banners/slide2.jpg')}}" alt="Third slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/electronics-F.gif')}}" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
@@ -101,8 +102,8 @@
             <!-- card.// -->
         </section>
         <div class="row" style="margin-bottom: 35px;">
-            <div class="col-md-3 col-sm-6 col-6 mt-4">
-                <article class="card card-body shadow-sm rounded" 
+            <div class="col-md-3 col-sm-6 col-6 mt-4 ">
+                <article class="card card-body shadow-sm rounded hauteur" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="50">
                     <figure class="text-center">
                         <span class="rounded-circle icon-md bg-success"><i class="fa fa-check white"></i></span>
@@ -112,8 +113,8 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 col-sm-6 col-6 mt-4">
-                <article class="card card-body shadow-sm rounded" 
+            <div class="col-md-3 col-sm-6 col-6 mt-4 ">
+                <article class="card card-body shadow-sm rounded hauteur" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="250">
                     <figure class="text-center">
                         <span class="rounded-circle icon-md bg-primary"><i class="fa fa-coins white"></i></span>
@@ -123,8 +124,8 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 col-sm-6 col-6 mt-4">
-                <article class="card card-body shadow-sm rounded" 
+            <div class="col-md-3 col-sm-6 col-6 mt-4 ">
+                <article class="card card-body shadow-sm rounded hauteur" 
                 data-aos="flip-left" data-aos-duration="1300" data-aos-delay="350">
                     <figure class="text-center">
                         <span class="rounded-circle icon-md bg-info"><i class="fa fa-truck white"></i></span>
@@ -134,8 +135,8 @@
                     </figure>
                 </article>
             </div>
-            <div class="col-md-3 col-sm-6 col-6 mt-4">
-                <article class="card card-body shadow-sm rounded" 
+            <div class="col-md-3 col-sm-6 col-6 mt-4 ">
+                <article class="card card-body shadow-sm rounded hauteur" 
                 data-aos="flip-right" data-aos-duration="1300" data-aos-delay="450">
                     <figure class="text-center">
                         <span class="rounded-circle icon-md bg-secondary"><i class="fa fa-lock white"></i></span>
@@ -189,49 +190,49 @@
             </div>
         </section>
 
-        <section class="padding-bottom">
-            <div class="container"> 
-                <header class="section-heading heading-line">
-                    <h4 class="title-section text-uppercase">Request for Quotation</h4>
-                </header>
-
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="card-banner banner-quote overlay-gradient" style="background-image: url('images/banners/source1.jpg');">
-                            <div class="card-img-overlay white">
-                                <h3 class="card-title">An easy way to send request to suppliers</h3>
-                                <p class="card-text" style="max-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                                <a href="" class="btn btn-outline-primary rounded-pill text-white">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="card card-body">
-                            <h4 class="title py-3">Whant get quotation?</h4>
-                            <form>
-                                <div class="form-group">
-                                    <input class="form-control" name="" placeholder="Product name or key word" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Quantity" name="" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <select class="custom-select form-control">
-                                        <option>Accessoirs</option>
-                                        <option>Sacs</option>
-                                        <option>Chaussures</option>
-                                        <option>Beaute</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary">Get your quotation</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       <!--  <section class="padding-bottom">
+           <div class="container"> 
+               <header class="section-heading heading-line">
+                   <h4 class="title-section text-uppercase">Request for Quotation</h4>
+               </header>
+       
+               <div class="row">
+                   <div class="col-md-7">
+                       <div class="card-banner banner-quote overlay-gradient" style="background-image: url('images/banners/source1.jpg');">
+                           <div class="card-img-overlay white">
+                               <h3 class="card-title">An easy way to send request to suppliers</h3>
+                               <p class="card-text" style="max-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                               <a href="" class="btn btn-outline-primary rounded-pill text-white">En savoir plus</a>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-5">
+                       <div class="card card-body">
+                           <h4 class="title py-3">Whant get quotation?</h4>
+                           <form>
+                               <div class="form-group">
+                                   <input class="form-control" name="" placeholder="Product name or key word" type="text">
+                               </div>
+                               <div class="form-group">
+                                   <input class="form-control" placeholder="Quantity" name="" type="text">
+                               </div>
+                               <div class="form-group">
+                                   <select class="custom-select form-control">
+                                       <option>Accessoirs</option>
+                                       <option>Sacs</option>
+                                       <option>Chaussures</option>
+                                       <option>Beaute</option>
+                                   </select>
+                               </div>
+                               <div class="form-group">
+                                   <button class="btn btn-primary">Get your quotation</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section> -->
 
         <section class="padding-bottom">
             <div class="container">

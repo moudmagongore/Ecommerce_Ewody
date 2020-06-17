@@ -170,7 +170,7 @@ Route::post('destroy-tailles\{id}', 'Tailles\TaillesController@destroyTailles')-
 
 
 
-/*Route pour enregistrer les info de livraison*/
+/*Route pour enregistrer les info de livraison d'une personne connecté*/
 Route::get('checkout', 'Cart\CheckoutController@index')->name('checkout');
 Route::get('checkout-achat', 'Cart\CheckoutController@indexAchat')->name('checkout.achat');
 
@@ -275,6 +275,8 @@ Route::get('/panier', 'Cart\CartController@index')->name('cart.index');
 Route::delete('/panier/{rowId}', 'Cart\CartController@destroy')->name('cart.destroy');
 
 
+
+
 Route::post('coupon', 'Cart\CartController@storeCoupon')->name('cart.store.coupon');
 Route::delete('coupon', 'Cart\CartController@destroyCoupon')->name('cart.destroy.coupon');
 
@@ -302,6 +304,11 @@ Route::get('faq', 'Frontend\AccueilController@faq')->name('faq');
 /*Route pour la recherche*/
 Route::get('search', 'Search\SearchController@search')->name('search');
 /*End Route pour la recherche*/
+
+
+/*Route pour eviter d'acheter un produit qui n'existe pas*/
+Route::get('produit-non-existe', 'Cart\CheckoutController@produitNonExiste')->name('produit-non-existe');
+/*End Route pour eviter d'acheter un produit qui n'existe pas*/
 
 
 

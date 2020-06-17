@@ -1,7 +1,7 @@
 @extends('templateclient.layouts.app', ['title' => 'Chekout'])
 @section('content')
 
-	@if (count(session('cart')) > 0 )
+	@if (session('cart') > 0 )
         <section class="checkout container">
 
             <div class="row mt-4 justify-content-center">

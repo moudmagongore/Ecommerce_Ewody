@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\models\Produit;
+use App\models\CouleurProduit;
+use App\models\ProduitTaille;
+
 use App\models\Coupon;
 
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +26,47 @@ class CartController extends Controller
      */
     public function index()
     {
+        /*Pour recuperer la quantité de la couleur, taille  dans le panier et le passé dans le vue*/
+        foreach (Cart::content() as $item)
+        {   
+            /*Pour la couleur*/
+            $couleurCliquerNotExist = $item->options->couleur;
+
+           
+            $coulProdNotExist = CouleurProduit::where('images', $couleurCliquerNotExist)-> first();
+            /*End Pour la couleur*/
+
+
+
+
+
+
+            /*Pour la taille*/
+             //On recupere seulement l'id du produit dans le panier
+              $idProduit = $item->id;
+
+            /*Pour recuperer la taille du produit au niveau panier*/
+            $tailleCliquerNotExist = $item->options->taille;
+
+
+            $tailleProdNotExist = ProduitTaille::where('designation', $tailleCliquerNotExist)->where('produit_id', $idProduit)->
+            first();
+            /*End Pour la taille*/
+
+
+
+
+
+
+               $user = Auth::user();
+                return view('templateclient.pages.panier', compact('user', 'coulProdNotExist', 'tailleProdNotExist'));
+        }
         $user = Auth::user();
         return view('templateclient.pages.panier', compact('user'));
+        
+
+
+       
     }
 
     /**
@@ -51,11 +93,15 @@ class CartController extends Controller
             return $cartItem->id == $request->produits_id;
         });
 
-        if ($duplicata->isNotEmpty()) {
+       /* dd($duplicata);*/
+
+        /*if ($duplicata->isNotEmpty()) {
 
           flashy()->error('Le produit à déjà été ajouté au panier !');
           return back();
-        }
+        }*/
+
+       
 
         //Pour recuperer la taille concernants un produit
         $tailles = $request->tailles;
@@ -69,6 +115,22 @@ class CartController extends Controller
 
          //Pour recuperer l'id du produit concerné
          $produit = Produit::find($request->produits_id);
+
+
+
+
+          if ($duplicata->isNotEmpty()) {
+
+            Cart::destroy($duplicata);
+
+            Cart::add($produit->id, $produit->nom, $quantites, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
+            ->associate('App\models\Produit');
+
+
+            flashy('Le produit à bien été ajouté au panier');
+
+              return back();
+        }
 
          
         Cart::add($produit->id, $produit->nom, $quantites, $produit->prix_unitaire, ['taille' => $tailles, 'couleur' => $couleurs])
@@ -283,6 +345,8 @@ class CartController extends Controller
         flashy()->error('Le produit à bien été supprimé');
         return back();
     }
+
+    
 
 
     public function destroyCoupon()
