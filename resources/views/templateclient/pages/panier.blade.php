@@ -418,4 +418,11 @@
     <script src="{{ asset('assets/templatefront/js/misajourquantite.js') }}"></script>
 @stop
 
+
+
+<!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
+@section('buttonsEnBas')
+     @include('templateclient.layouts.buttonsEnBas')
+@stop
+
    

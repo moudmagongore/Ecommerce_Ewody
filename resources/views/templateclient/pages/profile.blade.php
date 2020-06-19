@@ -117,3 +117,10 @@
     </section>
         
     @endsection
+
+
+
+<!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
+@section('buttonsEnBas')
+     @include('templateclient.layouts.buttonsEnBas')
+@stop

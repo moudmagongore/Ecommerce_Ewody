@@ -49,3 +49,10 @@
 
 
 <img src="{{asset('storage/pics/'.Auth::user()->image)}}" class="rounded-circle mr-1" height="30px" width="30px">{{ Auth::user()->name }} <span class="caret"></span>
+
+
+
+<!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
+@section('buttonsEnBas')
+     @include('templateclient.layouts.buttonsEnBas')
+@stop

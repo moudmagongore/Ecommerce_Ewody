@@ -204,3 +204,14 @@
    <!--  Chargement de l'autocompletion -->
     <script src="{{ asset('assets/templatefront/js/autocompletion.js') }}"></script>
 @stop
+
+
+
+
+
+
+
+<!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
+@section('buttonsEnBas')
+     @include('templateclient.layouts.buttonsEnBas')
+@stop

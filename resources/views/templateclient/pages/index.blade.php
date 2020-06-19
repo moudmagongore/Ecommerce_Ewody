@@ -72,14 +72,14 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active img-fluid" >
-                                        <img src="{{asset('assets/templatefront/images/banners/ewody3.gif')}}" alt="First slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/flyers-with-all-products-gif.gif')}}" alt="First slide">
                                     </div>
                                     <div class="carousel-item img-fluid">
-                                        <img src="{{asset('assets/templatefront/images/banners/flyers-with-all-products-gif.gif')}}" alt="Second slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/electronics-F.gif')}}" alt="Second slide">
 
                                     </div>
                                     <div class="carousel-item img-fluid">
-                                        <img src="{{asset('assets/templatefront/images/banners/electronics-F.gif')}}" alt="Third slide">
+                                        <img src="{{asset('assets/templatefront/images/banners/slide2.jpg')}}" alt="Third slide">
                                     </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
@@ -459,6 +459,8 @@
     @endsection
 
 
+
+ <!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
 @section('buttonsEnBas')
      @include('templateclient.layouts.buttonsEnBas')
 @stop

@@ -341,7 +341,7 @@
 
 
 
-    <!-- Pour les buttons en bas -->
+    <!-- Pour inclure les buttons en bas : home, favoris, compte ... -->
     @yield('buttonsEnBas')
 
 
