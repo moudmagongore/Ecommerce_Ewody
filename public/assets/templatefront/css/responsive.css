@@ -134,7 +134,8 @@
 /* Mahmoud */
 /* Responsive */
 /* @media screen and (max-width: 900px) */
-@media all and (max-device-width: 480px){
+@media all and (max-device-width: 480px)
+{
 
     /* Pour cacher les buttons en haut sauf panier*/
     #buttonHomeHaut
@@ -172,6 +173,14 @@
 
 
   }
+
+/*button en bas pour le prix panier et achat*/ 
+  #buttonEnBasPrix
+  {
+    background-color: #fff;
+    text-align: center;
+  }
+
 
   #buttonPanierEnBas
   {
@@ -308,8 +317,8 @@
 
 
 
-/* Pour le button news letters
-   */  #buttonNew
+/* Pour le button news letters*/
+  #buttonNew
   {
     margin-top: 15px;
   }
@@ -374,104 +383,110 @@
 
 
 
-/* Pour la hauteur du produit */
-.card-product-grid
-{
-    height: 320px;
-    
-}
-/* End pour la hauteur du produit */
+  /* Pour la hauteur du produit */
+  .card-product-grid
+  {
+      height: 320px;
+      
+  }
+  /* End pour la hauteur du produit */
 
 
-/* icon facebook et autre nivo footer */
-.icon-responsives {
-  padding-bottom: 35px !important;
-}
-/*End icon facebook et autre nivo footer */
+  /* icon facebook et autre nivo footer */
+  .icon-responsives {
+    padding-bottom: 35px !important;
+  }
+  /*End icon facebook et autre nivo footer */
 
 
 
 
 
-/* Pour cacher ce que j'aime en haut */
-.industrieResponsive
-{
+  /* Pour cacher ce que j'aime en haut */
+  .industrieResponsive
+  {
+      display: none;
+  }
+
+  .navbar-toggler 
+  {
+      display: none;
+  }
+  .navbar
+  {
+      display: none;
+  }
+
+  #cardImagePrincipale
+  {
+      /* margin-top: -18px; */
+      margin-top: -30px;
+      margin-bottom: -20px;
+  }
+  /*End Pour cacher ce que j'aime en haut */
+
+
+
+  /* Pour le message info */
+   .sliderInfo
+  {
+     margin-left: -90px;
+      margin-top: -55px
+  } 
+  .sliderInfo>strong
+  {
+      display: none;
+  }
+
+  /* Pour le message info */
+
+
+
+  /* Pour cacher l'image principale de l'ordi dans telephone */
+  #pourordi
+  {
     display: none;
-}
+  }
+  /* Pour cacher l'image principale de l'ordi dans telephone */
 
-.navbar-toggler 
-{
+  #titleResponsive
+  {
+   font-size: 22px;
+   margin-top: 20px !important
+  }
+
+
+  /* Pour reduire le button acheter maintenant */
+  .buttonAchatResponsive
+  {
     display: none;
-}
-.navbar
-{
+  }
+
+
+  .buttonPanierResponsive
+  {
     display: none;
-}
+  }
 
-#cardImagePrincipale
-{
-    /* margin-top: -18px; */
-    margin-top: -30px;
-    margin-bottom: -20px;
-}
-/*End Pour cacher ce que j'aime en haut */
+  .achatResp
+  {
+     display: none;
+  }
 
-
-
-/* Pour le message info */
- .sliderInfo
-{
-   margin-left: -90px;
-    margin-top: -55px
-} 
-.sliderInfo>strong
-{
+  #prixResponse
+  {
     display: none;
-}
+  }
 
-/* Pour le message info */
-
-
-
-/* Pour cacher l'image principale de l'ordi dans telephone */
-#pourordi
-{
-  display: none;
-}
-/* Pour cacher l'image principale de l'ordi dans telephone */
-
-#titleResponsive
-{
- font-size: 22px;
- margin-top: 20px !important
-}
+  #produitSimilaireResp
+  {
+    margin-top: -32px !important;
+  }
 
 
-/* Pour reduire le button acheter maintenant */
-.buttonAchatResponsive
-{
-  
-}
-
-}
-
-.buttonPanierResponsive
-{
-  
-}
-
-.achatResp
-{
-   display: none;
-}
-
-
-/* #sousImageOrd
-{
-    display: none;
-}
- */
-
-
-
+  /* #sousImageOrd
+  {
+      display: none;
+  }
+   */
 }

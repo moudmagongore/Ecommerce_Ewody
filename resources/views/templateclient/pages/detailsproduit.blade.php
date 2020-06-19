@@ -117,7 +117,7 @@
 
                                     </p>
                                     <div class="mb-3">
-                                        <var class="price h4">{{$produits->getprixminimum()}} </var>
+                                        <var class="price h4" id="prixResponse">{{$produits->getprixminimum()}} </var>
                                     </div>
                                     <p>{{$produits->description}}</p>
                                     <ul class="list-check">
@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="form-group col-md">
                                            
-                                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline" enctype="multipart/form-data">
+                                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline" enctype="multipart/form-data" name="formpanier">
     
                                                 @csrf
 
@@ -232,13 +232,6 @@
                                             </button>
                                         
 
-                                           
-
-
-                                            <!-- <button type="text" class="btn btn-success mt-4">
-                                                <i class="fas fa-heart"></i>
-                                                <span class="text">Achêter maintenant</span>
-                                            </button> -->
                                             </form>
                                            
                                             
@@ -249,7 +242,7 @@
 
                                        
 
-                                           <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data">
+                                           <form action="{{ route('acheter') }}" method="POST" class="d-inline" enctype="multipart/form-data"  name="formachat">
 
                                                 @csrf
 
@@ -273,7 +266,7 @@
                                                     <span class="text ">Achêter maintenant</span>
                                                     </button>
                                                @else
-                                                    <button type="text" class="btn btn-success mt-4" id="buttonAchat">
+                                                    <button type="text" class="btn btn-success buttonAchatResponsive mt-4" id="buttonAchat">
                                                     <i class="achatResp fa fa-play-circle" aria-hidden="true"></i>
                                                     <span class="text">Achêter maintenant</span>
                                                     </button>
@@ -338,7 +331,7 @@
                     
 
                <!--  Produit similaire -->
-                    <section class="section-name padding-y-sm mt-5">
+                    <section class="section-name padding-y-sm mt-5" id="produitSimilaireResp">
                         <div class="container">
 
                            <header class="section-heading heading-line">
@@ -804,20 +797,26 @@
                 /*Pour rendre le button ajouter panier et acheter maintenant disabled tant qu'on ne click pas sur la taille*/
                var tailles = document.querySelector('#tailles');
                var buttonPanier = document.querySelector('#buttonPanier');
+               var buttonPanierTelephone = document.querySelector('#buttonPanierTelephone');
                var buttonAchat = document.querySelector('#buttonAchat');
+               var buttonAchatTelephone = document.querySelector('#buttonAchatTelephone');
                
             
 
                buttonPanier.disabled = true;
+               buttonPanierTelephone.disabled = true;
                buttonAchat.disabled = true;
+               buttonAchatTelephone.disabled = true;
+
 
              
                tailles.onchange = function(){
                    if(tailles.value)
                    {
                         buttonPanier.disabled = false;
+                        buttonPanierTelephone.disabled = false;
                         buttonAchat.disabled = false;
-                       
+                        buttonAchatTelephone.disabled = false;  
                    }
 
                   
@@ -905,6 +904,60 @@
 
    
 
+@stop
+
+@section('buttonsEnBas')
+    <div class="col-12 col-sm-3 scroll-to-top-button-en-bas" id="buttonEnBasPrix" style=" z-index:100; position: fixed; bottom:-10px; ">
+        <div class=" float-md-right">
+            <div class="row">
+                <div class="col-4">
+                   <div class="mb-3 mt-4">
+                        <var class="price h5">{{$produits->getprixminimum()}} </var>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="mb-4 mt-3">
+
+                        <button type="submit" onclick="document.forms['formpanier'].submit();" class="btn  btn-primary" id="buttonPanierTelephone">
+                            <!-- <i class="fas fa-shopping-cart"></i> -->
+                            <span class="text">Ajouter</span>
+                        </button>
+
+                        
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="mb-4 mt-3">
+
+
+                       @if ($quantites === 'Disponible')
+                           @guest
+
+                                <button type ="button" class="btn btn-success" data-toggle="modal" data-target="#addAchatModal" id="buttonAchatTelephone">
+                                <!-- <i class="achatResp fa  fa-play-circle" aria-hidden="true"></i> -->
+                                <span class="text ">Achêter</span>
+                                </button>
+                           @else
+                                <button type="submit" class="btn btn-success" id="buttonAchatTelephone" onclick="document.forms['formachat'].submit();">
+                                <!-- <i class="achatResp fa fa-play-circle" aria-hidden="true"></i> -->
+                                <span class="text">Achêter</span>
+                                </button>
+                           @endguest
+                        @endif
+
+
+                    </div>
+                </div>
+            </div>
+             
+
+       
+        </div>
+
+
+    </div>
 @stop
 
 

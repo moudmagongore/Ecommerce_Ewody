@@ -2261,10 +2261,10 @@ body {
 }
 
 /* Modal Content (Image) */
-.modal-content  {
+#img01  {
   margin: auto;
   display: block;
-  width: 35%; /* 80 */
+  width: 90%; /* 80 */
   max-width: 700px;
 }
 
@@ -2386,6 +2386,11 @@ em
 @media all and (min-width: 500px) and (max-width: 1366px){
 
     .sliderInfo
+    {
+        display: none;
+    }
+
+    #buttonEnBasPrix
     {
         display: none;
     }
