@@ -3,13 +3,14 @@
 @section('extra-meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('assets/templatefront/css/imagedetails.css')}}" rel="stylesheet" type="text/css" />
+
 @stop
 
 @section('content')
 
 
         <section class="section-name padding-y-sm mb-4">
-            <div class="card mb-5" style="margin-top: -15px;">
+            <div class="card mb-5" style="margin-top: -15px;" id="carddetails">
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
                         <li class="breadcrumb-item"><a href="{{ route('acceuil') }}">Accueil</a></li>
@@ -22,10 +23,16 @@
                 </div>
             </div>
             <div class="container">
-                <section class="section-content bg-white padding-y">
+                <section class="section-content bg-white padding-y" id="remonteResp">
                     <div class="container">
 
+                       <!--  Debut partage -->
+
+                       @include('templateclient.layouts.share', ['url' => request()->fullUrl()])
+                         <!--  End Debut partage -->
+
                         <div class="row">
+
                             <aside class="col-md-4">
                                 <div class="card">
 
@@ -97,7 +104,7 @@
                                     <h3 class="title mt-3" id="titleResponsive">{{$produits->nom}}
                                     </h3>
 
-                                    <p class="text-left mr-4">
+                                    <p class="text-left mr-4" id="quantitetop">
 
                                         <!-- Pour afficher le stock -->
                                         @if ($quantites === 'Disponible')
@@ -116,10 +123,15 @@
                                        
 
                                     </p>
+
+
+
                                     <div class="mb-3">
                                         <var class="price h4" id="prixResponse">{{$produits->getprixminimum()}} </var>
                                     </div>
-                                    <p>{{$produits->description}}</p>
+
+
+                                    <p id="descriptiontop">{{$produits->description}}</p>
                                     <ul class="list-check">
                                         @foreach ($caracteristiques as $cara)
                                             <li><span style="font-weight:bold">{{$cara->designation}}: </span>{{$cara->valeur}}</li>
@@ -156,11 +168,11 @@
 
                                                 <input type="hidden" name="produits_id" value="{{$produits->id}}">
 
-                                        <div class="row">
+                                        <div class="row" id="quantitetailletop">
 
                                             <div class="col-md-2">
                                                 <label> <strong>Quantité</strong></label>
-                                                 <input name="quantites" type="number" class="form-control qtte-val" name="qty" id="qty" data-id="" data-quantite="" value="1" min="1" max="50" style="width: 60px;" >
+                                                 <input type="number" name="quantites"  class="form-control qtte-val" name="qty" id="qty" data-id="" data-quantite="" value="1" min="1" max="50" style="width: 60px;" >
                                             </div>  
 
 
@@ -874,7 +886,6 @@
 
 
 
-
 @section('modalimage')
     <script src="{{ asset('assets/templatefront/js/modalimage.js') }}"></script>
 @stop
@@ -912,7 +923,7 @@
             <div class="row">
                 <div class="col-4">
                    <div class="mb-3 mt-4">
-                        <var class="price h5">{{$produits->getprixminimum()}} </var>
+                        <var class="price">{{$produits->getprixminimum()}} </var>
                     </div>
                 </div>
 
@@ -920,7 +931,7 @@
                     <div class="mb-4 mt-3">
 
                         <button type="submit" onclick="document.forms['formpanier'].submit();" class="btn  btn-primary" id="buttonPanierTelephone">
-                            <!-- <i class="fas fa-shopping-cart"></i> -->
+                            <i class="fas fa-shopping-cart"></i>
                             <span class="text">Ajouter</span>
                         </button>
 
@@ -932,20 +943,21 @@
                     <div class="mb-4 mt-3">
 
 
-                       @if ($quantites === 'Disponible')
+                     
                            @guest
 
                                 <button type ="button" class="btn btn-success" data-toggle="modal" data-target="#addAchatModal" id="buttonAchatTelephone">
-                                <!-- <i class="achatResp fa  fa-play-circle" aria-hidden="true"></i> -->
+                               <i class=" fa  fa-play-circle" aria-hidden="true"></i>
                                 <span class="text ">Achêter</span>
                                 </button>
                            @else
                                 <button type="submit" class="btn btn-success" id="buttonAchatTelephone" onclick="document.forms['formachat'].submit();">
-                                <!-- <i class="achatResp fa fa-play-circle" aria-hidden="true"></i> -->
+                               <i class=" fa fa-play-circle" aria-hidden="true"></i>
                                 <span class="text">Achêter</span>
                                 </button>
                            @endguest
-                        @endif
+
+                      
 
 
                     </div>

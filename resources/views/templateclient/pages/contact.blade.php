@@ -66,11 +66,10 @@
             <div class="p-4 mb-3 bg-white" id="contact1">
               <p class="mb-0 font-weight-bold">Adresse</p>
               <p class="mb-4">Ewody SARL
-                2e étage/suite B7, Immeuble Kaloum, Almamya
-                Conakry/Rép. de Guinée</p>
+                Sonfonia T7, C/Ratoma, Conakry, Rep. Guinée</p>
 
               <p class="mb-0 font-weight-bold">Telephone</p>
-              <p class="mb-4"><a>(+224) 620 41 54 50 /620 03 43 17/660 33 06 10</a></p>
+              <p class="mb-4"><a>(+224) 624664883 / 661708042</a></p>
 
               <p class="mb-0 font-weight-bold">Email Adresse</p>
               <p class="mb-0"><a>ewody@gmail.com</a></p>
@@ -78,9 +77,9 @@
             </div>
             
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">Plus d'information</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur? Fugiat quaerat eos qui, libero neque sed nulla.</p>
-              <p><a href="#" class="btn btn-primary px-4 py-2 text-white">Voir plus</a></p>
+              <h3 class="h5 text-black mb-3">EWODY SARL</h3>
+              <p>Ewody est une entreprise d'e-commerce qui vous permet en seul clics d’avoir accès aux produits et services du marché Guinéen partout, et a tout moment.</p>
+             <!--  <p><a href="#" class="btn btn-primary px-4 py-2 text-white">Voir plus</a></p> -->
             </div>
 
           </div>

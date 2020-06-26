@@ -326,10 +326,16 @@
 
 
 /* Details produit */
- #couleurResponsive
- {
-    margin-top: 5px;
- }
+#remonteResp
+{
+  margin-top: -40px;
+}
+
+#partageResp
+{
+  
+  margin-top: -15px;
+}
  #tailleResponsive
  {
     margin-top: -68px;
@@ -341,10 +347,67 @@
    width: 128px;
  }
 
- #myImg
- {
+   /* Pour cacher l'image principale de l'ordi dans telephone */
+  #pourordi
+  {
+    display: none;
+  }
+  /* Pour cacher l'image principale de l'ordi dans telephone */
 
- }
+  #titleResponsive
+  {
+   font-size: 22px;
+   margin-top: 20px !important
+  }
+
+
+  /* Pour reduire le button acheter maintenant */
+  .buttonAchatResponsive
+  {
+    display: none;
+  }
+
+
+  .buttonPanierResponsive
+  {
+    display: none;
+  }
+
+  .achatResp
+  {
+     display: none;
+  }
+
+  #prixResponse
+  {
+    display: none;
+  }
+
+  #produitSimilaireResp
+  {
+    margin-top: -32px !important;
+  }
+
+  #carddetails
+  {
+    display: none;
+  }
+
+  #quantitetop
+  {
+    margin-top: -10px;
+  }
+
+  #descriptiontop
+  {
+    margin-top: -5px;
+  }
+
+  #quantitetailletop
+  {
+    margin-top: -20px;
+  }
+
 /* End Details produit */
 
 
@@ -442,46 +505,6 @@
 
 
 
-  /* Pour cacher l'image principale de l'ordi dans telephone */
-  #pourordi
-  {
-    display: none;
-  }
-  /* Pour cacher l'image principale de l'ordi dans telephone */
-
-  #titleResponsive
-  {
-   font-size: 22px;
-   margin-top: 20px !important
-  }
-
-
-  /* Pour reduire le button acheter maintenant */
-  .buttonAchatResponsive
-  {
-    display: none;
-  }
-
-
-  .buttonPanierResponsive
-  {
-    display: none;
-  }
-
-  .achatResp
-  {
-     display: none;
-  }
-
-  #prixResponse
-  {
-    display: none;
-  }
-
-  #produitSimilaireResp
-  {
-    margin-top: -32px !important;
-  }
 
 
   /* #sousImageOrd

@@ -3,7 +3,7 @@
         <input type="search" class="form-control" style="width:32%;" placeholder="Rechercher" name="search" value="">
 
         <select class="custom-select" name="categorie">
-           <option disabled="" selected ></option>
+           <option disabled="" selected >Catégories</option>
             @foreach ($categories as $categorie)
                 <option value="{{$categorie->designation_categorie}}">{{$categorie->designation_categorie}}</option>
             @endforeach

@@ -7,12 +7,16 @@
     <meta http-equiv="cache-control" content="max-age=604800" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+
     
 
      @yield('extra-meta')
      @yield('css-register')
 
     <title>E-wody | {{ $title or ' '}}</title>
+
+
 
 
    <!--  Chargement pour l'autocompletion-->
@@ -272,21 +276,24 @@
                     <aside class="col-md-4 col-12">
                         <article class="mr-md-4">
                             <h5 class="title">EWODY SARL</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in feugiat lorem. </p>
+                            <p>Ewody est une entreprise d'e-commerce qui vous permet en seul clics
+                            d’avoir accès aux produits et services du marché Guinéen partout, et a
+                            tout moment. </p>
                             <ul class="list-icon">
-                                <li> <i class="icon fa fa-map-marker"> </i>Madina Boussoura, Conakry, Guinée</li>
+                                <li> <i class="icon fa fa-map-marker"> </i>Sonfonia T7, C/Ratoma, Conakry, Rep. Guinée</li>
                                 <li> <i class="icon fa fa-envelope"> </i> info@ewody.com</li>
-                                <li> <i class="icon fa fa-phone"> </i> (+224) 620-000-000 / 620-111-000</li>
-                                <li> <i class="icon fa fa-clock"> </i>Lun-Vend 10:00 - 7:00</li>
+                                <li> <i class="icon fa fa-phone"> </i> (+224) 624664883 / 661708042</li>
+                                <li> <i class="icon fa fa-clock"> </i>Lun-Sam, 8h-21h</li>
                             </ul>
                         </article>
                     </aside>
                     <aside class="col-md col-6">
                         <h5 class="title">Informations</h5>
                         <ul class="list-unstyled">
-                            <li> <a href="#">Apropos de nous</a></li>
-                            <li> <a href="#">Nous contactez</a></li>
-                            <li> <a href="#">CGU & CGV</a></li>
+                             <li> <a href="{{ route('produits') }}">Tous nos produits</a></li>
+                            <li> <a href="{{ route('apropos') }}">A propos</a></li>
+                            <li> <a href="{{ route('contact') }}">Contact</a></li>
+                            <li> <a href="{{ route('faq') }}">Faq</a></li>
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
@@ -294,7 +301,7 @@
                         <ul class="list-unstyled">
                             <li> <a href="{{route('connexion')}}">Se connecter</a></li>
                             <li> <a href="{{route('cart.index')}}">Mon panier</a></li>
-                            <li> <a href="{{route('connexion')}}">Créer un compte</a></li>
+                            <li> <a href="{{ route('inscrire') }}">Créer un compte</a></li>
                         </ul>
                     </aside>
                     <aside class="col-md-4 col-12">
