@@ -27,7 +27,6 @@
                     <div class="container">
 
                        <!--  Debut partage -->
-
                        @include('templateclient.layouts.share', ['url' => request()->fullUrl()])
                          <!--  End Debut partage -->
 

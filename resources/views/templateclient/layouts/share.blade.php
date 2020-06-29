@@ -10,7 +10,11 @@
                 </li>
 
                 <li class="dropdown-item">
-                 <a href="https://twitter.com/intent/tweet?text=https%3A//www.nowody.com" target="_blank">Twitter</a>
+                 <a href="https://twitter.com/intent/tweet?url={{ urlencode($url) }}" target="_blank">Twitter</a>
+                </li>
+
+                <li class="dropdown-item">
+                 <a href="https://plus.google.com/share?url={{ urlencode($url) }}" target="_blank">Google+</a>
                 </li>
                 
                 
