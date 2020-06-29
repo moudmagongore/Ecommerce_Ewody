@@ -154,7 +154,7 @@
             <div class="container">
 
                 <header class="section-heading clearfix">
-                    <a href="{{route('detailcategorie', ['category' => $categori->designation_categorie])}}" class="btn btn-outline-primary float-right">Voir tous</a>
+                    <a href="{{route('detailcategorie', ['category' => $categoryProduitPhare->designation_categorie])}}" class="btn btn-outline-primary float-right">Voir tous</a>
                     <h3 class="section-title text-uppercase" style="font-size: 22px;">Produits populaires</h3>
                 </header><!-- sect-heading -->
 
@@ -178,6 +178,13 @@
                         <figcaption class="info-wrap border-top">
                             <a href="{{route('details', $phare->id)}}" class="title">{{$phare->nom}}</a>
                             <div class="price mt-2">{{$phare->getprixminimum()}}</div>
+
+                            @if ($phare->quantite == 0 )
+                                <div class="mt-2">
+                                    <span class="badge badge-pill badge-danger">
+                                <p>Rupture en stock</p>
+                                </div>
+                            @endif
                         </figcaption>
                         </figure>
                     </div>
@@ -238,7 +245,7 @@
             <div class="container">
                 <header class="section-heading heading-line">
                     <h4 class="title-section text-uppercase">
-                        <a href="{{route('detailcategorie', ['category' => $categorys->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Sacs</a>
+                        <a href="{{route('detailcategorie', ['category' => $categorySacs->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Sacs</a>
                     </h4>
                 </header>
 
@@ -247,9 +254,9 @@
                         <div class="col-md-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/bag3.jpg') }}');">
                                 <article class="caption bottom">
-                                    <h5 class="card-title">Sacs à portée de main</h5>
+                                    <h5 class="card-title">Sacs</h5>
                                     <p>
-                                        <a href="{{route('detailcategorie', ['category' => $categorys->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                        <a href="{{route('detailcategorie', ['category' => $categorySacs->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
                                     </p>
                                 </article>
                             </div>
@@ -275,6 +282,13 @@
                                             <figcaption class="info-wrap border-top">
                                                 <a href="{{route('details', $sac->id)}}" class="title">{{$sac->nom}}</a>
                                                 <div class="price mt-2 text-right">{{$sac->getprixminimum()}}</div>
+
+                                                @if ($sac->quantite == 0 )
+                                                    <div class="mt-2">
+                                                        <span class="badge badge-pill badge-danger">
+                                                    <p>Rupture en stock</p>
+                                                    </div>
+                                                @endif
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -286,22 +300,216 @@
             </div>
         </section>
 
+
+
+
+        <!-- Chaussure -->
         <section class="padding-bottom">
             <div class="container">
                 <header class="section-heading heading-line">
                     <h4 class="title-section text-uppercase">
-                        <a href="{{route('detailcategorie', ['category' => $category->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Montres</a>
+                        <a href="{{route('detailcategorie', ['category' => $categoryChaussure->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Chaussures</a>
                     </h4>
                 </header>
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
                         <div class="col-md-3">
-                            <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/banners/banner8.jpg') }}');">
+                            <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/15.jpg') }}');">
+                                <article class="caption bottom">
+                                    <h5 class="card-title">Chaussure de luxe</h5>
+                                    <p>
+                                        <a href="{{route('detailcategorie', ['category' => $categoryChaussure->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row  pl-sm-4">
+                                @foreach ($produits_chaussure as $chaussure)
+                                    <div class="col-md-3 col-6">
+                                        <figure class="card card-product-grid rounded shadow-sm" 
+                                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                            <div class="img-wrap">
+                                                <span class="badge badge-success"> NEW </span>
+                                                <a href="{{route('details', $chaussure->id)}}">
+                                                    <img src="{{ asset('uploads/' . $chaussure->photo) }}">
+                                                </a>
+
+                                                <span class="topbar">
+                                                    <a href="{{ route('favoris.store', $chaussure->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                                </span>
+
+                                                <a class="btn-overlay" href="{{route('details', $chaussure->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                            </div>
+                                            <figcaption class="info-wrap border-top">
+                                                <a href="{{route('details', $chaussure->id)}}" class="title">{{$chaussure->nom}}</a>
+                                                <div class="price mt-2 text-right">{{$chaussure->getprixminimum()}}</div>
+
+                                                @if ($chaussure->quantite == 0 )
+                                                    <div class="mt-2">
+                                                        <span class="badge badge-pill badge-danger">
+                                                    <p>Rupture en stock</p>
+                                                    </div>
+                                                @endif
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End chaussure -->
+
+
+
+         <!-- Telephone -->
+        <section class="padding-bottom">
+            <div class="container">
+                <header class="section-heading heading-line">
+                    <h4 class="title-section text-uppercase">
+                        <a href="{{route('detailcategorie', ['category' => $categoryTelephone->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Téléphones</a>
+                    </h4>
+                </header>
+
+                <div class="card card-home-category bg-transparent border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-3">
+                            <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/tell.png') }}');">
+                                <article class="caption bottom">
+                                    <h5 class="card-title">Téléphone</h5>
+                                    <p>
+                                        <a href="{{route('detailcategorie', ['category' => $categoryTelephone->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row  pl-sm-4">
+                                @foreach ($produits_telephone as $telephone)
+                                    <div class="col-md-3 col-6">
+                                        <figure class="card card-product-grid rounded shadow-sm" 
+                                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                            <div class="img-wrap">
+                                                <span class="badge badge-success"> NEW </span>
+                                                <a href="{{route('details', $telephone->id)}}">
+                                                    <img src="{{ asset('uploads/' . $telephone->photo) }}">
+                                                </a>
+
+                                                <span class="topbar">
+                                                    <a href="{{ route('favoris.store', $telephone->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                                </span>
+
+                                                <a class="btn-overlay" href="{{route('details', $telephone->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                            </div>
+                                            <figcaption class="info-wrap border-top">
+                                                <a href="{{route('details', $telephone->id)}}" class="title">{{$telephone->nom}}</a>
+                                                <div class="price mt-2 text-right">{{$telephone->getprixminimum()}}</div>
+
+                                                @if ($telephone->quantite == 0 )
+                                                    <div class="mt-2">
+                                                        <span class="badge badge-pill badge-danger">
+                                                    <p>Rupture en stock</p>
+                                                    </div>
+                                                @endif
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End telephone -->
+
+
+
+         <!-- Emballage -->
+        <section class="padding-bottom">
+            <div class="container">
+                <header class="section-heading heading-line">
+                    <h4 class="title-section text-uppercase">
+                        <a href="{{route('detailcategorie', ['category' => $categoryEmballage->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Emballage</a>
+                    </h4>
+                </header>
+
+                <div class="card card-home-category bg-transparent border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-3">
+                            <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/emb.jpg') }}');">
+                                <article class="caption bottom">
+                                    <h5 class="card-title">Emballage</h5>
+                                    <p>
+                                        <a href="{{route('detailcategorie', ['category' => $categoryEmballage->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row  pl-sm-4">
+                                @foreach ($produits_emballage as $emballage)
+                                    <div class="col-md-3 col-6">
+                                        <figure class="card card-product-grid rounded shadow-sm" 
+                                        data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
+                                            <div class="img-wrap">
+                                                <span class="badge badge-success"> NEW </span>
+                                                <a href="{{route('details', $emballage->id)}}">
+                                                    <img src="{{ asset('uploads/' . $emballage->photo) }}">
+                                                </a>
+
+                                                <span class="topbar">
+                                                    <a href="{{ route('favoris.store', $emballage->id) }}" class="float-right"><i class="fa fa-heart"></i></a>
+                                                </span>
+
+                                                <a class="btn-overlay" href="{{route('details', $emballage->id)}}"><i class="fa fa-search-plus"></i>  Aperçu</a>
+                                            </div>
+                                            <figcaption class="info-wrap border-top">
+                                                <a href="{{route('details', $emballage->id)}}" class="title">{{$emballage->nom}}</a>
+                                                <div class="price mt-2 text-right">{{$emballage->getprixminimum()}}</div>
+
+                                                @if ($emballage->quantite == 0 )
+                                                    <div class="mt-2">
+                                                        <span class="badge badge-pill badge-danger">
+                                                    <p>Rupture en stock</p>
+                                                    </div>
+                                                @endif
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End emballage -->
+
+
+
+
+
+        <section class="padding-bottom">
+            <div class="container">
+                <header class="section-heading heading-line">
+                    <h4 class="title-section text-uppercase">
+                        <a href="{{route('detailcategorie', ['category' => $categoryMontre->designation_categorie])}}" title="Voir plus" data-toggle="tooltip" data-placement="right">Montres</a>
+                    </h4>
+                </header>
+
+                <div class="card card-home-category bg-transparent border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-3">
+                            <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/7.jpg') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Montres de luxe</h5>
                                     <p>
-                                        <a href="{{route('detailcategorie', ['category' => $category->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
+                                        <a href="{{route('detailcategorie', ['category' => $categoryMontre->designation_categorie])}}" class="btn btn-outline-primary rounded-pill">Voir plus</a>
                                     </p>
                                 </article>
                             </div>
@@ -331,6 +539,14 @@
                                             <figcaption class="info-wrap border-top">
                                             <a href="{{route('details', $montre->id)}}" class="title">{{$montre->nom}}</a>
                                                 <div class="price mt-2 text-right">{{$montre->getprixminimum()}}</div>
+
+
+                                                @if ($montre->quantite == 0 )
+                                                    <div class="mt-2">
+                                                        <span class="badge badge-pill badge-danger">
+                                                    <p>Rupture en stock</p>
+                                                    </div>
+                                                @endif
                                             </figcaption>
                                         </figure>
                                     </div>
@@ -370,6 +586,13 @@
                                     <figcaption class="info-wrap border-top">
                                         <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
                                         <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
+
+                                        @if ($deatils->quantite == 0 )
+                                            <div class="mt-2">
+                                                <span class="badge badge-pill badge-danger">
+                                            <p>Rupture en stock</p>
+                                            </div>
+                                        @endif
                                     </figcaption>
                                 </figure>
                             </div>
@@ -395,6 +618,13 @@
                                     <figcaption class="info-wrap border-top">
                                         <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
                                         <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
+
+                                        @if ($details['quantite'] == 0 )
+                                            <div class="mt-2">
+                                                <span class="badge badge-pill badge-danger">
+                                            <p>Rupture en stock</p>
+                                            </div>
+                                        @endif
                                     </figcaption>
                                 </figure>
                             </div>

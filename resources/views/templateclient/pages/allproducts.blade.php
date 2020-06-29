@@ -139,7 +139,7 @@
                                             </div>
 
                                             @if ($produit->quantite == 0 )
-                                                <div>
+                                                <div class="mt-2">
                                                     <span class="badge badge-pill badge-danger">
                                                 <p>Rupture en stock</p>
                                                 </div>

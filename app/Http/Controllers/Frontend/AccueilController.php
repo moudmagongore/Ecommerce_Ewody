@@ -40,17 +40,28 @@ class AccueilController extends Controller
         /*$images = Imagemodel::where('code_photo', '=', 1)->get();*/
         $produits = Produit::all();
 
-        $categori = Categorie::where('designation_categorie', 'produits phares')->firstOrFail();
+        $categoryProduitPhare = Categorie::where('designation_categorie', 'produits phares')->firstOrFail();
 
        /* $category = Categorie::find(7);*/
-       $category = Categorie::where('designation_categorie', 'montre')->firstOrFail();
+       $categoryMontre = Categorie::where('designation_categorie', 'montre')->firstOrFail();
 
       /* $categorys = Categorie::find(5);*/
-      $categorys = Categorie::where('designation_categorie', 'sacs')->firstOrFail();
+      $categorySacs = Categorie::where('designation_categorie', 'sacs')->firstOrFail();
+
+      $categoryChaussure = Categorie::where('designation_categorie', 'chaussures')->firstOrFail();
+
+
+      $categoryTelephone = Categorie::where('designation_categorie', 'telephones')->firstOrFail();
+
+
+      $categoryEmballage = Categorie::where('designation_categorie', 'emballage')->firstOrFail();
      
-      $produits_phare = $categori->produits;
-      $produits_montre =  $category->produits;
-      $produits_sacs =  $categorys->produits;
+      $produits_phare = $categoryProduitPhare->produits;
+      $produits_montre =  $categoryMontre->produits;
+      $produits_sacs =  $categorySacs->produits;
+      $produits_chaussure = $categoryChaussure->produits;
+      $produits_telephone = $categoryTelephone->produits;
+      $produits_emballage = $categoryEmballage->produits;
      
 
         return view('templateclient.pages.index', compact('categories', 
@@ -58,12 +69,18 @@ class AccueilController extends Controller
         'caracteristiques' ,
         'industries' ,
         'produits_montre',
-        /*'images',*/
         'produits_sacs',
         'produits_phare',
-        'categorys',
-        'category',
-        'categori'
+        'produits_chaussure',
+        'produits_telephone',
+        'produits_emballage',
+
+        'categorySacs',
+        'categoryMontre',
+        'categoryProduitPhare',
+        'categoryChaussure',
+        'categoryTelephone',
+        'categoryEmballage',
         ));
     }
 
