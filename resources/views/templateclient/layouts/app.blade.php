@@ -65,6 +65,12 @@
                                 <li><a class="dropdown-item" href="#">English</a></li>
                             </ul>
                         </li>
+                        
+                        <!-- Dashboard -->
+                        @can('voir-page-admin')
+                            <li class="nav-item"><a href="{{ route('accueil.back') }}" class="nav-link"> Dashboard </a></li>
+                        @endcan
+                        <!--End Dashboard -->
                     </ul>
                 </nav>
             </div>
