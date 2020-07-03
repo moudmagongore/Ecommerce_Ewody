@@ -29,7 +29,7 @@
         padding: 0;
     }
     .table-shopping-cart .itemside .aside {
-        display: none;
+        /* display: none; */
     }
     .card-deal {
         display: block;

@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
+/*use Auth;*/
+use Socialite;
+use App\User;
+
 
 class LoginController extends Controller
 {
@@ -185,4 +189,48 @@ class LoginController extends Controller
     {
          return session('url.intended') ?? $this->redirectTo;
     }
+
+
+
+
+
+
+
+
+
+    /*login facebook*/
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+
+     public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->user();
+        dd($user);
+        
+        $authUser = $this->findOrCreateUser($user, $provider);
+        Auth::login($authUser, true);
+        return redirect($this->redirectTo);
+    }
+
+    public function findOrCreateUser($providerUser, $provider)
+    {
+            $authUser = User::where('provider_id', $user_id)->first();
+
+            if ($authUser) {
+                return $authUser;
+            }
+
+            return User::create([
+                    'name'  => $user->name,
+                    'email' => $user->email,
+                    'provider'  => $provider,
+                    'provider_id' => $user->id,
+                ]);
+    }
+
+    /*end login facebook*/
+
 }

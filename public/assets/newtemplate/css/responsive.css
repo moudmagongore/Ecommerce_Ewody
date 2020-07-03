@@ -270,4 +270,25 @@
     right: 120px;
 }
 }
+
+
+/* Pour logo telephone */
+.logo-pro
+{
+    width: 133px;
+    height: 51px;
+}
+
+.main-logo
+{
+    max-height: 100% !important;
+    max-width: 100% !important;
+} 
+
+/* Pour notification commande */
+#notifResp
+{
+	margin-right: 6em;
+    margin-top: 5px;
+}
  

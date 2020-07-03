@@ -130,7 +130,7 @@ margin-top: 10px;
 
     @can('voir-page-admin-vendeur')
     <li>
-        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i>
+        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i>
          <span class="mini-click-non">
          Commandes
         </span></a>
@@ -153,7 +153,7 @@ margin-top: 10px;
 
     @can('voir-page-admin-vendeur')
     <li>
-        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-check-circle icon-wrap"></i> <span class="mini-click-non">Livraison</span></a>
+        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-check-circle icon-wrap"></i> <span class="mini-click-non">Livraison</span></a>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Liste" href="{{route('listlivraison')}}"><i class="fa fa-th sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des livraison</span></a></li>
         </ul>
@@ -163,7 +163,7 @@ margin-top: 10px;
 
     @can('voir-page-admin')
     <li>
-        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-users icon-wrap"></i> <span class="mini-click-non">Clients</span></a>
+        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-users icon-wrap"></i> <span class="mini-click-non">Clients</span></a>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Recent" href="#"><i class="fa fa-folder sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Clients récents</span></a></li>
             <li><a title="Liste des clients" href="{{route('listclient')}}"><i class="fa fa-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste clients</span></a></li>
@@ -173,7 +173,7 @@ margin-top: 10px;
 
     @can('voir-page-admin')
     <li>
-        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="fa big-icon fa-adn icon-wrap"></i> <span class="mini-click-non">Administration</span></a>
+        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-adn icon-wrap"></i> <span class="mini-click-non">Administration</span></a>
         <ul class="submenu-angle" aria-expanded="false">
             <li><a title="Utilisateurs" href="{{route('listuser')}}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Utilisateur</span></a></li>
             <li><a title="Fournisseur" href="{{route('listfournisseur')}}"><i class="fa fa-rocket sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Fournisseur</span></a></li>
@@ -183,7 +183,7 @@ margin-top: 10px;
     @endcan
     
     @can('voir-page-admin-vendeur')
-    <li><a title="Landing Page" href="#" aria-expanded="false"><i class="fa fa-times-circle icon-wrap big-icon" aria-hidden="true"></i> <span class="mini-click-non">Quitter</span></a>
+    <li><a title="Landing Page" href="{{ route('acceuil') }}" aria-expanded="false"><i class="fa fa-times-circle icon-wrap big-icon" aria-hidden="true"></i> <span class="mini-click-non">Quitter</span></a>
     </li>
     @endcan
 </ul>
@@ -192,13 +192,14 @@ margin-top: 10px;
 </nav>
 </div>
 
-<!-- Start Welcome area -->
+<!-- Start Welcome logo -->
 <div class="all-content-wrapper">
 <div class="container-fluid">
 <div class="row">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+   <!--  col-lg-12 col-md-12 col-sm-12 col-xs-12 -->
+<div class="">
 <div class="logo-pro">
-    <a href="index.html"><img class="main-logo" src="{{ asset('assets/newtemplate/img/logo/logo.png')}}" alt="" /></a>
+    <a href="{{ route('accueil.back') }}"><img class="main-logo" src="{{ asset('assets/templatefront/images/logo.png')}}" alt="" /></a>
 </div>
 </div>
 </div>
@@ -249,6 +250,8 @@ margin-top: 10px;
                                     </div>
                                 </div>
                             </li>
+
+
                             <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
                                 <div role="menu" class="notification-author dropdown-menu animated zoomIn">
                                     <div class="notification-single-top">
@@ -274,6 +277,8 @@ margin-top: 10px;
                                     </div>
                                 </div>
                             </li>
+
+
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                         <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
@@ -293,6 +298,8 @@ margin-top: 10px;
                                     </li>
                                 </ul>
                             </li>
+
+                            
                             
                         </ul>
                     </div>
@@ -303,6 +310,33 @@ margin-top: 10px;
 </div>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Mobile Menu start -->
 <div class="mobile-menu-area">
 <div class="container">
@@ -310,133 +344,96 @@ margin-top: 10px;
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="mobile-menu">
             <nav id="dropdown">
-                <ul class="mobile-menu-nav">
-                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul class="collapse dropdown-header-top">
-                            <li><a href="index.html">Dashboard v.1</a></li>
-                            <li><a href="index-1.html">Dashboard v.2</a></li>
-                            <li><a href="index-3.html">Dashboard v.3</a></li>
-                            <li><a href="product-list.html">Product List</a></li>
-                            <li><a href="product-edit.html">Product Edit</a></li>
-                            <li><a href="product-detail.html">Product Detail</a></li>
-                            <li><a href="product-cart.html">Product Cart</a></li>
-                            <li><a href="product-payment.html">Product Payment</a></li>
-                            <li><a href="analytics.html">Analytics</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
+                <ul class="metismenu" id="menu1">
+                    <li class="">
+                        <a class="has-arrow" href="{{ route('accueil.back') }}">
+                                <i class="fa big-icon fa-home icon-wrap"></i>
+                                <span class="mini-click-non">E-Wody</span>
+                            </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Admin" href="{{ route('accueil.back') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Admin</span></a></li>
+                            <li><a title="Site" href="{{route('acceuil')}}"><i class="fa fa-circle-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Site</span></a></li>
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="demo" class="collapse dropdown-header-top">
-                            <li><a href="mailbox.html">Inbox</a>
-                            </li>
-                            <li><a href="mailbox-view.html">View Mail</a>
-                            </li>
-                            <li><a href="mailbox-compose.html">Compose Mail</a>
-                            </li>
+
+                    @can('voir-page-admin-vendeur')
+                    
+                    <li><a title="Privillege" href="{{route('listcategorie')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Catégorie</span></a>
+                    </li>
+                    
+
+                    <li>
+                        <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-product-hunt icon-wrap"></i> <span class="mini-click-non">Produit</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Produit" href="{{route('listproduit')}}"><i class="fa fa-list-ol sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste produits</span></a></li>
+                            <li><a title="Ajouter produit" href="{{route('ajoutproduit')}}"><i class="fa fa-plus-circle sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Ajout Produit</span></a></li>
+                            <li><a title="categorie" href="{{route('addimage')}}"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Configuration produit</span></a></li>
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#others" href="#">Miscellaneous <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="others" class="collapse dropdown-header-top">
-                            <li><a href="file-manager.html">File Manager</a></li>
-                            <li><a href="contacts.html">Contacts Client</a></li>
-                            <li><a href="projects.html">Project</a></li>
-                            <li><a href="project-details.html">Project Details</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
-                            <li><a href="404.html">404 Page</a></li>
-                            <li><a href="500.html">500 Page</a></li>
+                    @endcan
+                        
+                        @can('voir-page-admin')
+                            <li><a title="Privillege" href="{{route('list-coupon')}}"><i class="fa fa-tags sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Coupons</span></a></li>
+                        @endcan
+
+                    @can('voir-page-admin-vendeur')
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-shopping-cart icon-wrap"></i>
+                         <span class="mini-click-non">
+                         Commandes
+                        </span></a>
+                        <span class="notify" id="notifResp">
+                               
+                        {{App\models\Commande::where('statut', 'En cours')->get()->count()}}
+                   
+                        </span>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Commande" href="{{route('listcommande')}}"><i class="fa fa-map-o sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des commandes</span></a></li>
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                            <li><a href="google-map.html">Google Map</a>
-                            </li>
-                            <li><a href="data-maps.html">Data Maps</a>
-                            </li>
-                            <li><a href="pdf-viewer.html">Pdf Viewer</a>
-                            </li>
-                            <li><a href="x-editable.html">X-Editable</a>
-                            </li>
-                            <li><a href="code-editor.html">Code Editor</a>
-                            </li>
-                            <li><a href="tree-view.html">Tree View</a>
-                            </li>
-                            <li><a href="preloader.html">Preloader</a>
-                            </li>
-                            <li><a href="images-cropper.html">Images Cropper</a>
-                            </li>
+                    @endcan
+
+
+                    
+                        
+                        
+                   
+
+                    @can('voir-page-admin-vendeur')
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-check-circle icon-wrap"></i> <span class="mini-click-non">Livraison</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Liste" href="{{route('listlivraison')}}"><i class="fa fa-th sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste des livraison</span></a></li>
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Charts <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="Chartsmob" class="collapse dropdown-header-top">
-                            <li><a href="bar-charts.html">Bar Charts</a>
-                            </li>
-                            <li><a href="line-charts.html">Line Charts</a>
-                            </li>
-                            <li><a href="area-charts.html">Area Charts</a>
-                            </li>
-                            <li><a href="rounded-chart.html">Rounded Charts</a>
-                            </li>
-                            <li><a href="c3.html">C3 Charts</a>
-                            </li>
-                            <li><a href="sparkline.html">Sparkline Charts</a>
-                            </li>
-                            <li><a href="peity.html">Peity Charts</a>
-                            </li>
+                    @endcan
+
+
+                    @can('voir-page-admin')
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-users icon-wrap"></i> <span class="mini-click-non">Clients</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Recent" href="#"><i class="fa fa-folder sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Clients récents</span></a></li>
+                            <li><a title="Liste des clients" href="{{route('listclient')}}"><i class="fa fa-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Liste clients</span></a></li>
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#Tablesmob" href="#">Tables <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="Tablesmob" class="collapse dropdown-header-top">
-                            <li><a href="static-table.html">Static Table</a>
-                            </li>
-                            <li><a href="data-table.html">Data Table</a>
-                            </li>
+                    @endcan
+
+                    @can('voir-page-admin')
+                    <li>
+                        <a class="has-arrow"  aria-expanded="false"><i class="fa big-icon fa-adn icon-wrap"></i> <span class="mini-click-non">Administration</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Utilisateurs" href="{{route('listuser')}}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Utilisateur</span></a></li>
+                            <li><a title="Fournisseur" href="{{route('listfournisseur')}}"><i class="fa fa-rocket sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Fournisseur</span></a></li>
+                            
                         </ul>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#formsmob" href="#">Forms <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="formsmob" class="collapse dropdown-header-top">
-                            <li><a href="basic-form-element.html">Basic Form Elements</a>
-                            </li>
-                            <li><a href="advance-form-element.html">Advanced Form Elements</a>
-                            </li>
-                            <li><a href="password-meter.html">Password Meter</a>
-                            </li>
-                            <li><a href="multi-upload.html">Multi Upload</a>
-                            </li>
-                            <li><a href="tinymc.html">Text Editor</a>
-                            </li>
-                            <li><a href="dual-list-box.html">Dual List Box</a>
-                            </li>
-                        </ul>
+                    @endcan
+                    
+                    @can('voir-page-admin-vendeur')
+                    <li><a title="Landing Page" href="{{ route('acceuil') }}" aria-expanded="false"><i class="fa fa-times-circle icon-wrap big-icon" aria-hidden="true"></i> <span class="mini-click-non">Quitter</span></a>
                     </li>
-                    <li><a data-toggle="collapse" data-target="#Appviewsmob" href="#">App views <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="Appviewsmob" class="collapse dropdown-header-top">
-                            <li><a href="basic-form-element.html">Basic Form Elements</a>
-                            </li>
-                            <li><a href="advance-form-element.html">Advanced Form Elements</a>
-                            </li>
-                            <li><a href="password-meter.html">Password Meter</a>
-                            </li>
-                            <li><a href="multi-upload.html">Multi Upload</a>
-                            </li>
-                            <li><a href="tinymc.html">Text Editor</a>
-                            </li>
-                            <li><a href="dual-list-box.html">Dual List Box</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="Pagemob" class="collapse dropdown-header-top">
-                            <li><a href="login.html">Login</a>
-                            </li>
-                            <li><a href="register.html">Register</a>
-                            </li>
-                            <li><a href="lock.html">Lock</a>
-                            </li>
-                            <li><a href="password-recovery.html">Password Recovery</a>
-                            </li>
-                        </ul>
-                    </li>
+                    @endcan
                 </ul>
             </nav>
         </div>
@@ -466,7 +463,7 @@ margin-top: 10px;
 <div class="row">
 <div class="col-lg-12">
     <div class="footer-copy-right">
-        <p>Copyright &copy; 2018 <a href="https://colorlib.com/wp/templates/">E-woody</a> All rights reserved.</p>
+        <p>Copyright &copy; 2020 <a href="https:www.nowody.com" target="_blanck">EWODY SARL -</a> Tous droits réservés</p>
     </div>
 </div>
 </div>

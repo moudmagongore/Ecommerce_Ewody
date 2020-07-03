@@ -8,15 +8,15 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <ol class="breadcrumb float-left">
-                        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="all-categories.html">categorie</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('acceuil') }}">Accueil</a></li>
+                        <li class="breadcrumb-item"><a >Toutes les categorie</a></li>
                          <li class="breadcrumb-item"><a href="all-categories.html"></a></li>
                     </ol>
                 </div>
             </div>
             <nav class="row">
                 @foreach ($categories as $categorie)
-                    <div class="col-md-3">
+                    <div class="col-lg-3 col-sm-4">
                         <div class="card card-category"  data-aos="zoom-in"  data-aos-duration="700">
                             <div class="img-wrap">
                                 <a href="{{route('detailcategorie', ['category' => $categorie->designation_categorie])}}">

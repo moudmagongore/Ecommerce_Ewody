@@ -21,7 +21,7 @@
 
                                          <th scope="col">Tailles</th>
                                         
-                                        <th scope="col">Prix</th>
+                                       <!--  <th scope="col">Prix</th> -->
 
                                         <th scope="col">Quantié</th>
                                          <th scope="col">Total</th>
@@ -69,14 +69,14 @@
                                         
 
                                         
-                                        <td class="prices">
-                                            <div>
-                                                <div class="price-wrap">
-                                                    <var class="price">{{$produit->model->getprixminimum()}}</var>
-                                                    <!-- <small class="text-muted">148 000 / unité</small> -->
-                                                </div>
-                                            </div>
-                                        </td>
+                                       <!--  <td class="prices">
+                                           <div>
+                                               <div class="price-wrap">
+                                                   <var class="price">{{$produit->model->getprixminimum()}}</var>
+                                                   <small class="text-muted">148 000 / unité</small>
+                                               </div>
+                                           </div>
+                                       </td> -->
 
                                         <td>
 

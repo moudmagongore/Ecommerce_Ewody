@@ -109,7 +109,7 @@
                         </header>
                         <div class="row">
                             @foreach ($produits as $produit)
-                                <div class="col-md-3">
+                                <div class="col-lg-3 col-sm-4">
                                     <figure class="card card-product-grid"  data-aos="zoom-in"  data-aos-duration="700">
                                         <div class="img-wrap">
                                             <span class="badge badge-success"> NEW </span>

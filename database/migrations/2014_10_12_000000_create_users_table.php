@@ -22,8 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('telephone')->nullable();
             $table->string('adresse')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('photo')->nullable();
+
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->unique()->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });

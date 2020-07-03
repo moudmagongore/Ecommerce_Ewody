@@ -83,7 +83,7 @@
                         </header>
                         <div class="row">
                             @foreach ($produits as $produit)
-                                <div class="col-md-3">
+                                <div class="col-lg-3 col-sm-4">
                                     <figure class="card card-product-grid"  data-aos="zoom-in"  data-aos-duration="700">
                                         <div class="img-wrap">
                                             <span class="badge badge-success"> NEW </span>
@@ -131,7 +131,9 @@
                                 <a href="" class="btn btn-outline-primary rounded-pill text-blue">Plus de produits</a>
                             </div>
                         </div> -->
-                        <div class="row">
+
+                        
+                        <!-- <div class="row">
                             <div class="col mt-4">
                                 <div class="box text-center">
                                     <p>Did you find what you were looking for ?</p>
@@ -139,7 +141,7 @@
                                     <a href="#" class="btn btn-light">No</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </main>
                 </div>
             </div>

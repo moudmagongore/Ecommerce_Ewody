@@ -9,6 +9,7 @@ html {
     font-size: 15px;
 }
 
+
 .input-group-append .btn{
     z-index: 0 !important;
 }
@@ -2384,6 +2385,14 @@ em
  de la fenêtre est comprise
  entre 500px et 1366px c a d un ordi on cache les button suivants*/
 @media all and (min-width: 500px) and (max-width: 1366px){
+
+/* reduire les icons panier etc en haut*/
+    .icon-sm {
+    width: 45px;
+    height: 45px;
+    line-height: 46px !important;   
+  }
+/*End  reduire les icons panier etc en haut*/
 
     .sliderInfo
     {

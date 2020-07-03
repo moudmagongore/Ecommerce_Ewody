@@ -18,6 +18,13 @@ Route::get('/connexion', 'Auth\LoginController@getLogin')->name('connexion');
 Route::post('connexion', 'Auth\LoginController@postLogin');
 
 Route::get('statut/{id}', 'Auth\RegisterController@getStatut')->name('statut');
+
+
+
+/*login facebook*/
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback','Auth\LoginController@handleProviderCallback');
+/*End login facebook*/
 //END CONNEXION
 
 

@@ -289,7 +289,7 @@
                 <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" style="margin-left: 6em;">Faites un choix !</h4>
+                            <h4 class="modal-title">Faites un choix !</h4>
 
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -297,7 +297,7 @@
                             </button>
                         </div>
 
-                            <div class="text-center mt-4 h6 ">
+                            <div class="text-center h6 ">
 
                                     <button type="text" class="btn btn-success mt-4" id="buttonAchat">
                                     

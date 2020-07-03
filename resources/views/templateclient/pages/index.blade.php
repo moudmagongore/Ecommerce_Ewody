@@ -251,7 +251,7 @@
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/bag3.jpg') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Sacs</h5>
@@ -261,10 +261,10 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row  pl-sm-4">
+                        <div class="col-lg-9">
+                            <div class="row  pl-lg-4">
                                 @foreach ($produits_sacs as $sac)
-                                    <div class="col-md-3 col-6">
+                                    <div class="col-lg-3 col-6 col-sm-4">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
@@ -314,7 +314,7 @@
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/15.jpg') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Chaussure de luxe</h5>
@@ -324,10 +324,10 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row  pl-sm-4">
+                        <div class="col-lg-9">
+                            <div class="row  pl-lg-4">
                                 @foreach ($produits_chaussure as $chaussure)
-                                    <div class="col-md-3 col-6">
+                                    <div class="col-lg-3 col-6 col-sm-4">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
@@ -377,7 +377,7 @@
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/tell.png') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Téléphone</h5>
@@ -387,10 +387,10 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row  pl-sm-4">
+                        <div class="col-lg-9">
+                            <div class="row  pl-lg-4">
                                 @foreach ($produits_telephone as $telephone)
-                                    <div class="col-md-3 col-6">
+                                    <div class="col-lg-3 col-6 col-sm-4 ">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
@@ -440,7 +440,7 @@
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/emb.jpg') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Emballage</h5>
@@ -450,10 +450,10 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row  pl-sm-4">
+                        <div class="col-lg-9">
+                            <div class="row  pl-lg-4">
                                 @foreach ($produits_emballage as $emballage)
-                                    <div class="col-md-3 col-6">
+                                    <div class="col-lg-3 col-6 col-sm-4">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
@@ -504,7 +504,7 @@
 
                 <div class="card card-home-category bg-transparent border-0">
                     <div class="row no-gutters">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="card-banner" style="min-height:356px; background-image: url('{{ asset('assets/templatefront/images/items/7.jpg') }}');">
                                 <article class="caption bottom">
                                     <h5 class="card-title">Montres de luxe</h5>
@@ -514,12 +514,12 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row  pl-sm-4">
+                        <div class="col-lg-9">
+                            <div class="row  pl-lg-4">
                                 @foreach ($produits_montre as $montre)
                                     
                                 
-                                    <div class="col-md-3 col-6">
+                                    <div class="col-lg-3 col-6 col-sm-4">
                                         <figure class="card card-product-grid rounded shadow-sm" 
                                         data-aos="zoom-in"  data-aos-duration="700"  data-aos-delay="50">
                                             <div class="img-wrap">
@@ -587,12 +587,7 @@
                                         <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
                                         <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
 
-                                        @if ($deatils->quantite == 0 )
-                                            <div class="mt-2">
-                                                <span class="badge badge-pill badge-danger">
-                                            <p>Rupture en stock</p>
-                                            </div>
-                                        @endif
+                                       
                                     </figcaption>
                                 </figure>
                             </div>
@@ -619,12 +614,7 @@
                                         <a href="{{route('details', $details['id'])}}" class="title">{{$details['nom']}}</a>
                                         <div class="price mt-2">{{ getprixminimumhelpers( $details['prix_unitaire']) }}</div>
 
-                                        @if ($details['quantite'] == 0 )
-                                            <div class="mt-2">
-                                                <span class="badge badge-pill badge-danger">
-                                            <p>Rupture en stock</p>
-                                            </div>
-                                        @endif
+                                        
                                     </figcaption>
                                 </figure>
                             </div>

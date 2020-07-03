@@ -123,7 +123,7 @@
                                     @endguest
                                 </div>
                             </a>
-                            <div class="widget-header dropdown mt-3 m-sm-0">
+                            <div class="widget-header dropdown mt-3 m-lg-0">
                                 <a href="#" data-toggle="dropdown" data-offset="20,10" id="buttonMonCompteHaut">
                                     <div class="icontext">
                                         <div class="icon">

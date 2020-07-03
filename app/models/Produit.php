@@ -12,6 +12,7 @@ use App\models\Imagemodel;
 
 use App\models\Couleur;
 use App\models\Taille;
+use App\models\Favori;
 
 class Produit extends Model
 {
