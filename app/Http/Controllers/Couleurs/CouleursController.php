@@ -38,7 +38,7 @@ class CouleursController extends Controller
          
         
 
-        $couleurs->produits()->attach(request('produit'), ['images' => 'https://www.nowody.com/' .$path, 'quantite' => $request->quantites]);
+        $couleurs->produits()->attach(request('produit'), ['images' => 'https://www.nowody.com/uploads/' .$path, 'quantite' => $request->quantites]);
 
         flashy('La couleur a bien été ajouté.');
         return back();

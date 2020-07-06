@@ -2386,6 +2386,12 @@ em
  entre 500px et 1366px c a d un ordi on cache les button suivants*/
 @media all and (min-width: 500px) and (max-width: 1366px){
 
+/* pour cacher la recherche telephone */
+#rechercherTelephone
+{
+    display:none;
+}
+
 /* reduire les icons panier etc en haut*/
     .icon-sm {
     width: 45px;

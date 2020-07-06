@@ -253,7 +253,11 @@
 
 
 /* Pour la recherche en haut */
-  #rechercher
+#rechercherOrdinateur
+{
+  display: none;
+}
+  #rechercherTelephone
   {
    width: auto !important;
    margin-left: 85px !important;

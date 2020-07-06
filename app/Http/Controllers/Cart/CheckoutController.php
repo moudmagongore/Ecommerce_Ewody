@@ -155,7 +155,7 @@ class CheckoutController extends Controller
                 }
                 else
                 {
-                     $produits['produit_' . $i][] = 'https://www.nowody.com/'.$produit->model->photo;
+                     $produits['produit_' . $i][] = 'https://www.nowody.com/uploads/'.$produit->model->photo;
                 }
 
                 $produits['produit_' . $i][] = $produit->options->taille;
@@ -240,7 +240,7 @@ class CheckoutController extends Controller
                 }
                 else
                 {
-                  $produit['produit_' . $i][] = 'https://www.nowody.com/'.$details['photo'];
+                  $produit['produit_' . $i][] = 'https://www.nowody.com/uploads/'.$details['photo'];
                 }
                 
                 
