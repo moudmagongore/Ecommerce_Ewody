@@ -232,14 +232,17 @@
 
                                         </div>
                                         <hr> 
+
+                                           @if ($tailles->count() > 0)
+                                                <div class="message">
+                                                    <p><em>Sélectionner une taille pour activer ses deux boutons en bas</em></p>
+                                                </div>
+                                           @endif
                                             
-                                           
-
-
                                         
                                             <button type="submit" class="btn  btn-primary mt-4 buttonPanierResponsive" id="buttonPanier">
                                                 <i class="fas fa-shopping-cart"></i>
-                                                <span class="text">Ajouter  panier</span>
+                                                <span class="text">Ajouter au panier</span>
                                             </button>
                                         
 
@@ -811,6 +814,7 @@
                var buttonPanierTelephone = document.querySelector('#buttonPanierTelephone');
                var buttonAchat = document.querySelector('#buttonAchat');
                var buttonAchatTelephone = document.querySelector('#buttonAchatTelephone');
+               var message = document.querySelector('.message');
                
             
 
@@ -827,7 +831,8 @@
                         buttonPanier.disabled = false;
                         buttonPanierTelephone.disabled = false;
                         buttonAchat.disabled = false;
-                        buttonAchatTelephone.disabled = false;  
+                        buttonAchatTelephone.disabled = false;
+                        message.style.display = "none";  
                    }
 
                   

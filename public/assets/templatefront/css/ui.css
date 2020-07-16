@@ -2366,7 +2366,7 @@ body {
 em
 {
     font-weight: bold;
-    margin-left: 80%;
+    /* margin-left: 80%; */
 }
 .info
 {

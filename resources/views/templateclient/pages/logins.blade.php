@@ -98,10 +98,10 @@
                     <input type="submit" value="connexion" class="btn btn-primary btn-user btn-block" style="background: #00abc5 !important;">
                      
                     <hr>
-                    <a href="" class="btn btn-google btn-user btn-block">
+                    <a href="{{ url('/login/google') }}" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Se connecter avec google
                     </a>
-                    <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook btn-user btn-block">
+                    <a href="{{ url('/login/facebook') }}" class="btn btn-facebook btn-user btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Se connecter avec Facebook
                     </a>
                   </form>

@@ -36,10 +36,34 @@ return [
     ],
 
 
-     'facebook' => [
-        'client_id' => env('FACEBOOK_ID'),        // Your Facebook Client ID
-        'client_secret' => env('FACEBOOK_SECRET'), // Your Facebook Client Secret
-        'redirect' => env('FACEBOOK_URL'),
+    'facebook'  =>  [
+        'client_id'  =>  env ( 'FACEBOOK_CLIENT_ID' ),   //  Votre  identifiant d' application Facebook  
+        'client_secret'  =>  env ( 'FACEBOOK_CLIENT_SECRET' ),  //  Votre  secret d' application Facebook  
+        'redirect'  =>  env ( 'FACEBOOK_CALLBACK_URL' ),
     ],
+
+
+
+    'google'  =>  [
+        'client_id'  =>  env ( 'GOOGLE_CLIENT_ID' ),   //  Votre  identifiant d' application GOOGLE  
+        'client_secret'  =>  env ( 'GOOGLE_CLIENT_SECRET' ),  //  Votre  secret d' application GOOGLE  
+        'redirect'  =>  env ( 'GOOGLE_CALLBACK_URL' ),
+    ],
+
+
+
+    /*'facebook' => [
+        'client_id'=>'376999589932591',
+        'client_secret'=>'0a68773f6e5123e9d7a6afdfcba6336b', 
+        'redirect'=>'https://www.nowody.com/login/facebook/callback',
+    ],*/
+
+
+
+    /*'google' => [
+        'client_id' => '97574517193-kt330869c0jclt9kdsjt0u8nlvj97uk1.apps.googleusercontent.com',
+        'client_secret' => '0uwWqU43vT0gbWYfzncWc7PV',
+        'redirect' => 'https://www.nowody.com/login/callback/google',
+    ],*/
 
 ];

@@ -4,7 +4,7 @@
             <a href="#" class="dropdown" style="margin-top: -5em; color: #00abc5; " data-toggle="dropdown" 
               aria-haspopup="true" aria-expanded="false" id="shareB">
                 <i class="fas fa-share-alt" style="margin-right: 5px;"> </i></a>
-            <ul class="dropdown-menu" aria-labelledby="shareB" style="padding:10px;">
+            <ul class="social-buttons dropdown-menu" aria-labelledby="shareB" style="padding:10px;">
                 <li class="dropdown-item"> 
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($url) }}" target="_blank">Facebook</a>
                 </li>
@@ -28,8 +28,32 @@
         </div> 
     </div>
 
-    <div class="col-md-6" >
-        
-          <!--  <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.nowody.com%2Fdetails%2F1&layout=button_count&size=small&width=91&height=20&appId" width="91" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
-    </div>
 </div>
+
+
+
+<script>
+
+    var popupSize = {
+        width: 780,
+        height: 550
+    };
+
+    $(document).on('click', '.social-buttons  a', function(e){
+
+        var
+            verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+            horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+        var popup = window.open($(this).prop('href'), 'social',
+            'width='+popupSize.width+',height='+popupSize.height+
+            ',left='+verticalPos+',top='+horisontalPos+
+            ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+        if (popup) {
+            popup.focus();
+            e.preventDefault();
+        }
+
+    });
+</script>
