@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\models\Produit;
 use App\models\Avis;
-use Illuminate\support\Facades\Auth;
+/*use Illuminate\support\Facades\Auth;*/
 
 
 class AvisController extends Controller
@@ -20,7 +20,8 @@ class AvisController extends Controller
 
 
     	/*On recupere l'user connecté avec l'id*/
-    	$user = Auth::user()->id;
+    	/* on l'importe $user = Auth::user()->id;*/
+        $user = auth()->user()->id;
 
     	/*On recupere le produit qu'il veut commenter*/
     	$produit = Produit::find($id);

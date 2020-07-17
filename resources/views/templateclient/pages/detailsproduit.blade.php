@@ -926,7 +926,7 @@
         <div class=" float-md-right">
             <div class="row">
                 <div class="col-4">
-                   <div class="mb-3 mt-4">
+                   <div class="mb-3 mt-4" style="font-size: 13px;">
                         <var class="price">{{$produits->getprixminimum()}} </var>
                     </div>
                 </div>
@@ -935,8 +935,8 @@
                     <div class="mb-4 mt-3">
 
                         <button type="submit" onclick="document.forms['formpanier'].submit();" class="btn  btn-primary" id="buttonPanierTelephone">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="text">Ajouter</span>
+                            <i class="fas fa-shopping-cart" style="width:6px; "></i>
+                            <span class="text" style="font-size: 11px;">Ajouter</span>
                         </button>
 
                         
@@ -951,13 +951,13 @@
                            @guest
 
                                 <button type ="button" class="btn btn-success" data-toggle="modal" data-target="#addAchatModal" id="buttonAchatTelephone">
-                               <i class=" fa  fa-play-circle" aria-hidden="true"></i>
-                                <span class="text ">Achêter</span>
+                               <i class=" fa  fa-play-circle" aria-hidden="true" style="width:3px; "></i>
+                                <span class="text" style="font-size: 11px;">Achêter</span>
                                 </button>
                            @else
                                 <button type="submit" class="btn btn-success" id="buttonAchatTelephone" onclick="document.forms['formachat'].submit();">
-                               <i class=" fa fa-play-circle" aria-hidden="true"></i>
-                                <span class="text">Achêter</span>
+                               <i class=" fa fa-play-circle" aria-hidden="true" style="width:3px; "></i>
+                                <span class="text" style="font-size: 11px;">Achêter</span>
                                 </button>
                            @endguest
 
