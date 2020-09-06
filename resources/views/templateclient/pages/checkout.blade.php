@@ -179,7 +179,7 @@
                                     </div>
                             </div>
                         </div>
-                    </aside>
+                </aside>
 
             </div>
             

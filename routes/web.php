@@ -14,8 +14,8 @@
 
 //Connexion
 /*login facebook*/
-Route::get('login/{provider}', 'Auth\SocialesController@redirectToProvider');
-Route::get('login/{provider}/callback','Auth\SocialesController@handleProviderCallback');
+Route::get('auth/{provider}', 'Auth\SocialesController@redirectToProvider');
+Route::get('auth/{provider}/callback','Auth\SocialesController@handleProviderCallback');
 /*End login facebook*/
 
 

@@ -53,9 +53,9 @@ return [
 
 
     /*'facebook' => [
-        'client_id'=>'376999589932591',
-        'client_secret'=>'0a68773f6e5123e9d7a6afdfcba6336b', 
-        'redirect'=>'https://www.nowody.com/login/facebook/callback',
+        'client_id'=>'316065449556675',
+        'client_secret'=>'708c251c9be7e2c771e4e3442238ea07', 
+        'redirect'=>'https://www.nowody.com/auth/facebook/callback',
     ],*/
 
 

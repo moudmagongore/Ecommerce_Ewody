@@ -80,7 +80,7 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-sm-3" id="logoresponsive">
                         <a href="{{route('acceuil')}}" class="brand-wrap">
-                            <img class="logo" src="{{asset('assets/templatefront/images/logo.png')}}">
+                            <img class="logo" src="{{asset('assets/templatefront/images/nowody3.jpg')}}">
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 my-3 my-sm-0" id="partieRecherche">
